@@ -10,13 +10,13 @@ MAIL_DRIVER=smtp//代表驱动
 #MAIL_HOST=smtp.163.com
 MAIL_HOST=smtp.qq.com//代表使用qq
 MAIL_PORT=465//端口号
-#MAIL_USERNAME=risesli@163.com
-#MAIL_FROM_ADDRESS=risesli@163.com
-MAIL_USERNAME=1539853340@qq.com//发送邮件的登录用户名
-MAIL_FROM_ADDRESS=1539853340@qq.com//发送邮件的地址
+#MAIL_USERNAME=
+#MAIL_FROM_ADDRESS=
+MAIL_USERNAME=//发送邮件的登录用户名
+MAIL_FROM_ADDRESS=//发送邮件的地址
 MAIL_FROM_NAME=LiYi//发送邮件的名字
-#MAIL_PASSWORD=1211060911gyz520
-MAIL_PASSWORD=pocpgjaldmaybafb//qq生成的授权码
+#MAIL_PASSWORD=
+MAIL_PASSWORD=//qq生成的授权码
 MAIL_ENCRYPTION=ssl//加密协议类型
 ~~~
 
