@@ -24658,7 +24658,7 @@ $options = [
 ];
 
 try{
-    $pdo = new PDO('mysql:host=118.25.19.106;dbname=ui','lijianguo','TGQGHa557uqkoRGm');
+    $pdo = new PDO('mysql:host=127.0.0.1;dbname=ui','123','456');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     /*foreach ($option as $k => $v) {
         $v['en'] = str_replace('','_',$v['en']);
