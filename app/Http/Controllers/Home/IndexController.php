@@ -28,4 +28,27 @@ class IndexController extends Controller
         $distance = 6370996.81 * acos(cos($point_lat * M_PI / 180) * cos($target_lat * M_PI / 180) * cos($point_lon * M_PI / 180 - $target_lon * M_PI / 180) + sin($point_lat * M_PI / 180) * sin($target_lat * M_PI / 180));
         return round($distance);
     }
+
+    public function edit()
+    {
+        (new SonController())->edit();
+    }
+
+    public function save()
+    {
+        (new FivesController())->save();
+        echo "<br />";
+        (new FivesController())->store();
+    }
+
+    public function save1()
+    {
+        (new SixController())->save();
+        echo "<br />";
+        (new SixController())->store();
+        echo "<br />";
+        (new SixController())->save1();
+        echo "<br />";
+        (new SixController())->store1();
+    }
 }

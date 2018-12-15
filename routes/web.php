@@ -19,6 +19,11 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('test','IdCordController@test');
     Route::get('tests','IndexController@test');
     Route::get('index','IndexController@index')->middleware('apiLog');
+    Route::get('trait','SonController@index');
+    Route::get('trait1','SonController@edit');
+    Route::get('trait2','IndexController@edit');
+    Route::get('trait3','IndexController@save');
+    Route::get('trait4','IndexController@save1');
 });
 
 Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){
