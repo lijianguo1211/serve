@@ -311,4 +311,383 @@ echo "<br />";
 (new SixController())->store1();
 ```
 
-我们使用关键字【as】还可以修改这个方法的访问控制权
+我们使用关键字【as】还可以修改这个方法的访问控制权，虽然改变了方法的访问的权限，但是它对方法本身的权限并没有改变，改变的只是
+当前类调用的时候的权限，话不多说，如下：
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 14:47
+ */
+namespace App\Traits;
+
+trait Seven
+{
+    public function sayHello()
+    {
+        echo '我是trait Seven 里的public方法sayHello()方法！';
+    }
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Seven;
+
+class EightController
+{
+    use Seven{
+        sayHello as protected;
+    }
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Seven;
+
+class NineController
+{
+    use Seven{
+        sayHello as private;
+    }
+}
+?>
+```
+现在我们去调用这两个控制器
+```php
+(new EightController())->sayHello();
+(new NineController()->sayHello();
+```
+得到的结果很明显，是报错了：
+![访问控制](trait_test8.png)
+在类的外面，我们是不能调用受保护或者是私有的方法的，下面我们在类的内部试一试，看看结果如何：
+```php
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Seven;
+
+class EightController
+{
+    use Seven{
+        sayHello as protected;
+    }
+
+    public function sayWorld()
+    {
+        $this->sayHello();
+    }
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Seven;
+
+class NineController
+{
+    use Seven{
+        sayHello as private;
+    }
+
+    public function sayWorld()
+    {
+        $this->sayHello();
+    }
+}
+?>
+
+```
+这个时候我们再去代用类里的方法，就没问题了，不过一般我们不会这么做的，我觉得。
+调用：
+```php
+(new EightController())->sayWorld();
+(new EightController())->sayWorld();
+```
+得到的结果：
+![访问控制](trait_test9.png)
+
+我们不仅可以把它的权限由public 改为 protected 或者 private；也可以把它的权限由private或者protected改为public
+这样就可以让我们访问了。
+
+4. **trait 和trait之间也是可以相互调用，相互组合的**
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 16:07
+ */
+namespace App\Traits;
+
+trait Ten
+{
+    public function sayHello()
+    {
+        echo '我是Ten，我说：Hello';
+        echo "<br />";
+    }
+}
+?>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 16:09
+ */
+namespace App\Traits;
+
+trait Eleven
+{
+    public function sayWorld()
+    {
+        echo '我是Eleven，我说：World';
+    }
+}
+?>
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 16:11
+ */
+namespace App\Traits;
+
+use App\Traits\Ten;
+use App\Traits\Eleven;
+
+trait Twelve
+{
+    use Ten,Eleven;
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+use App\Traits\Twelve;
+
+class ThirteenController
+{
+    use Twelve;
+}
+?>
+
+```
+我们有三个trait，分别是Ten里的sayHello()方法以及Eleven里的sayWorld()方法
+然后由第三个trait Twelve引入它们两个，最后有类ThirteenController引入Twelve。调用如下：
+```php
+(new ThirteenController())->sayHello();
+(new ThirteenController())->sayWorld();
+```
+输出如下：
+![多个trait相互组合](trait_test10.png)
+
+5. **trait 的抽象成员**
+在trait里我们也是可以抽象成员方法的
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 16:26
+ */
+namespace App\Traits;
+
+trait Fourteen
+{
+    public function getValue()
+    {
+        echo '**'."<br />";
+        echo '这个trait  Fourteen里面的抽象方法setValue():'.$this->setValue();
+    }
+
+    abstract public function setValue();
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Fourteen;
+
+class FifteenController
+{
+    use Fourteen;
+
+    protected $name = '小李子';
+
+    public function setValue()
+    {
+        // TODO: Implement setValue() method.
+       return $this->name;
+    }
+}
+?>
+
+```
+我们在FifteenController里面把【trait】Fourteen里的抽象方法实现：
+然后调用：
+```php
+(new FifteenController())->getValue();
+```
+得到输出：
+![trait里的抽象方法](trait_test11.png)
+
+6. **在trait里定义静态成员以及静态方法和属性**
+这个就和我们普通类里面定义的一样，我感觉没有区别
+如下：
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 16:51
+ */
+namespace App\Traits;
+
+trait Statics
+{
+    public function inc()
+    {
+        static $day = 0;
+        $day++;
+        echo $day;
+    }
+
+    public static function getStaticValue()
+    {
+        $time = time();
+        echo '现在是' . date('Y',$time) . '年' . "<br />";
+        echo '现在是' . date('m',$time) . '月' . "<br />";
+        echo '现在是' . date('d',$time) . '日' . "<br />";
+        echo '现在是' . date('H',$time) . '时' . "<br />";
+        echo '现在是' . date('i',$time) . '分' . "<br />";
+        echo '现在是' . date('s',$time) . '秒' . "<br />";
+    }
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Statics;
+
+class Static1Controller
+{
+    use Statics;
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Statics;
+
+class Static2Controller
+{
+    use Statics;
+}
+?>
+
+```
+最后我们在调用：
+```php
+(new Static1Controller())->inc();
+echo "<br />";
+(new Static2Controller())->inc();
+```
+输出如下：
+![静态调用1](trait_test12.png)
+
+符合我们在普通类里调用静态变量一切的样子
+
+下面是我们调用它的静态函数：
+```php
+Static1Controller::getStaticValue();
+Static2Controller::getStaticValue();
+```
+输出如下：
+![静态调用2](trait_test13.png)
+
+定义属性的时候要注意，在trait里面定义的属性要和class里面定义的属性最好不要相同，不然会产生冲突
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyi
+ * Date: 2018/12/16
+ * Time: 17:18
+ */
+namespace App\Traits;
+
+trait Attributes
+{
+    public $name = '小li子';
+}
+?>
+
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Attributes;
+
+class AttributesController
+{
+    use Attributes;
+}
+?>
+
+```
+调用：
+```php
+print (new AttributesController())->name;
+```
+
+输出：
+![属性访问输出](trait_test14.png)
+
+下面是产生冲突的样子，我们只需要修改：
+```php
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Traits\Attributes;
+
+class AttributesController
+{
+    use Attributes;
+
+    public $name = 'xiaolizi';
+}
+
+```
+同样的调用：`print (new AttributesController())->name;`
+
+最后的输出却是：
+![属性调用冲突](trait_test15.png)
+
+> 注意：Trait 定义了一个属性后，类就不能定义同样名称的属性，否则会产生 fatal error。 有种情况例外：属性是兼容的（同样的访问可见度、初始默认值）。 在 PHP 7.0 之前，属性是兼容的，则会有 E_STRICT 的提醒。
+
+不过我觉得还是尽量避免这样的同样的命名吧。

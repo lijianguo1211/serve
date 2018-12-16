@@ -24,6 +24,13 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('trait2','IndexController@edit');
     Route::get('trait3','IndexController@save');
     Route::get('trait4','IndexController@save1');
+    Route::get('trait5','IndexController@sayHello');
+    Route::get('trait6','IndexController@sayHello1');
+    Route::get('trait7','IndexController@sayHelloWorld');
+    Route::get('trait8','IndexController@sayXiaoLiZi');
+    Route::get('trait9','IndexController@sayStatic');
+    Route::get('trait10','IndexController@sayTime');
+    Route::get('trait11','IndexController@sayAttributes');
 });
 
 Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){

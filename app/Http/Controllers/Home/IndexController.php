@@ -51,4 +51,44 @@ class IndexController extends Controller
         echo "<br />";
         (new SixController())->store1();
     }
+
+    public function sayHello()
+    {
+        (new EightController())->sayWorld();
+    }
+
+    public function sayHello1()
+    {
+        (new NineController())->sayHello();
+    }
+
+    public function sayHelloWorld()
+    {
+        (new ThirteenController())->sayHello();
+        (new ThirteenController())->sayWorld();
+    }
+
+    public function sayXiaoLiZi()
+    {
+        (new FifteenController())->getValue();
+    }
+
+    public function sayStatic()
+    {
+        (new Static1Controller())->inc();
+        echo "<br />";
+        (new Static2Controller())->inc();
+    }
+
+    public function sayTime()
+    {
+        Static1Controller::getStaticValue();
+        Static2Controller::getStaticValue();
+    }
+
+    public function sayAttributes()
+    {
+        print (new AttributesController())->name;
+    }
+
 }
