@@ -39,3 +39,7 @@ Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],functio
    Route::post('refresh','UserController@refresh');//刷新
    Route::post('me','UserController@me');
 });
+
+Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
+    Route::get('index','IndexController@index');
+});
