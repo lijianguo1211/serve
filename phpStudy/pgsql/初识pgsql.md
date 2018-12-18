@@ -1,5 +1,15 @@
 ### 初识pgsql(一)
 
+- psql在安装完成之后，我们就需要登录到psql.
+下面是操作
+```postgresql
+-- 进入到psql的\bin目录下,输入：
+psql -h 127.0.0.1 -d testsql -U root
+
+```
+输出页面：
+![登录成功1](psql_test1.png)
+
 - 创建一个数据库
 
 ```sql
@@ -88,4 +98,9 @@ select age from users where age >= 20;
 
 -- 给指定的列起别名
 select name as 名字,age as 年龄，city as 城市 from users;
+```
+
+- 更新命令
+```postgresql
+update users set city = '十堰' where 'name' = 'admin'; 
 ```
