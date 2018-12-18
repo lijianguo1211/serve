@@ -1,5 +1,4 @@
 ### 初识pgsql(一)
-
 - psql在安装完成之后，我们就需要登录到psql.
 下面是操作
 ```postgresql
@@ -7,8 +6,40 @@
 psql -h 127.0.0.1 -d testsql -U root
 
 ```
-输出页面：
+
+- 在windows上操作数据库，新安装的数据库默认用户是：**postgres**
+```postgresql
+/*登陆就是进到psql安装的bin目录下，然后输入psql postgres,回车，输入密码*/
+psql postgres;
+
+/*首次进来我们是超级用户，这是很危险地行为，所以我们需要为我们自己创建用户*/
+CREATE USER liyi WITH PASSWORD '123456';
+
+/*查看我们是否创建用户成功*/
+\du;
+/*或者*/
+SELECT ROLNAME FROM PG_ROLES;
+
+/*创建我们的测试数据库,创建testdb数据库，所有者为liyi,我们刚创建的用户*/
+CREATE DATABASE testdb OWNER liyi;
+
+/*查看是否创建数据库成功*/
+\l;
+/*或者*/
+SELECT DATNAME FROM PG_DATABSE;
+
+/*给我们刚刚创建的数据库赋予权限*/
+GRANT ALL PRIVILEGES ON DATABASE testdb TO liyi;
+```
+效果如下：
+
+![查看用户1](psql_test2.png)
+
+![查看数据库2](psql_test3.png)
+
 ![登录成功1](psql_test1.png)
+
+![登陆以及成功](psql_test4.png)
 
 - 创建一个数据库
 
@@ -102,5 +133,5 @@ select name as 名字,age as 年龄，city as 城市 from users;
 
 - 更新命令
 ```postgresql
-update users set city = '十堰' where 'name' = 'admin'; 
+update users set city = '十堰' where 'name' = 'admin';
 ```
