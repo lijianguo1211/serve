@@ -12,6 +12,9 @@ class IndexController
 
     public function testSql()
     {
-        //$data1 = DB::select("select distinct friend_nickname from mr_keyboardinfo where contact_account_type = wechat order by capture_time desc");
+        $traf = new LegController();
+        //依赖注入方式解决问题
+        $tra = new IocController($traf);
+        $tra->goVisit();
     }
 }
