@@ -92,7 +92,7 @@ select * from test_join1 as t1 inner join test_join2 as t2 using (test_join1_id)
 
 如图：
 
-![using 的使用](psql_test42.png)
+![using 的使用6](psql_test42.png)
 
 - JOIN USING
 >更进一步，JOIN USING的输出会废除冗余列：不需要把匹配上的列都打印出来，因为它们必须具有相等的值。不过JOIN ON会先产生来自T1的所有列，后面跟上所有来自T2的列；而JOIN USING会先为列出的每一个列对产生一个输出列，然后先跟上来自T1的剩余列，最后跟上来自T2的剩余列。
@@ -106,7 +106,7 @@ select * from test_join1 as t1 natural join test_join2 as t2;
 
 如图所示：
 
-![natural 的使用](psql_test43.png)
+![natural 的使用7](psql_test43.png)
 
 ----
 
