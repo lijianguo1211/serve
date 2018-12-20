@@ -43,4 +43,5 @@ Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],functio
 Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
     Route::get('index','IndexController@index');
     Route::get('testSql','IndexController@testSql');
+    Route::get('testJson','IndexController@testJson');
 });
