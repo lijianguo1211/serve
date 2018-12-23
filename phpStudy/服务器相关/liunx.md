@@ -1,7 +1,8 @@
 ### liunx 操作命令小记
 
 - 上传下载文件
-```ssh
+
+```
 # 下载文件
 sz 'filename'
 
@@ -16,7 +17,7 @@ scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
 [[user@]host1:]file1 [...] [[user@]host2:]file2
 
 # 简易写法：
-scp [可选参数] file_source file_target 
+scp [可选参数] file_source file_target
 ```
 参数列表：
 
@@ -53,3 +54,5 @@ scp [可选参数] file_source file_target
 -P port：注意是大写的P, port是指定数据传输用到的端口号
 
 -S program： 指定加密传输时所使用的程序。此程序必须能够理解ssh(1)的选项。
+
+- 常用的打包压缩解包解压缩命令

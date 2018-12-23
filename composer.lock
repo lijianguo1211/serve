@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b9c3b62238686bc6183bba8751817b0",
+    "content-hash": "f2d25caef4ea6e7e5b48f480c3614bea",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -500,6 +500,54 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "huang-yi/rbac-laravel",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/huang-yi/rbac-laravel.git",
+                "reference": "c2aa0e0f8554dd158bdded97f5dd20017064653f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/huang-yi/rbac-laravel/zipball/c2aa0e0f8554dd158bdded97f5dd20017064653f",
+                "reference": "c2aa0e0f8554dd158bdded97f5dd20017064653f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0",
+                "illuminate/support": "~5.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.3.*",
+                "phpunit/phpunit": "~4.8|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HuangYi\\Rbac\\": "src"
+                },
+                "classmap": [
+                    "database/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Huang Yi",
+                    "email": "coodeer@163.com"
+                }
+            ],
+            "description": "A RBAC package for Laravel.",
+            "keywords": [
+                "laravel",
+                "rbac"
+            ],
+            "time": "2017-08-31T02:11:13+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
