@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    ws = new WebSocket('ws://192.168.0.103:9502');
+    //var wsServer = 'ws://192.168.0.103:9502';
+   // var websocket = new WebSocket(wsServer);
+    ws.onopen = function (evt) {
+        alert('打开连接！');
+    };
+
+    ws.onclose = function (evt) {
+        alert('连接关闭');
+    };
+
+    ws.onmessage = function (evt) {
+        ws.send('骚年123');
+        alert('Retrieved data from server: ' + evt.data);
+    };
+
+    ws.onerror = function (evt, e) {
+        alert('Error occured: ' + evt.data);
+    };
+</script>
+</body>
+</html>
