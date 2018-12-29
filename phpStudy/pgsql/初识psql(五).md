@@ -20,7 +20,7 @@ salary money not null,
 create_at integer  
 );
 
-//创建自增主键
+-- 创建自增主键
 CREATE SEQUENCE students_id_seq
     INCREMENT 1
     START 1
@@ -93,7 +93,7 @@ select * from students where create_at not between 1545537390 and 1545838392;
 - `where ... like` 模糊查询
 
 ```postgresql
-select * from students where name likke '_iyi';
+select * from students where name like '_iyi';
 select * from students where name like '_iy_';
 select * from students where name like '%yi';
 select * from students where name like '%y%';
@@ -107,7 +107,7 @@ select * from students where name like '%y%';
 select * from students where name in (select username from users);
 ```
 
-以上sql语句全不可以正常运行
+以上sql语句完全可以正常运行
 
 -----
 
