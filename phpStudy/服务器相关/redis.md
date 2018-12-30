@@ -35,6 +35,56 @@
   
   2. 在 `/etc/init.d/` 下修改`redis_init_script` 为 `redis` => `mv redis_init_script redis`
   
-  3. 给它写的权限 `chmod +x redis`
+  3. 给它执行的权限 `chmod +x redis`
   
+  4. 移动`cd /home/redis-5.0.3/`,可以看到`redis.conf`文件，复制它到`etc/redis/`。命令`cp redis.conf /etc`
+    `cd /etc` 创建文件`mkdir redis`,移动文件`mv redis.conf redis/6379.conf`
+  
+  5. 查看 `cd /run` 文件下，查看有没有`redis_***.pid`的文件，如果没有，我们尝试运行`/etc/redis/6379.conf`
+    再次查看就可以看到，如下所示：
+    
+    ![redis-pid文件](redis-test3.png)
+    
+  6. `/etc/init.d/redis`脚本参数介绍
+       
+    ```php
+    //REDISPORT=6379 redis 端口号
+    
+    //EXEC=/usr/local/bin/redis-server redis-server 所在路径
+    
+    //CLIEXEC=/usr/local/bin/redis-cli redis-cli 所在路径
+    
+    //PIDFILE=/var/run/redis_${REDISPORT}.pid redis_**.pid 所在路径
+    
+    //CONF="/etc/redis/${REDISPORT}.conf" redis/***.conf 所在的路径
+    ```  
+
+   7. 创建redis 的日志与data文件
+    ```php
+    mkdir -p /var/bin/redis
+    
+    mkdir -p /var/log/redis
+    ```   
+   
+   8. 修改`redis`的配置文件，`vi /etc/redis/6379.conf`,搜索`/daemonize`,把`daemonize no`修改为`daemonize yes`,保存退出
+   
+   9. 添加到开机自启动`chkconfig redis on`
+   
+   10. 测试开启命令
+    
+   `service redis start`
+   
+   11. 测试关闭命令
+   
+   `service redis stop`
+   
+   12. 全局直接启动
+   
+   `redis-cli`
+   
+   
+   
+---------
+
+大雪纷飞！  
   
