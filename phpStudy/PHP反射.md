@@ -5,8 +5,6 @@
 ```php
 <?php
 
-<?php
-
 class Test
 {
     /**
