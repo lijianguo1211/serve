@@ -62,16 +62,22 @@ class Container
             return $concrete($this);
         }
 
-        $reflector = new ReflectionClass($concrete);
+        $reflector = new ReflectionClass($concrete);//报告了一个类的有关信息
 
-        if (!$reflector->isInstantiable())
+        if (!$reflector->isInstantiable())//检查类是否可实例化
         {
             echo $message = "Target [$concrete] is not instantiable.";
         }
 
-        $dependencies = $constructor->getParameters();
-        $instances = $this->getDependencied($dependencies);
-        return $reflector->newInstanceArgs($instances);
+        $constructor = $reflector->getConstructor();// 获取类的构造函数
+
+        if (is_null($constructor))
+        {
+            return new $concrete;
+        }
+        $dependencies = $constructor->getParameters();//获取构造函数的参数名[数组形式]
+        $instances = $this->getDependencies($dependencies);
+        return $reflector->newInstanceArgs($instances);//从给出的参数创建一个新的类实例
     }
 
     /**
