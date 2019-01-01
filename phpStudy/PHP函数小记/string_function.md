@@ -13,3 +13,10 @@ $needle //如果 needle 不是一个字符串，那么它将被转换为整型�
 
 $offset //可选参数，如果设置它，那么搜索会从字符串该字符数的起始位置开始统计。 如果是负数，搜索会从字符串结尾指定字符数开始。
 ```
+
+https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
+echo 'export PATH=$PATH:/usr/local/git-2.9.5/bin' > /etc/profile.d/git.sh
+export GIT_HOME=/usr/local/git-2.9.5
+export PATH=$GIT_HOME/bin:$PATH
+
+ssh-keygen -t rsa -C "risesli@hotmail.com"
