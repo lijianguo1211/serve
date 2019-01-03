@@ -1,0 +1,148 @@
+i/o模型
+
+	网络i/o
+		本质上是socket读取
+客户端发送请求 -》nginx -》 内核 -》 磁盘 -》 内核缓存区 -》 nginx
+
+	磁盘i/o
+
+	
+	i/o阶段：
+	1.将数据从磁盘文件先加载至内核内存空间（缓冲区），等待数据准备完成，时间较长
+	2.将数据从内核缓冲区复制到用户空间进程的内存中，时间较短
+
+
+	i/o模型
+	同步/异步（消息通信机制）
+	同步：synchronous
+	异步：asynchronous
+
+	阻塞/非阻塞（关注调用者在等待结果返回之前所处的状态）
+	阻塞：blocking
+	非阻塞：nonblocking
+
+	i/o模型
+	阻塞型 非阻塞型 复用型 信号驱动型 异步
+	
+
+
+nginx介绍  官网 http://nginx.org/
+
+特性：
+	模块化设计，较好的扩展型
+	高可靠性
+	支持热部署：不停机更新配置文件，升级版本，更换日志文件
+	低内存消耗
+基本功能：
+	静态资源的web服武器
+	http协议反向代理服务器
+	pop3/imap4协议反向代理服务器
+	fastcgi(lnmp),uwsgi(python)等协议
+	模块化（非dso）如zip,ssl模块
+
+工作模式
+客户端 -》 nginx -》 php-fpm(监听9000) -》 数据库（mysql）
+
+
+web服务相关的功能：
+虚拟主机
+支持keep-alive和管道连接
+访问日志（支持基于日志缓冲提高其性能）
+url rewirte
+路径别名
+基于ip及用户的访问控制
+支持速率限制及并发数限制
+重新配置和在线升级而无需中断
+memcached 的get接口
+
+nginx架构
+1.master进程
+2.woker进程
+
+一个master进程开若干个worker进程（数量限制）
+master 进程管理 worker 进程
+用户发送请求，worker进程提供服务
+
+模块分类
+核心模块 core module
+标准模块 
+	http  默认功能
+	mail
+	stream
+第三方模块
+
+nginx安装
+
+修改源
+vim /etc/yum.repos.d/nginx.repo
+
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/OS/OSRELEASE/$basearch/
+gpgcheck=0
+enabled=1
+
+查看 yum info nginx 
+
+安装 yum install nginx -y
+
+查看nginx文件 rpm -ql nginx 
+
+配置 nginx
+
+/usr/sbin/nginx => 主进程
+
+ss -ntlp | ss -ntl 查看nginx是否启动
+
+nginx -t =》 检查语法
+
+nginx -v =》 版本号
+
+nginx -V =》 版本号以及编译信息
+
+主配置文件 =》 /etc/nginx/nginx.conf
+
+main block:主配置段，全局配置段
+	event{
+	
+	}
+http{
+
+}
+
+mail{
+
+}
+
+stream{
+
+}
+
+user  =》 nginx 
+
+子配置文件 =》 /etc/nginx/conf.d/*.conf
+
+
+分号做修割符
+
+变量：
+	内置变量：
+	自定义变量：
+以 $ 调用变量
+
+
+编译安装：
+
+./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx --pid-path=/run/nginx --user=nginx --group=nginx --with-file-aio --with-http_ssl_module  --with-http_geoip_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module  --with-http_perl_module --http-fastcgi-temp-path=/tmp/fastcti 
+
+
+创建用户组 groupadd nginx
+
+创建用户 useradd nginx -g nginx -s /sbin/nologin -M
+
+
+
+
+nginx各种模块
+
+
