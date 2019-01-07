@@ -146,3 +146,9 @@ user  =¡· nginx
 nginx¸÷ÖÖÄ£¿é
 
 
+server {
+listen 80;
+server_name www.lglg.xyz;
+rewrite ^(.*) https://$server_name$1 permanent;
+}
+

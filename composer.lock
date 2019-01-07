@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2d25caef4ea6e7e5b48f480c3614bea",
+    "content-hash": "5c9d3ea964c81ab7c3916cfd603ba1d2",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -500,6 +500,77 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "hhxsv5/laravel-s",
+            "version": "v3.3.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hhxsv5/laravel-s.git",
+                "reference": "2a21c452ced4ed255eadf282b43ba14ff1456af2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hhxsv5/laravel-s/zipball/2a21c452ced4ed255eadf282b43ba14ff1456af2",
+                "reference": "2a21c452ced4ed255eadf282b43ba14ff1456af2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.5.9",
+                "symfony/console": ">=2.7.0"
+            },
+            "suggest": {
+                "ext-inotify": "Inotify, used to reload all worker processes when your code is modified.",
+                "ext-swoole": "Event-driven asynchronous & concurrent & coroutine networking engine with high performance for PHP, require >= 1.7.19."
+            },
+            "bin": [
+                "bin/fswatch"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hhxsv5\\LaravelS\\Illuminate\\LaravelSServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hhxsv5\\LaravelS\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Xie Biao",
+                    "email": "hhxsv5@sina.com"
+                }
+            ],
+            "description": "🚀LaravelS is a glue that is used to quickly integrate Swoole into Laravel or Lumen and then give them better performance and more possibilities.",
+            "homepage": "https://github.com/hhxsv5/laravel-s",
+            "keywords": [
+                "async",
+                "coroutine",
+                "http",
+                "inotify",
+                "laravel",
+                "laravel-s",
+                "lumen",
+                "performance",
+                "process",
+                "server",
+                "swoole",
+                "task",
+                "tcp",
+                "timer",
+                "udp",
+                "websocket"
+            ],
+            "time": "2019-01-02T11:41:08+00:00"
         },
         {
             "name": "huang-yi/rbac-laravel",

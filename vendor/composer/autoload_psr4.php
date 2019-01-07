@@ -43,6 +43,7 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
     'HuangYi\\Rbac\\' => array($vendorDir . '/huang-yi/rbac-laravel/src'),
+    'Hhxsv5\\LaravelS\\' => array($vendorDir . '/hhxsv5/laravel-s/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),

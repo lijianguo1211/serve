@@ -176,7 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        //Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
 
     ],
 
