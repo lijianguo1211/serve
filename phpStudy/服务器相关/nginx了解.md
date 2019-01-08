@@ -14,52 +14,52 @@ web页面：多个资源
     alias
     documentRoot
 
-httpd: MPM
+- httpd: MPM
     prefork,worker,event
 
-    prefork :主进程，生成多个子进程，每个子进程处理一个请求 【复用型i/o】
+    1. prefork :主进程，生成多个子进程，每个子进程处理一个请求 【复用型i/o】
 
-    worker：主进程，生成多个子进程，每个主进程生成多个线程，每个线程响应一个请求 【复用型i/o】
+    2. worker：主进程，生成多个子进程，每个主进程生成多个线程，每个线程响应一个请求 【复用型i/o】
 
-    event：主进程生成多个子进程，每个子进程响应多个请求【信号驱动式i/o】
+    3. event：主进程生成多个子进程，每个子进程响应多个请求【信号驱动式i/o】
 
-i/o类型：调用方向被调用方发起请求
+- i/o类型：调用方向被调用方发起请求
 
-    同步和异步：【synchronous  asynchronous】
-    关注的是消息通信机制
+    1. 同步和异步：【synchronous  asynchronous】
+       关注的是消息通信机制
 
-    同步：调用发出之后不会立即返回，但一旦返回，则返回的是最终结果
-    异步：调用发出之后，被调用方立即返回消息，但返回的不是最终结果，被调用者通过状态，通知机制等来通知被调用者，或通过函数来处理返回结果
+        同步：调用发出之后不会立即返回，但一旦返回，则返回的是最终结果
+        异步：调用发出之后，被调用方立即返回消息，但返回的不是最终结果，被调用者通过状态，通知机制等来通知被调用者，或通过函数来处理返回结果
 
-    阻塞和非阻塞：【block  nonblock】
-    关注的是调用者等待被调用者返回结果时的状态
+    2. 阻塞和非阻塞：【block  nonblock】
+       关注的是调用者等待被调用者返回结果时的状态
 
-    阻塞：调用结果返回之前，调用者会被挂起，调用者只有在得到返回结果之后才能继续
+        阻塞：调用结果返回之前，调用者会被挂起，调用者只有在得到返回结果之后才能继续
 
-    非阻塞：调用结果返回之前，调用者不会被挂起，即调用不会阻塞调用者
+        非阻塞：调用结果返回之前，调用者不会被挂起，即调用不会阻塞调用者
 
-i/o模型：
+- i/o模型：
 
-阻塞式i/o
+    1. 阻塞式i/o
 
-非阻塞i/o
+    2. 非阻塞i/o
 
-复用型i/o | 多路i/o
-    select  -》 1024
-        调用者 -》 select -》被调用者【内核】
-    poll
+    3. 复用型i/o | 多路i/o
+        select  -》 1024
+            调用者 -》 select -》被调用者【内核】
+        poll
+    
+        它们依然本质是阻塞性i/o
 
-    它们依然本质是阻塞性i/o
+    4. 信号驱动式   【epoll,kqueue,/dev/poll】
+        非阻塞型
+        调用者非阻塞 -》 内核阻塞
+        调用者发送请求 -》 内核向磁盘发送请求 -》 被调用者收到消息【该干嘛干嘛】 -》磁盘处理，发送给内核 -》 内核把消息发送给调用者，内核通知被调用者好了
 
-信号驱动式   【epoll,kqueue,/dev/poll】
-    非阻塞型
-    调用者非阻塞 -》 内核阻塞
-    调用者发送请求 -》 内核向磁盘发送请求 -》 被调用者收到消息【该干嘛干嘛】 -》磁盘处理，发送给内核 -》 内核把消息发送给调用者，内核通知被调用者好了
+        水平触发，多次通知
+        边缘触发，只通知一次
 
-    水平触发，多次通知
-    边缘触发，只通知一次
-
-异步i/o [aio]
+    5. 异步i/o [aio]
 
 某一个进程只能一次处理一个i/o
 
@@ -73,28 +73,28 @@ i/o模型：
 7.调用者得到数据
 
 
-nginx 特性
-模块化设计，较好扩展性
-高可靠性
+- nginx 特性
+1. 模块化设计，较好扩展性
+2. 高可靠性
     master/worker
-支持热部署
+3. 支持热部署
     不停机更新配置文件，更换日志，更换服务器程序版本
-低内存消耗
+4. 低内存消耗
     10000个keep-alive连接模式的非活动连接仅消耗2.5M内存
-event-drlven,alo,mmap
+5. event-drlven,alo,mmap
 
-基本功能：
+- 基本功能：
     静态资源的web服务器
     http协议的反向代理服务器
     pop3,smtp,lamp4,等邮件的反向代理
     能缓存打开文件（元数据），支持fastcgi（php-fpm），cwsgi(python web framwork)等协议
     模块化（非dos机制）过滤zip，ssi,ssl
 
-web相关功能：
+- web相关功能：
     虚拟主机，keepalive,访问日志（基于日志缓冲提高性能），url rewlrte ,路径别名，基于ip及用户的访问控制，支持速率限制和并发限制
 
-nginx基本架构
-    master/worker
+- nginx基本架构
+    1. master/worker
         一个master进程，可生成一个或多个worker进程
         事件驱动，epoll(liunx),kqueue(FreeBSD)./dev/poll（Solalrs）
         消息通知，select poll rt slgnals
@@ -103,23 +103,23 @@ nginx基本架构
         master 加载配置文件，管理worker进程，平滑升级，分发任务
         worker http服务，http的代理，fastcgi的代理
 
-    模块类型
+    2. 模块类型
         核心模块
         Standard HTTP modules
         Optlonal HTTP modules
         mail modules
         3rd party modules
 
-    用来做什么：
+    3. 用来做什么：
         静态资源服务器
         反向代理服务器
 
 
-nginx 安装配置
+- nginx 安装配置
 
-yum info nginx  查看nginx源
+    yum info nginx  查看nginx源
 
-编译安装
+- 编译安装
     依赖库：Gnu pcre-devel zlib-devel openssl-devl
 
     wget
@@ -136,14 +136,14 @@ yum info nginx  查看nginx源
 
     lscpu 查看cpu
 
-配置文件组成部分：
+- 配置文件组成部分：
     nginx.conf 主配置文件  支持include引入
 
     mime.types
 
     fastcgi相关配置  fastcgi_params
 
-配置文件内容
+- 配置文件内容
     每个指令必须以分号结尾
     支持使用变量
         内置变量
@@ -152,68 +152,74 @@ yum info nginx  查看nginx源
             set varlable value;
         引用变量
 
-配置文件的组织结构：
-    main block
-    event {...}
-    http {
+- 配置文件的组织结构：
+    1. main block
+    2. event {...}
+    3. http {
         ...
+        
         server {
             ...
+            
             listion
             root
             allas
             server_name
-
             location {
-                ...
+            ...
             }
         }
     }
 
     1.main 配置段
-        类别：
-            正常必备
-            优化性能
-            调试，定位问题
+        
+    - 类别：
+    
+         1. 正常必备
 
-            1.user username groupname
+            1. user username groupname
             指定用于运行worker进程的用户和用户组
-            2.pid /pid/path/to/pid_file
+            2. pid /pid/path/to/pid_file
             指定nginx进程的pid文件
-            3.worker_rllmlt_nofile
+            3. worker_rllmlt_nofile
             指定一个worker进程所能够打开的最大文件描述数量
-            4.worker——rllmlt_slgpendlng
+            4. worker——rllmlt_slgpendlng
             指定每个用户能够发往worker进程的信号质量
-
-            worker_processes
+            
+         2. 优化性能
+               
+            1. worker_processes
             worker进程的个数，通常应该为物理cpu核心数量减一,可以设置为auto，设置为自动设定
-            worker_cpu_afflnlty  cpumask,cpumask,...
+            2. worker_cpu_afflnlty  cpumask,cpumask,...
                 cpumask;
                     0001
                     0010
                     0100
                     1000
-            worker_prlorlty nice  数字越大优先级越低，数字越小优先级越大 【-20 ，19】
-
-            daemon [off|on]
+            3. worker_prlorlty nice  数字越大优先级越低，数字越小优先级越大 【-20 ，19】
+            
+         3. 调试，定位问题
+         
+            1. daemon [off|on]
             是否以守护进程启动nginx
-            master_process [on | off]
+            2. master_process [on | off]
             是否以master/worker模型运行nginx
-            error_log /path/to/error_log level;
+            3. error_log /path/to/error_log level;
             错误日志文件及其级别，出于调试的需要，可以设定为debug，debug在编译时必须添加
 
-    2.event 配置段主要参数
-        worker_connections
-            每个worker进程所能够响应的最大并发请求数量
-                worker_processes * worker_connections
-        use [epoll|rgslg|select|poll]      
-            选择事件驱动模型
-        accept_mutex [on | off] 【各worker接收用户的请求的负载均衡锁】
-            on -> 多个worker进程能够轮流的序列化的响应新请求
-        lock_file  /path/to/lock_file
+        2.event 配置段主要参数
+         1. worker_connections
+                每个worker进程所能够响应的最大并发请求数量
+                    worker_processes * worker_connections
+         2. use [epoll|rgslg|select|poll]      
+                选择事件驱动模型
+         3. accept_mutex [on | off] 【各worker接收用户的请求的负载均衡锁】
+                on -> 多个worker进程能够轮流的序列化的响应新请求
+         4. lock_file  /path/to/lock_file
 
-    3.http配置段：
-        套接字或主机相关的指令：
+    3. http配置段：
+    
+        1. 套接字或主机相关的指令：
         server{} 虚拟主机
 
             1. server {
@@ -249,7 +255,7 @@ yum info nginx  查看nginx源
             6. sendfile on | off;
                 是否启用sendfile功能；
 
-    路径相关的指令：
+        2. 路径相关的指令：
             7. root
                 设置web资源的路径映射；用于指明请求的url所对应的文档的目录路径
             8. location
@@ -295,19 +301,19 @@ yum info nginx  查看nginx源
                 匹配优先级
                     精确匹配【=】 > 左半部分匹配 【^~】 > 正则表达式 【~ 或 ~*】 > 不带符号的uri
 
-
-            9. alias 定义路径的别名，只能用于location配置段。        
-                server {
-
-                    ...
-
-                    location /image/ {
-                        root /data/img/;
+            9. alias 定义路径的别名，只能用于location配置段。 
+                   
+                    server {
+    
+                        ...
+    
+                        location /image/ {
+                            root /data/img/;
+                        }
+                        location /image/ {
+                            alias /data/img/;
+                        }
                     }
-                    location /image/ {
-                        alias /data/img/;
-                    }
-                }
 
                 **注意：**
                 root指令:路径为对应的location的 “/”这个ur
@@ -326,7 +332,7 @@ yum info nginx  查看nginx源
                 try_files file ... =code
             尝试查找第一至第n-1个文件，第一个即为返回给请求者的资源，若1至n-1文件都不存在，则跳转至第一个uri(由其它location所定义，必须存在。必须不能匹配至当前的location，而应该匹配到其它location,不然会导致死循环，服务器内部错误)
 
-        客户端请求相关的配置
+        3. 客户端请求相关的配置
 
             13. keepalive_timeout timeout [header_timeout]
                 设定keepalive连接的超时时长，默认为75S，0表示禁止长连接
@@ -348,7 +354,7 @@ yum info nginx  查看nginx源
                 设定用于存储客户端请求body的临时存储路径及子目录结构和数量；
                 client_body_temp_path /var/tmp/client_body 2 2;
 
-        对客户端请求进行限制：
+        4. 对客户端请求进行限制：
 
             19. limit_excpet method{...}
                 对指定范围之外的其它的方法进行访问控制；
@@ -361,7 +367,7 @@ yum info nginx  查看nginx源
             20. limit_rate speed;
                 限制客户端每秒所能传输的字节数，默认0表示无限制；
 
-        文件操作优化相关的配置
+        5. 文件操作优化相关的配置
 
             21. aio on | off;
                 是否启用异步i/o
@@ -377,14 +383,3 @@ yum info nginx  查看nginx源
 
                     max = n,表示可缓存的最大条目数上线，一旦达到上线限，则会使用lru算法从缓存中删除最近最少使用的缓存项
                     lnactlve=time 在此处指定的时长内没有被访问过的缓存项是为非法活动缓存项，因此直接删除
-
-
-
-
-
-
-
-
-
-
-html php jsp
