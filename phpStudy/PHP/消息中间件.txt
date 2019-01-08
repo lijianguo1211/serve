@@ -1,0 +1,26 @@
+1.rabbitmq [可靠性]
+2.kafka [丢失数据可靠性，日志收集]
+3.redis [性能好，类型丰富，缓存]
+
+性能  redis 》 kafka 》 rabbitmq
+
+可靠性 稳定性，消息可靠性
+
+
+多进程，使用角度
+
+<?php
+
+$pool = new swoole\process\pool(5);//创建了5个进程，cup的1到4倍
+
+事件绑定,当进程开始之后怎么执行
+$pool->on('workerStart',function($pool,$workerid){
+$workerid;//进程池id
+);
+
+$pool->on('workerStop',function($pool,$workerid){
+
+);
+
+启动进程池的服务
+$pool->start();
