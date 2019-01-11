@@ -52,6 +52,22 @@ chkconfig [--add][--del][--list][系统服务] 或 chkconfig [--level <等级代
 --level 等级代号，指定读系统服务要在哪一个执行等级中开启或关毕。
 ```
 
+**使用rpm 卸载相关的包**
+
+```
+
+搜索要卸载的包是否存在
+
+rpm -qa | grep erlang
+
+卸载
+
+rpm -e erlang
+
+erlang 代表相关【具体包】
+
+```
+
 **yum 常用命令：**
 
 - `yum check-update` 列出所有可以更新的安装包
