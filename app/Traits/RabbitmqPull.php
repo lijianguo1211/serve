@@ -52,7 +52,7 @@ trait RabbitmqPull
 
         try {
             $callback = function($msg)  {
-                echo  '[x] Received'.$msg->body."\ n ";
+                echo  '[x] Received'.$msg->body."\n ";
             };
             $this->connect($options);
             $objMessage = $this->channel->basic_get($options['queue']);
