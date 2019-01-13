@@ -8,10 +8,14 @@
 
 namespace App\Traits;
 
-
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
+/**
+ * Trait RabbitmqPush
+ * 客户端-生产者
+ * @package App\Traits
+ */
 trait RabbitmqPush
 {
     /**
@@ -49,16 +53,23 @@ trait RabbitmqPush
 
     }
 
-
+    /**
+     * 发送消息
+     * @param $msg
+     * @param $options
+     */
     public function msgPush($msg, $options)
     {
-        $msgBody = new AMQPMessage($msg);
+        $msgBody = new AMQPMessage($msg, ['content_type' => 'json', 'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT]);
         //发布消息
         $this->channel->basic_publish($msgBody, $options['exchange'], $options['routeKey']);
 
         return;
     }
 
+    /**
+     * 关闭队列
+     */
     public function rmqClose()
     {
         if ($this->connectRmq != null)
@@ -77,7 +88,12 @@ trait RabbitmqPush
         return;
     }
 
-
+    /**
+     * 外部调用接口
+     * @param $msg
+     * @param array $options
+     * @return bool
+     */
     public function rmqPush($msg,$options = [])
     {
         if (count($options) <= 0)
