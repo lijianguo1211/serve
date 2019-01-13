@@ -83,7 +83,7 @@ trait RabbitmqPush
         if (count($options) <= 0)
         {
             $options = [
-                'queque'   => 'RABBITMQ_QUEUE',
+                'queue'   => 'RABBITMQ_QUEUE',
                 'exchange' => 'RABBITMQ_EXCHANGE',
                 'routeKey' => 'RABBITMQ_ROUTE_KEY'
             ];
