@@ -45,7 +45,7 @@ class SubscribeMsg extends Command
                 'li' => $i,
                 'yi' => $i*$i
             ];
-            $this->rmqPush($msg);
+            $this->rmqPush(json_encode($msg));
         }
     }
 }
