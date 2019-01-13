@@ -911,7 +911,7 @@ class AMQPChannel extends AbstractChannel
 
     /**
      * Starts a queue consumer
-     *
+     * 启动队列使用者
      * @param string $queue
      * @param string $consumer_tag
      * @param bool $no_local

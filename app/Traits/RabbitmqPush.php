@@ -10,6 +10,7 @@ namespace App\Traits;
 
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 trait RabbitmqPush
 {
@@ -49,10 +50,33 @@ trait RabbitmqPush
     }
 
 
-    public function msgPush($msg,$options)
+    public function msgPush($msg, $options)
     {
+        $msgBody = new AMQPMessage($msg);
+        //发布消息
+        $this->channel->basic_publish($msgBody, $options['exchange'], $options['routeKey']);
 
+        return;
     }
+
+    public function rmqClose()
+    {
+        if ($this->connectRmq != null)
+        {
+            $this->connectRmq->close();
+        }
+
+        if ($this->channel != null)
+        {
+            $this->channel->close();
+        }
+
+        $this->connectRmq = null;
+        $this->channel = null;
+
+        return;
+    }
+
 
     public function rmqPush($msg,$options = [])
     {
@@ -65,7 +89,22 @@ trait RabbitmqPush
             ];
         }
 
-        $this->connect($options);
-        //客户端声明一个路由 key [routeKey]
+        $num = 0;
+        $resultRmq = false;
+        while ($num < 2)
+        {
+            try {
+                $this->connect($options);
+                $this->msgPush($msg, $options);
+                $this->rmqClose();
+                $resultRmq = true;
+            } catch (\Exception $e) {
+                sleep(1);
+                var_dump($e->getMessage());
+            }
+            $num++;
+        }
+
+        return $resultRmq;
     }
 }

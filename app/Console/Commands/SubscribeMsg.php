@@ -3,10 +3,11 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Redis;
+use App\Traits\RabbitmqPush;
 
 class SubscribeMsg extends Command
 {
+    use RabbitmqPush;
     /**
      * The name and signature of the console command.
      *
@@ -38,8 +39,13 @@ class SubscribeMsg extends Command
      */
     public function handle()
     {
-        Redis::subscribe(['redis-msg'],function($message){
-            echo $message;
-        });
+        for ($i=0; $i<1000; $i++)
+        {
+            $msg = [
+                'li' => $i,
+                'yi' => $i*$i
+            ];
+            $this->rmqPush($msg);
+        }
     }
 }
