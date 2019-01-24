@@ -45,3 +45,7 @@ Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
     Route::get('testSql','IndexController@testSql');
     Route::get('testJson','IndexController@testJson');
 });
+
+Route::group(['namespace'=>'Monitor','prefix'=>'monitor'],function(){
+    Route::get('addUser','UserController@addUser');
+});
