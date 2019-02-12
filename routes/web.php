@@ -31,6 +31,7 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('trait9','IndexController@sayStatic');
     Route::get('trait10','IndexController@sayTime');
     Route::get('trait11','IndexController@sayAttributes');
+    Route::get('index','UserController@index');
 });
 
 Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){

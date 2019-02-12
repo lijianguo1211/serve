@@ -43,4 +43,9 @@ class UserController
         event(new UserMonitor($data));
         return json_encode(['status'=>1, 'info' => $res]);
     }
+
+    public function cacheTest()
+    {
+
+    }
 }
