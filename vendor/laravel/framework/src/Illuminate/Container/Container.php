@@ -28,7 +28,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * The container's bindings.
-     * 容器绑定数组|管理服务的属性|存储提供服务的回调函数
+     *
      * @var array
      */
     protected $bindings = [];
@@ -42,7 +42,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * The container's shared instances.
-     * 容器共享实例数组|管理服务的属性|存储程序中共享的实例【单例】
+     *
      * @var array
      */
     protected $instances = [];
@@ -205,7 +205,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Register a binding with the container.
-     * 注册一个绑定到容器中 $shared = true 表示一个共享绑定
+     *
      * @param  string  $abstract
      * @param  \Closure|string|null  $concrete
      * @param  bool  $shared
@@ -241,7 +241,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Get the Closure to be used when building a type.
-     * 得到一个闭包用于绑定一个类
+     *
      * @param  string  $abstract
      * @param  string  $concrete
      * @return \Closure
@@ -322,7 +322,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Register a shared binding in the container.
-     * 注册一个单利例定到实例中
+     *
      * @param  string  $abstract
      * @param  \Closure|string|null  $concrete
      * @return void
@@ -576,9 +576,9 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Resolve the given type from the container.
-     * 服务的查找
-     * @param  string  $abstract 服务的名称
-     * @param  array  $parameters 创建实例化对象需要的参数|一个类实例化时的依赖
+     *
+     * @param  string  $abstract
+     * @param  array  $parameters
      * @return mixed
      */
     public function make($abstract, array $parameters = [])
@@ -607,7 +607,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     protected function resolve($abstract, $parameters = [])
     {
-        $abstract = $this->getAlias($abstract);//查找是否有别名
+        $abstract = $this->getAlias($abstract);
 
         $needsContextualBuild = ! empty($parameters) || ! is_null(
             $this->getContextualConcrete($abstract)
@@ -622,12 +622,12 @@ class Container implements ArrayAccess, ContainerContract
 
         $this->with[] = $parameters;
 
-        $concrete = $this->getConcrete($abstract);//获取服务名称的实体
+        $concrete = $this->getConcrete($abstract);
 
         // We're ready to instantiate an instance of the concrete type registered for
         // the binding. This will instantiate the types, as well as resolve any of
         // its "nested" dependencies recursively until all have gotten resolved.
-        if ($this->isBuildable($concrete, $abstract)) {//判断服务实体能否创建一个实例化对象
+        if ($this->isBuildable($concrete, $abstract)) {
             $object = $this->build($concrete);
         } else {
             $object = $this->make($concrete);
@@ -661,7 +661,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Get the concrete type for a given abstract.
-     * 根据抽象类名称获取实体类
+     *
      * @param  string  $abstract
      * @return mixed   $concrete
      */
@@ -722,7 +722,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Determine if the given concrete is buildable.
-     * 判断给定的服务实体是否可以创建
+     *
      * @param  mixed   $concrete
      * @param  string  $abstract
      * @return bool
@@ -734,7 +734,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Instantiate a concrete instance of the given type.
-     * 服务的实现
+     *
      * @param  string  $concrete
      * @return mixed
      *
@@ -873,7 +873,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Resolve a class based dependency from the container.
-     * 通过容器解决一个类的依赖
+     *
      * @param  \ReflectionParameter  $parameter
      * @return mixed
      *
@@ -1055,7 +1055,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Get the alias for an abstract if available.
-     * 获取抽象类的别名
+     *
      * @param  string  $abstract
      * @return string
      *
@@ -1186,7 +1186,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * Get the value at a given offset.
-     * 拿到config/*.php文件下的配置项
+     *
      * @param  string  $key
      * @return mixed
      */

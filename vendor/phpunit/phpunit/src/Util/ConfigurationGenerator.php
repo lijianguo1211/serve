@@ -31,7 +31,7 @@ class ConfigurationGenerator
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix="EightController.phproller.php">{src_directory}</directory>
+            <directory suffix=".php">{src_directory}</directory>
         </whitelist>
     </filter>
 </phpunit>

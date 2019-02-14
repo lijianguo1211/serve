@@ -67,7 +67,7 @@ class FactoryMakeCommand extends GeneratorCommand
             ['\\', '/'], '', $this->argument('name')
         );
 
-        return $this->laravel->databasePath()."/factories/{$name}EightController.phproller.php";
+        return $this->laravel->databasePath()."/factories/{$name}.php";
     }
 
     /**

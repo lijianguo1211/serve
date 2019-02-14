@@ -8,7 +8,6 @@ use App\Models\DataModels\UserModel;
 
 class UserController extends Controller
 {
-    
     public function index()
     {
         echo "<pre>";

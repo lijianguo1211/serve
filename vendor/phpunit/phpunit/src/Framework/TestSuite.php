@@ -341,7 +341,7 @@ class TestSuite implements Test, SelfDescribing, IteratorAggregate
         // a PEAR/PSR-0 prefixed shortname ('NameSpace_ShortName'), or as a
         // PSR-1 local shortname ('NameSpace\ShortName'). The comparison must be
         // anchored to prevent false-positive matches (e.g., 'OtherShortName').
-        $shortname      = \basename($filename, 'EightController.phproller.php');
+        $shortname      = \basename($filename, '.php');
         $shortnameRegEx = '/(?:^|_|\\\\)' . \preg_quote($shortname, '/') . '$/';
 
         foreach ($this->foundClasses as $i => $className) {

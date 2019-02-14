@@ -92,7 +92,7 @@ class AppNameCommand extends Command
         $files = Finder::create()
                             ->in($this->laravel['path'])
                             ->contains($this->currentRoot)
-                            ->name('*EightController.phproller.php');
+                            ->name('*.php');
 
         foreach ($files as $file) {
             $this->replaceNamespace($file->getRealPath());
@@ -226,7 +226,7 @@ class AppNameCommand extends Command
         $files = Finder::create()
                             ->in(database_path('factories'))
                             ->contains($this->currentRoot)
-                            ->name('*EightController.phproller.php');
+                            ->name('*.php');
 
         foreach ($files as $file) {
             $this->replaceIn(
@@ -279,7 +279,7 @@ class AppNameCommand extends Command
      */
     protected function getConfigPath($name)
     {
-        return $this->laravel['path.config'].'/'.$name.'EightController.phproller.php';
+        return $this->laravel['path.config'].'/'.$name.'.php';
     }
 
     /**

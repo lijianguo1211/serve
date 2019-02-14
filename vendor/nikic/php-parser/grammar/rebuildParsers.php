@@ -66,7 +66,7 @@ foreach ($grammarFileToName as $grammarFile => $name) {
     $resultCode = removeTrailingWhitespace($resultCode);
 
     ensureDirExists($resultDir);
-    file_put_contents("$resultDir/$nameEight.php", $resultCode);
+    file_put_contents("$resultDir/$name.php", $resultCode);
     unlink($tmpResultFile);
 
     echo "Building token definition.\n";

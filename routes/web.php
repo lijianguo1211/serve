@@ -34,11 +34,14 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('index','UserController@index');
 });
 
-Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){
+//Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){
+Route::group(['namespace'=>'Api','prefix'=>'api'],function(){
    Route::post('login','UserController@login');//登录
    Route::post('logout','UserController@logout');//退出
    Route::post('refresh','UserController@refresh');//刷新
    Route::post('me','UserController@me');
+   Route::get('test','CreateImageController@test');
+   Route::get('createImage','CreateImageController@createImage');
 });
 
 Route::group(['namespace'=>'Test','prefix'=>'test'],function(){

@@ -87,7 +87,7 @@ class ConfigurationTest extends TestCase
                                             [
                                                 'path'   => '/path/to/files',
                                                 'prefix' => '',
-                                                'suffix' => 'EightController.phproller.php',
+                                                'suffix' => '.php',
                                                 'group'  => 'DEFAULT'
                                             ],
                                     ],

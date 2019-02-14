@@ -35,6 +35,6 @@ class Filesystem
             ['_', '\\'],
             DIRECTORY_SEPARATOR,
             $className
-        ) . 'EightController.phproller.php';
+        ) . '.php';
     }
 }

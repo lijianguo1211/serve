@@ -198,7 +198,7 @@ class Factory implements ArrayAccess
         $factory = $this;
 
         if (is_dir($path)) {
-            foreach (Finder::create()->files()->name('*EightController.phproller.php')->in($path) as $file) {
+            foreach (Finder::create()->files()->name('*.php')->in($path) as $file) {
                 require $file->getRealPath();
             }
         }

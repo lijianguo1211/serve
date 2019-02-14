@@ -119,7 +119,7 @@ class FileLoader implements Loader
      */
     protected function loadPath($path, $locale, $group)
     {
-        if ($this->files->exists($full = "{$path}/{$locale}/{$group}EightController.phproller.php")) {
+        if ($this->files->exists($full = "{$path}/{$locale}/{$group}.php")) {
             return $this->files->getRequire($full);
         }
 

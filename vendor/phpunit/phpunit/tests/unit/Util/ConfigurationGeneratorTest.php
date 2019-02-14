@@ -34,7 +34,7 @@ class ConfigurationGeneratorTest extends TestCase
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix="EightController.phproller.php">src</directory>
+            <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
 </phpunit>

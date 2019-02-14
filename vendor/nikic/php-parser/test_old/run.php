@@ -61,7 +61,7 @@ switch ($testType) {
     case 'Symfony':
         $version = 'Php7';
         $fileFilter = function($path) {
-            if (!preg_match('~\Eight.php$~', $path)) {
+            if (!preg_match('~\.php$~', $path)) {
                 return false;
             }
 
@@ -72,7 +72,7 @@ switch ($testType) {
 | framework-bundle.Resources.views.Form.choice_widget_options\.html
 # difference due to INF
 | yaml.Tests.InlineTest
-)\Eight.php$~x', $path)) {
+)\.php$~x', $path)) {
                 return false;
             }
 

@@ -91,10 +91,10 @@ use PHPUnit\TextUI\ResultPrinter;
  *   <filter>
  *     <whitelist addUncoveredFilesFromWhitelist="true"
  *                processUncoveredFilesFromWhitelist="false">
- *       <directory suffix="EightController.phproller.php">/path/to/files</directory>
+ *       <directory suffix=".php">/path/to/files</directory>
  *       <file>/path/to/file</file>
  *       <exclude>
- *         <directory suffix="EightController.phproller.php">/path/to/files</directory>
+ *         <directory suffix=".php">/path/to/files</directory>
  *         <file>/path/to/file</file>
  *       </exclude>
  *     </whitelist>

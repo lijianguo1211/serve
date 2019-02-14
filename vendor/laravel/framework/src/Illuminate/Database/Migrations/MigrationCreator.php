@@ -144,7 +144,7 @@ class MigrationCreator
      */
     protected function getPath($name, $path)
     {
-        return $path.'/'.$this->getDatePrefix().'_'.$name.'EightController.phproller.php';
+        return $path.'/'.$this->getDatePrefix().'_'.$name.'.php';
     }
 
     /**

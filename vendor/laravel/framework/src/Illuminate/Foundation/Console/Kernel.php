@@ -209,7 +209,7 @@ class Kernel implements KernelContract
 
         foreach ((new Finder)->in($paths)->files() as $command) {
             $command = $namespace.str_replace(
-                ['/', 'EightController.phproller.php'],
+                ['/', '.php'],
                 ['\\', ''],
                 Str::after($command->getPathname(), app_path().DIRECTORY_SEPARATOR)
             );
