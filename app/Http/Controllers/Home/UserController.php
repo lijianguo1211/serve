@@ -14,6 +14,5 @@ class UserController extends Controller
         print_r(UserModel::class);
         echo "</pre>";
         /*返回类名 App\Models\DataModels\UserModel*/
-        new \PDO();
     }
 }
