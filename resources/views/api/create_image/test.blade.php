@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-<img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate('Make me into an QrCode!')) !!} ">
+
 </body>
 </html>

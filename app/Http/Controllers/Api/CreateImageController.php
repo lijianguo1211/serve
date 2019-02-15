@@ -146,7 +146,7 @@ class CreateImageController
                     break;
 
             }
-            $result = $result->merge('F:\LL\serve\public\img/1.png',$percentage,$absolute);
+            $result = $result->merge($logoUrl,$percentage,$absolute);
         }
 
         $path = uniqid('LiYi_',true);
