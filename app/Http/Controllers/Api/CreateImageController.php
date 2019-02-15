@@ -164,4 +164,6 @@ class CreateImageController
 
         var_dump($logoUrl);
     }
+
+
 }

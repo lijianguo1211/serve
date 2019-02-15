@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-
+<img src="qrcode/img/LiYi_5c666eb8ca7d95.92721638.png" alt="">
 </body>
 </html>
