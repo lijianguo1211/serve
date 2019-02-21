@@ -53,3 +53,7 @@ Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
 Route::group(['namespace'=>'Monitor','prefix'=>'monitor'],function(){
     Route::get('addUser','UserController@addUser');
 });
+
+Route::group(['namespace'=>'Observer','prefix'=>'observer'],function(){
+    Route::get('index','Location@index');
+});

@@ -111,7 +111,7 @@ class CreateImageController
 
     public function createImage()
     {
-        $imageUrl = public_path('img/2.png');
+        $imageUrl = $url = 'http://' . config('img.img_download', $this->param->getHost());
         $logoUrl = public_path('img/1.png');
         $this->isValidata();
         $result = (new BaconQrCodeGenerator())
