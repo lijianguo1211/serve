@@ -15,7 +15,7 @@ MAIL_PORT=465//端口号
 MAIL_USERNAME=//发送邮件的登录用户名
 MAIL_FROM_ADDRESS=//发送邮件的地址
 MAIL_FROM_NAME=LiYi//发送邮件的名字
-#MAIL_PASSWORD=
+#MAIL_PASSWORD=rxvikozjhmnuhggb
 MAIL_PASSWORD=//qq生成的授权码
 MAIL_ENCRYPTION=ssl//加密协议类型
 ~~~
