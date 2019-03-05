@@ -10,6 +10,13 @@ class IndexController
         (new TravelController())->go();
     }
 
+    public function time()
+    {
+        //$time = strtotime('-7 day',time());
+        //dd($time);
+        echo date('Y-m-d',time());
+    }
+
     public function testSql()
     {
         $traf = new LegController();

@@ -15,4 +15,9 @@ class UserController extends Controller
         echo "</pre>";
         /*返回类名 App\Models\DataModels\UserModel*/
     }
+
+    public function userView()
+    {
+        return view('home/user/register');
+    }
 }

@@ -36,6 +36,7 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
+            'Watson\\Rememberable\\' => 20,
         ),
         'T' => 
         array (
@@ -149,6 +150,10 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Watson\\Rememberable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/watson/rememberable/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -393,6 +398,7 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
         'App\\Events\\UserMonitor' => __DIR__ . '/../..' . '/app/Events/UserMonitor.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Api\\CreateImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CreateImageController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -415,6 +421,18 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'App\\Http\\Controllers\\Home\\ThirteenController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/ThirteenController.php',
         'App\\Http\\Controllers\\Home\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/UserController.php',
         'App\\Http\\Controllers\\Monitor\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Monitor/UserController.php',
+        'App\\Http\\Controllers\\Observer\\AfterSession' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/AfterSession.php',
+        'App\\Http\\Controllers\\Observer\\BeforeSession' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/BeforeSession.php',
+        'App\\Http\\Controllers\\Observer\\BigCar' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/BigCar.php',
+        'App\\Http\\Controllers\\Observer\\Car' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/Car.php',
+        'App\\Http\\Controllers\\Observer\\GoOut' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/GoOut.php',
+        'App\\Http\\Controllers\\Observer\\Jwt' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/Jwt.php',
+        'App\\Http\\Controllers\\Observer\\Liyi' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/Liyi.php',
+        'App\\Http\\Controllers\\Observer\\Location' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/Location.php',
+        'App\\Http\\Controllers\\Observer\\LocationOne' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/LocationOne.php',
+        'App\\Http\\Controllers\\Observer\\Middleware' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/Middleware.php',
+        'App\\Http\\Controllers\\Observer\\Session' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/Session.php',
+        'App\\Http\\Controllers\\Observer\\SessionClass' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/SessionClass.php',
         'App\\Http\\Controllers\\Test\\AircraftController' => __DIR__ . '/../..' . '/app/Http/Controllers/Test/AircraftController.php',
         'App\\Http\\Controllers\\Test\\CarController' => __DIR__ . '/../..' . '/app/Http/Controllers/Test/CarController.php',
         'App\\Http\\Controllers\\Test\\Container' => __DIR__ . '/../..' . '/app/Http/Controllers/Test/Container.php',
@@ -4253,6 +4271,8 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
+        'Watson\\Rememberable\\Query\\Builder' => __DIR__ . '/..' . '/watson/rememberable/src/Query/Builder.php',
+        'Watson\\Rememberable\\Rememberable' => __DIR__ . '/..' . '/watson/rememberable/src/Rememberable.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

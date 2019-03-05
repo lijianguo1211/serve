@@ -48,6 +48,7 @@ Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
     Route::get('index','IndexController@index');
     Route::get('testSql','IndexController@testSql');
     Route::get('testJson','IndexController@testJson');
+    Route::get('time','IndexController@time');
 });
 
 Route::group(['namespace'=>'Monitor','prefix'=>'monitor'],function(){
@@ -56,4 +57,6 @@ Route::group(['namespace'=>'Monitor','prefix'=>'monitor'],function(){
 
 Route::group(['namespace'=>'Observer','prefix'=>'observer'],function(){
     Route::get('index','Location@index');
+    Route::get('then','SessionClass@then');
+    Route::get('test','SessionClass@index');
 });
