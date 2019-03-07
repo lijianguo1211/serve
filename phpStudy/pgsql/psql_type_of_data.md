@@ -131,3 +131,26 @@ id integer not null default nextval('test_id_seq')
 * 得到当前客户端的编码名称 `pg_clint_encoding()`
 
 
+- psql 创建模式
+
+```postgresplsql
+-- 创建名为base的模式
+create schema base;
+
+--查看有哪些模式
+
+\dn
+
+-- 删除模式
+
+drop schema base;
+
+-- 修改模式的名字
+
+alter schema base rename to base1;
+
+-- 修改模式的所有者
+
+alter schema mr owner to postgres;
+
+```

@@ -60,3 +60,8 @@ Route::group(['namespace'=>'Observer','prefix'=>'observer'],function(){
     Route::get('then','SessionClass@then');
     Route::get('test','SessionClass@index');
 });
+
+Route::group(['namespace'=>'Swool','prefix'=>'swool'],function(){
+    Route::get('index','IndexController@index');
+    Route::get('indexSql','PsqlController@index');
+});
