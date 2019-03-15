@@ -64,4 +64,5 @@ Route::group(['namespace'=>'Observer','prefix'=>'observer'],function(){
 Route::group(['namespace'=>'Swool','prefix'=>'swool'],function(){
     Route::get('index','IndexController@index');
     Route::get('indexSql','PsqlController@index');
+    Route::get('downloadExcel','PsqlController@downloadExcel');
 });

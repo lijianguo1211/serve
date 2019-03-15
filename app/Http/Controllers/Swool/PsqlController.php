@@ -10,6 +10,8 @@ namespace App\Http\Controllers\Swool;
 
 
 use Illuminate\Support\Facades\DB;
+use App\Excel\XLSXWriter;
+
 
 class PsqlController
 {
@@ -40,5 +42,25 @@ class PsqlController
         }
     }
 
-
+    public function downloadExcel()
+    {
+        $xsl = new XLSXWriter();
+        $count = DB::table('mr.mr_keyboardinfo')->select(DB::raw("id,collect_target_id,contact_account_type,windows_id,friend_nickname,content,capture_time"))->count();
+        static $j = 0;
+        for ($i=0; $i<$count; $i+200) {
+            $xsl->writeSheetHeader('Sheet'.$j, array('ID'=>'integer','手机标识'=>'string','软件类型'=>'string','发收'=>'integer','昵称' => 'string','内容' => 'string','时间'=>'datetime') );//optional
+            $keyBoardInfoData = DB::table('mr.mr_keyboardinfo')->select(DB::raw("id,collect_target_id,contact_account_type,windows_id,friend_nickname,content,capture_time"))
+                ->skip($j*(200))//offset
+                ->take(200)//limit
+                ->get()
+                ->toArray();
+            foreach($keyBoardInfoData as $k => $v) {
+                $xsl->writeSheetRow('Sheet'.$j, (array)$v);
+            }
+            $j++;
+        }
+        var_dump(storage_path('/logs/'));
+        $xsl->writeToFile(storage_path('/logs/').'keyBoardInfo.xlsx');
+        echo '#'.floor((memory_get_peak_usage())/1024/1024)."MB"."\n";
+    }
 }

@@ -1,0 +1,81 @@
+﻿<?php
+==================================
+
+生产者
+
+$exchangeName = 'rmq';
+$routeKey = 'test';
+
+$channel  = new AMQPChannel($connection)通过通道连接创建消息通道
+
+$exchange = AMQPExchange($channel)通过通道连接交换机
+
+$channel->setName($exchangeName)设置通道名称
+
+$exchage->pub
+
+=========================
+
+消费者
+
+$exchangeName = 'rmq';
+$routeKey = 'test';
+$queueName = 'rmq_stomp';队列
+$channel  = new AMQPChannel($connection)通过通道连接创建消息通道
+
+$exchange = AMQPExchange($channel)通过通道连接交换机
+
+$channel->setName($exchangeName)设置通道名称
+
+三种获取消费的模式（直连模式、 主题模式、 广播模式）
+
+$exchange->setType(AMQP_EX_TYPE_DIRECTY);直连模式 设置模式
+
+$exchange->declar();声明
+
+$queue = new AMQPQueue($channel)申明队列，绑定交换机和路由，
+
+$queue->setName($queueName);
+
+$queue->declare();申明
+
+$queue->bind($exchangeName,$routeKey)绑定获取数据
+
+$queue->get();有数据消费，没数据返回false
+
+消费,没有数据时，默认阻塞监听和获取数据
+$queue->consume(function($event,$queue){
+	获取数据
+	$msg = $event->getBody();
+	执行业务逻辑
+	var_dump($msg);
+
+	回应ack,回应生产者，已经收到消息。保证消息的准确性
+	$queue->ack($event->getDeliveryTag());
+);
+
+
+=====================================
+
+rabitmq 默认不会持久化数据，需要设置参数
+
+
+=====================================
+
+消息中间件
+
+redis(8W list模拟队列，会丢失消息，延迟处理)
+缓存，数据类型丰富
+
+
+kafka(7-8W 大数据，没有办法保证消息的可靠性)
+
+rabbitmq(2-4W 保证消息的可靠性，延迟处理，优先级，集群模式)
+
+beanstalkd(8W 保证消息的可靠性，支持延迟处理，优先级)
+
+activemq()
+
+性能
+
+
