@@ -16,7 +16,6 @@ namespace App\Redis;
 class RedisCon
 {
     private static $instace = null;
-
     /**
      * 防止外部克隆
      */
@@ -31,11 +30,12 @@ class RedisCon
      */
     private function __construct()
     {
-        $host = env('REDIS_HOST');
-        $port = env('REDIS_PORT');
+        //$host = env('REDIS_HOST','127.0.0.1');
+        //$port = env('REDIS_PORT',6379);
         try {
             self::$instace = new \Redis();
-            self::$instace->connect($host,$port);
+            //self::$instace->connect($host,$port);
+            self::$instace->connect('127.0.0.1',6379);
         } catch (\Exception $e) {
 
         }
@@ -53,3 +53,12 @@ class RedisCon
         return self::$instace;
     }
 }
+
+$res = RedisCon::getInstace();
+
+for($i=0;$i<5;$i++){
+    $res->hSet('liyi','redis'.$i,mt_rand(100,999)*$i);
+}
+
+var_dump($res->hGetAll('liyi'));
+
