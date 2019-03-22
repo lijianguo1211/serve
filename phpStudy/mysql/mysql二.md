@@ -118,4 +118,16 @@ https://dev.mysql.com/downloads/file/?id=480090
 https://mvnrepository.com/tags/maven
 
 
+### 一条SQL的经历
+
+客户端 =》 连接器  =》 查询缓存 =》 有缓存 =》 返回客户端 <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+=》 没有缓存 =》 分析器 =》 优化器 =》 执行器 =》 BinLog[归档日志]  =》 存储引擎
+
+以上可以分为两个部分：
+
+* `server`层
+* 存储引擎层
+
+
 
