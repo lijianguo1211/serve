@@ -91,8 +91,8 @@ function getEmail()
     return $email;
 }
 
-
-for ($i=0; $i<5000000; $i++) {
+/*
+for ($i=0; $i<5000; $i++) {
     $name = getPassword();
     $password = md5(getPassword());
     $email = getEmail();
@@ -107,6 +107,25 @@ for ($i=0; $i<5000000; $i++) {
     $stmt->bindValue(4,$create_at);
     $stmt->bindValue(5,$update_at);
     $stmt->bindValue(6,$nick_name);
+    $stmt->execute();
+    $insert_id = $pdo->lastInsertId();
+    echo $insert_id."\n";
+}*/
+
+for ($i=0; $i<5000; $i++) {
+    $name = getPassword();
+    $password = md5(getPassword());
+    $email = getEmail();
+    $create_at = time();
+    $update_at = time();
+    $sql = "insert into users (`name`,password,email,create_at,update_at,age) values (?,?,?,?,?,?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(1,$name);
+    $stmt->bindValue(2,$password);
+    $stmt->bindValue(3,$email);
+    $stmt->bindValue(4,$create_at);
+    $stmt->bindValue(5,$update_at);
+    $stmt->bindValue(6,mt_rand(1,120));
     $stmt->execute();
     $insert_id = $pdo->lastInsertId();
     echo $insert_id."\n";
