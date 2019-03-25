@@ -57,7 +57,7 @@ Extra
 
 很明显，如果我们在查询的时候，查询的某一个字段的值是顺序的时候，最好是使用`between`
 
-![or in between之间的对比](select/mysql_5.png)
+![or in between之间的对比](select/mysql_6.png)
 
 * b2.) SQL查询中，同一个字段的值不是顺序的，以`or` 和 `in`做对比
 
@@ -66,7 +66,7 @@ select id,name,password,email,nick_name from users_bak where nick_name = '2IEyCY
 select id,name,password,email,nick_name from users_bak where nick_name in ('2IEyCY__0','m08pXM__3','NrxYfR__6','4aAwf8__11','Q0nmEs__17','VyOUIn__29','68Vzhe__2029','SqPRdZ__4024','SqPRdZ__4024','Nh7IzL__17022');
 ```
 
-![or in 之间的对比](select/mysql_6.png)
+![or in 之间的对比](select/mysql_7.png)
 
 以上就是可以看出，在查询的字段的值没有一定的顺序的时候，明显使用`in`要比`or`快的多
 
@@ -76,7 +76,7 @@ select id,name,password,email,nick_name from users_bak where nick_name in ('2IEy
 select id,name,password,email,nick_name from users_bak where nick_name = '2IEyCY__0' or nick_name = 'm08pXM__3' or nick_name ='NrxYfR__6' or nick_name = '4aAwf8__11' or nick_name ='Q0nmEs__17' or nick_name ='VyOUIn__29' or nick_name='68Vzhe__2029' or nick_name='SqPRdZ__4024' or nick_name='SqPRdZ__4024' or nick_name ='Nh7IzL__17022'  ORDER BY create_at desc;
 select id,name,password,email,nick_name from users_bak where nick_name in ('2IEyCY__0','m08pXM__3','NrxYfR__6','4aAwf8__11','Q0nmEs__17','VyOUIn__29','68Vzhe__2029','SqPRdZ__4024','SqPRdZ__4024','Nh7IzL__17022') ORDER BY create_at desc;
 ```
-![or in 之间的对比加上 order by](select/mysql_7.png)
+![or in 之间的对比加上 order by](select/mysql_8.png)
 
 * b4.) 对`create_at`字段加上索引，再复现[b3]的查询
 
