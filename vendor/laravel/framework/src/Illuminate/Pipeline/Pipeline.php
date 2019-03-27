@@ -50,7 +50,7 @@ class Pipeline implements PipelineContract
 
     /**
      * Set the object being sent through the pipeline.
-     *
+     * 设置通过管道发送的对象。
      * @param  mixed  $passable
      * @return $this
      */
@@ -63,7 +63,7 @@ class Pipeline implements PipelineContract
 
     /**
      * Set the array of pipes.
-     *
+     * 得到的中间件
      * @param  array|mixed  $pipes
      * @return $this
      */
@@ -95,6 +95,9 @@ class Pipeline implements PipelineContract
      */
     public function then(Closure $destination)
     {
+        /**
+         * array_reverse($this->pipes) 给中间件数组 返回单元顺序相反的数组
+         */
         $pipeline = array_reduce(
             array_reverse($this->pipes), $this->carry(), $this->prepareDestination($destination)
         );

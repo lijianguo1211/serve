@@ -75,14 +75,15 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
 
     /**
      * All of the registered service providers.
-     *
+     * 主要存储加载过的服务提供者对象，索引数组
      * @var array
      */
     protected $serviceProviders = [];
 
     /**
      * The names of the loaded service providers.
-     *
+     * 加载的服务提供程序的名称
+     * 主要记录加载过的服务提供者，以服务提供者类名为键，值统一是 true
      * @var array
      */
     protected $loadedProviders = [];
@@ -285,6 +286,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     protected function bindPathsInContainer()
     {
+        //以 path 为标识符，app 文件夹路径为值，存入 instances 属性中，如 'path' => 'D:/www/app'
         $this->instance('path', $this->path());
         $this->instance('path.base', $this->basePath());
         $this->instance('path.lang', $this->langPath());

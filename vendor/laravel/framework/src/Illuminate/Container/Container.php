@@ -14,7 +14,7 @@ class Container implements ArrayAccess, ContainerContract
 {
     /**
      * The current globally available container (if any).
-     *
+     * 静态对象当前实例
      * @var static
      */
     protected static $instance;
@@ -28,7 +28,7 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * The container's bindings.
-     *
+     * 以 类名或单词 为键，生成服务实例的闭包为值，进行存储
      * @var array
      */
     protected $bindings = [];
@@ -42,21 +42,21 @@ class Container implements ArrayAccess, ContainerContract
 
     /**
      * The container's shared instances.
-     *
+     * 以 类名或单词 为键，服务实例或路径参数为值，进行存储
      * @var array
      */
     protected $instances = [];
 
     /**
      * The registered type aliases.
-     *
+     *  bindings 属性 类名到单词 的映射
      * @var array
      */
     protected $aliases = [];
 
     /**
      * The registered aliases keyed by the abstract name.
-     *
+     *  bindings 属性 单词到类名数组 的映射
      * @var array
      */
     protected $abstractAliases = [];
