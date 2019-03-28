@@ -38,12 +38,12 @@ class TransformsRequest
      */
     protected function clean($request)
     {
-        $this->cleanParameterBag($request->query);
+        $this->cleanParameterBag($request->query);//get
 
         if ($request->isJson()) {
             $this->cleanParameterBag($request->json());
         } else {
-            $this->cleanParameterBag($request->request);
+            $this->cleanParameterBag($request->request);//post
         }
     }
 

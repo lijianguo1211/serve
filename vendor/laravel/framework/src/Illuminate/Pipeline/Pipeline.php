@@ -96,7 +96,8 @@ class Pipeline implements PipelineContract
     public function then(Closure $destination)
     {
         /**
-         * array_reverse($this->pipes) 给中间件数组 返回单元顺序相反的数组
+         * array_reverse($this->pipes) 给中间件数组 返回单元顺序相反的数组//颠倒数组排序
+         * array_reduce  用回调函数迭代地将数组简化为单一的值
          */
         $pipeline = array_reduce(
             array_reverse($this->pipes), $this->carry(), $this->prepareDestination($destination)

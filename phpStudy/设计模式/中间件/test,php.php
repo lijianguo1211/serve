@@ -42,3 +42,17 @@ $callback = array_reduce($pipe_arr,function($stack,$pipe){
 },$handle);
 
 call_user_func($callback);
+
+$arr = [
+    'liyi',
+    'wanger',
+    'liusan'
+];
+
+$callback = function($a,$b) {
+    return $a .= $b."\n";
+};
+
+$t = array_reduce($arr,$callback,'wahah');
+
+var_dump($t);
