@@ -5,10 +5,6 @@
  * Date: 2019/3/14
  * Time: 10:05
  */
-
-namespace App\Excel;
-
-
 class XLSXWriter_BuffererWriter
 {
     protected $fd=null;

@@ -6,14 +6,56 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\One;
 use App\Traits\Two;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Xescel\XLSXWriter;
+
 //define ('M_PI', 3.1415926535898);
 class IndexController extends Controller
 {
-
     use One,Two;
     public function index()
     {
         return view('home/index/index');
+    }
+
+    public function cliDownLoadExcel()
+    {
+        exec('php F:\LL\serve\app\Excel\cliDownloadExcel.php');
+    }
+
+
+
+    public function downloadExcel($type = false)
+    {
+        $writer = new XLSXWriter();
+        if ($type) {
+            $writer->writeSheetHeader('users', ['ID'=>'integer','用户名'=>'string','密码'=>'string','邮箱'=>'string','年龄'=>'integer','创建时间'=>'date','修改时间'=>'date']);
+            DB::table('users')->orderBy('id')->chunk(10,function($users) use($writer) {
+                $n = 0;
+                foreach ($users as $user) {
+                    $user->create_at = date('Y-m-d H:i:s',$user->create_at);
+                    $user->update_at = date('Y-m-d H:i:s',$user->update_at);
+                    $writer->writeSheetRow('users'.$n++, (array)$user);
+                }
+            });
+            $writer->writeToFile(__DIR__.'users'.mt_rand(100,999).'.xlsx');
+            echo 'success';
+        } else {
+            ini_set('max_execution_time', 0);
+            $writer->writeSheetHeader('users_bak', ['ID'=>'integer','用户名'=>'string','密码'=>'string','邮箱'=>'string','昵称'=>'string','创建时间'=>'date','修改时间'=>'date']);
+            DB::table('users_bak')->where('id','<',100000)->orderBy('id')->chunk(10,function($users) use($writer) {
+                $i = 0;
+                foreach ($users as $user) {
+                    $user->create_at = date('Y-m-d H:i:s',$user->create_at);
+                    $user->update_at = date('Y-m-d H:i:s',$user->update_at);
+                    $writer->writeSheetRow('users0'.$i++, (array)$user);
+                }
+            });
+            $writer->writeToFile(__DIR__.'users_bak'.mt_rand(100,999).'.xlsx');
+            echo 'success';
+        }
+
+
     }
 
     public function test()

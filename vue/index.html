@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .is-loading{
+            background: #00FF00;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="name in names" v-text="name"></li>
+        </ol>
+        <input type="text" v-model="addValue">
+        <button @click="addName">添加</button>
+        <hr/>
+        <button :class="{'is-loading' : isLoading}" @click="clickMe">click me</button>
+
+        <h2>Message {{ reverseMessage }}</h2>
+    </div>
+
+    <div id="home">
+        <h2>All Tasks</h2>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+
+        <h2>completed tasks</h2>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+
+        <h2>incompleted tasks</h2>
+        <ul>
+            <li v-for="task in incompletedTasks" v-text=""></li>
+        </ul>
+    </div>
+
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello world',
+            names:[
+                'LiYi',
+                'WangEr',
+                'HuaHua'
+            ],
+            isLoading:false,
+        },
+        computed:{
+          reverseMessage(){
+              return this.message.splice('').reverse().join('');
+          }
+        },
+        methods:{
+            addName(){
+                this.names.push(this.addValue);
+                this.addValue = '';
+            },
+            clickMe(){
+                this.isLoading = true
+            }
+        }
+    })
+</script>
+</body>
+</html>

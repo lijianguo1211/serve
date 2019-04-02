@@ -2,10 +2,8 @@
 /*
  * @license MIT License
  * */
-namespace App\Excel;
 
-const EXCEL_2007_MAX_ROW=1048576;
-const EXCEL_2007_MAX_COL=16384;
+require_once 'XLSXWriter_BuffererWriter.php';
 
 class XLSXWriter
 {
@@ -27,6 +25,9 @@ class XLSXWriter
 	protected $temp_files = array();
 	protected $cell_styles = array();
 	protected $number_formats = array();
+
+    const EXCEL_2007_MAX_ROW=1048576;
+    const EXCEL_2007_MAX_COL=16384;
 
 	public function __construct()
 	{

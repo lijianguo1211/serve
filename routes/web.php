@@ -31,7 +31,8 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('trait9','IndexController@sayStatic');
     Route::get('trait10','IndexController@sayTime');
     Route::get('trait11','IndexController@sayAttributes');
-    Route::get('index','UserController@index');
+    Route::get('downloadExcel','IndexController@downloadExcel');
+    Route::get('index1','UserController@index');
 });
 
 //Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){
@@ -42,6 +43,16 @@ Route::group(['namespace'=>'Api','prefix'=>'api'],function(){
    Route::post('me','UserController@me');
    Route::get('test','CreateImageController@test');
    Route::get('createImage','CreateImageController@createImage');
+
+   Route::get('createDocument','ElasticsearchController@createDocument');
+   Route::get('getDocument','ElasticsearchController@getDocument');
+   Route::get('existsDocument','ElasticsearchController@existsDocument');
+   Route::get('searchDocument','ElasticsearchController@searchDocument');
+   Route::get('deleteDocument','ElasticsearchController@deleteDocument');
+   Route::get('deleteIndex','ElasticsearchController@deleteIndex');
+   Route::get('createIndex','ElasticsearchController@createIndex');
+   Route::get('getIndex','ElasticsearchController@getIndex');
+   Route::get('updateIndex','ElasticsearchController@updateIndex');
 });
 
 Route::group(['namespace'=>'Test','prefix'=>'test'],function(){

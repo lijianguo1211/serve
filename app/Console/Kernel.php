@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\SubscribeMsg::class,
-        Commands\PullMsg::class
+        Commands\PullMsg::class,
+        Commands\Login::class,
     ];
 
     /**

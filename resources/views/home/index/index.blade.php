@@ -15,36 +15,7 @@
 </head>
 <body>
     <div class="title">
-        <p>@{{ message }}</p>
-        <input v-model="message">
-        <button v-on:click="onMessage">反馈消息</button>
-        <ul>
-            <li v-for="todo in todos">
-                @{{ todo.text }}
-            </li>
-        </ul>
+        <h3><a href="{{ url('/home/downloadExcel') }}">导出</a></h3>
     </div>
-
-
-    {{--script--}}
-    <script type="text/javascript" src="{{asset('js/vue.js')}}"></script>
-    <script type="text/javascript">
-        new Vue({
-            el: ".title",
-            data : {
-                message: "Hello Laravel !",
-                todos:[
-                    {text:"laravel"},
-                    {text:"vue.js"},
-                    {text:"php"}
-                ]
-            },
-            methods:{
-                onMessage:function() {
-                    this.message = this.message.split('').reverse().join('')
-                }
-            }
-        })
-    </script>
 </body>
 </html>
