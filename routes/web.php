@@ -53,6 +53,8 @@ Route::group(['namespace'=>'Api','prefix'=>'api'],function(){
    Route::get('createIndex','ElasticsearchController@createIndex');
    Route::get('getIndex','ElasticsearchController@getIndex');
    Route::get('updateIndex','ElasticsearchController@updateIndex');
+   Route::get('bulkDocument','ElasticsearchController@bulkDocument');
+   Route::get('getNamespace','ElasticsearchController@getNamespace');
 });
 
 Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
@@ -64,6 +66,9 @@ Route::group(['namespace'=>'Test','prefix'=>'test'],function(){
 
 Route::group(['namespace'=>'Monitor','prefix'=>'monitor'],function(){
     Route::get('addUser','UserController@addUser');
+});
+Route::group(['namespace'=>'Arrays','prefix'=>'arrays'],function(){
+    Route::get('index','NewArrayController@index');
 });
 
 Route::group(['namespace'=>'Observer','prefix'=>'observer'],function(){

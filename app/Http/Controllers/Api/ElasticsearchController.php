@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Api;
 
 use Elasticsearch\ClientBuilder;
+use Illuminate\Support\Facades\DB;
 use Monolog\Logger;
 
 class ElasticsearchController
@@ -56,7 +57,10 @@ class ElasticsearchController
 
     public function getDocument()
     {
-        $param = [
+        $param['index'] = 'my_laravel';
+        $param['type']  = 'my_users';
+        $param['id']  = 'my_users_id';
+        /*$param = [
             'index' => 'laravel',
             'type'  => 'users',
             'id'    => 'id',
@@ -71,7 +75,7 @@ class ElasticsearchController
                 'connect_timeout' => 10,
                 'future' => 'lazy'
             ]
-        ];
+        ];*/
 
         $response = $this->client->get($param);
         \Log::info(json_encode($response));
@@ -102,17 +106,46 @@ class ElasticsearchController
     public function searchDocument()
     {
         $param = [
-            'index'  => 'laravel',
-            'type'   => 'users',
+            'index'  => 'my_laravel',
+            'type'   => 'my_users',
             'body'   => [
                 'query'  => [
                     'match' => [
-                        'testField' => 'abc'
+                        'create_at' => 1553330691
                     ]
+                ],
+                'from' => '0',  // 分页
+                'size' => '200',  // 每页数量
+                'sort' => [  // 排序
+                'age' => 'desc'   //对age字段进行降序排序
+            ]
+        ]
+    ];
+        /**
+         * 布尔查询
+         */
+        $param1 = [
+            'index'  => 'my_laravel',
+            'type'   => 'my_users',
+            'body'   => [
+                'query'  => [
+                   'bool' => [
+                       'must' => [
+                           [ 'match' =>
+                               [ 'create_at' => 1553330691 ]
+                           ],
+                           [ 'match' =>
+                               [ 'update_at' => 1553330691 ]
+                           ],
+                       ]
+                   ]
                 ]
             ]
         ];
 
+        /**
+         * 过滤查询操作
+         */
         $response = $this->client->search($param);
         \Log::info($response);
         dd($response);
@@ -121,9 +154,9 @@ class ElasticsearchController
     public function deleteDocument()
     {
         $param = [
-            'index' => 'laravel',
-            'type'  => 'users',
-            'id'    => 'id',
+            'index' => 'my_laravel',
+            'type'  => 'my_users',
+            //'id'    => 'id',
         ];
 
         $response = $this->client->delete($param);
@@ -254,6 +287,57 @@ class ElasticsearchController
 
         dd($response);
     }
+
+    public function bulkDocument()
+    {
+        $data = DB::table('users_bak')->where('id','>',40000)->where('id','<=',50000)->get()->toArray();
+        /*$param = [
+            'index' => 'my_liyi',//数据库
+            'type' => 'my_liti_users',//数据表
+            'id' => 'my_liti_users_id',//主键
+            'body' => []
+        ];*/
+        $param = ['body' => []];
+        foreach ($data as $key => $val){
+            $param['body'][] = [
+                'index' => [
+                    '_index' => 'my_laravel',
+                    '_type'  => 'my_users',
+                    '_id'    => $val->id
+                ]
+            ];
+            $param['body'][] = [
+                'id' => $val->id,
+                'user' => $val->name,
+                'pass' => $val->password,
+                'email' => $val->email,
+                'nickName'  => $val->nick_name,
+                'create_at' => $val->create_at,
+                'update_at' => $val->update_at
+            ];
+            if ($key % 1000 == 0) {
+                $responses = $this->client->bulk($param);
+                $param = ['body' => []];
+                unset($responses);
+            }
+        }
+
+        if (!empty($param['body'])) {
+            $responses = $this->client->bulk($param);
+        }
+    }
+
+
+    public function getNamespace()
+    {
+        $response = $this->client->indices()->stats();
+
+        $responseNode = $this->client->nodes()->stats();
+
+        $responseCluster = $this->client->cluster()->stats();
+        dd([$response,$responseNode,$responseCluster]);
+    }
+
 
     public static function index()
     {

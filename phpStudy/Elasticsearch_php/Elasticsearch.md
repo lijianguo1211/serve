@@ -968,3 +968,109 @@ array:2 [▼
 
 
 
+* 搜索参数设置
+
+```php
+<?php
+$param = [
+    'index' => '库',
+    'type'  => '表',
+    'body'  => [
+        'from' => '分页',
+        'size' => '每页数量',
+        'sort' => [
+            'age' => 'desc' //排序字段。倒序
+]
+] 
+];
+```
+
+结果：
+
+```php
+array:4 [▼
+  "took" => 25
+  "timed_out" => false
+  "_shards" => array:4 [▼
+    "total" => 5
+    "successful" => 5
+    "skipped" => 0
+    "failed" => 0
+  ]
+  "hits" => array:3 [▼
+    "total" => 31
+    "max_score" => null
+    "hits" => array:31 [▼
+      0 => array:6 [▼
+        "_index" => "my_laravel"
+        "_type" => "my_users"
+        "_id" => "22"
+        "_score" => null
+        "_source" => array:7 [▶]
+        "sort" => array:1 [▶]
+      ]
+      1 => array:6 [▼
+        "_index" => "my_laravel"
+        "_type" => "my_users"
+        "_id" => "24"
+        "_score" => null
+        "_source" => array:7 [▶]
+        "sort" => array:1 [▶]
+      ]
+      2 => array:6 [▼
+        "_index" => "my_laravel"
+        "_type" => "my_users"
+        "_id" => "25"
+        "_score" => null
+        "_source" => array:7 [▶]
+        "sort" => array:1 [▶]
+      ]
+      3 => array:6 [▼
+        "_index" => "my_laravel"
+        "_type" => "my_users"
+        "_id" => "26"
+        "_score" => null
+        "_source" => array:7 [▼
+          "id" => 26
+          "user" => "EFgyGC"
+          "pass" => "bb35e0f0d28b240278ecffcae5f41f19"
+          "email" => "1YUPzAMsv@sohu.com"
+          "nickName" => "TwKdIX__25"
+          "create_at" => 1553330691
+          "update_at" => 1553330691
+        ]
+        "sort" => array:1 [▼
+          0 => -9.2233720368548E+18
+        ]
+      ]
+      4 => array:6 [▶]
+      5 => array:6 [▶]
+      6 => array:6 [▶]
+      7 => array:6 [▶]
+      8 => array:6 [▶]
+      9 => array:6 [▶]
+      10 => array:6 [▶]
+      11 => array:6 [▶]
+      12 => array:6 [▶]
+      13 => array:6 [▶]
+      14 => array:6 [▶]
+      15 => array:6 [▶]
+      16 => array:6 [▶]
+      17 => array:6 [▶]
+      18 => array:6 [▶]
+      19 => array:6 [▶]
+      20 => array:6 [▶]
+      21 => array:6 [▶]
+      22 => array:6 [▶]
+      23 => array:6 [▶]
+      24 => array:6 [▶]
+      25 => array:6 [▶]
+      26 => array:6 [▶]
+      27 => array:6 [▶]
+      28 => array:6 [▶]
+      29 => array:6 [▶]
+      30 => array:6 [▶]
+    ]
+  ]
+]
+```

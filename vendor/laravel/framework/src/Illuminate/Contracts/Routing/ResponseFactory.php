@@ -123,4 +123,7 @@ interface ResponseFactory
      * @return \Illuminate\Http\RedirectResponse
      */
     public function redirectToIntended($default = '/', $status = 302, $headers = [], $secure = null);
+
+
+    public function file($file, array $headers = []);
 }
