@@ -69,6 +69,8 @@ Route::group(['namespace'=>'Monitor','prefix'=>'monitor'],function(){
 });
 Route::group(['namespace'=>'Arrays','prefix'=>'arrays'],function(){
     Route::get('index','NewArrayController@index');
+    Route::get('joinForeach','NewArrayController@joinForeach');
+    Route::get('foreachJoin','NewArrayController@foreachJoin');
 });
 
 Route::group(['namespace'=>'Observer','prefix'=>'observer'],function(){

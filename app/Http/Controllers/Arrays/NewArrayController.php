@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Arrays;
 
 
+use Illuminate\Support\Facades\DB;
+
 class NewArrayController
 {
     public static function index()
@@ -53,13 +55,31 @@ class NewArrayController
         echo '**************valid()****************'."\n";
         var_dump($arr->valid());
         echo '******************************'."\n";
-        $file = 'F:\LL\serve\phpStudy\Elasticsearch_php\Elasticsearch';
-        if(is_file($file)) {
-            echo 123;
-        }
-        echo 456;die();
+        $file = __DIR__.'/NewArrayController.php';
+        $zip = new \ZipArchive();
         return response()->file($file);
     }
-}
 
-NewArrayController::index();
+    public function joinForeach()
+    {
+        $t1 = microtime(true);
+        DB::select("select * from users as u left join users_bak as b on u.id = b.id order by u.create_at desc limit 10");
+        $t2 = microtime(true);
+
+        echo bcsub($t2,$t1,10);
+    }
+
+    public function foreachJoin()
+    {
+        $t1 = microtime(true);
+        $data = DB::select("select * from users order by create_at desc limit 10");
+
+        foreach ($data as $v => $item) {
+            DB::select("select * from users_bak where id = ?",[$item->id]);
+        }
+
+        $t2 = microtime(true);
+
+        echo bcsub($t2,$t1,10);
+    }
+}
