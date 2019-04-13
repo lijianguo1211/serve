@@ -110,6 +110,7 @@ for ($i=0; $i<5000; $i++) {
     $stmt->execute();
     $insert_id = $pdo->lastInsertId();
     echo $insert_id."\n";
+
 }*/
 
 for ($i=0; $i<5000; $i++) {
