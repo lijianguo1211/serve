@@ -71,10 +71,10 @@
 
             @foreach($blogs as $blog)
             <div class="blog-post">
-                <h2 class="blog-post-title">{{ $blog['title'] }}</h2>
-                <p class="blog-post-meta">{{ $blog['create_at'] }} <a href="#">{{ $blog['blog_owner'] }}</a></p>
+                <h2 class="blog-post-title">{{ $blog->title }}</h2>
+                <p class="blog-post-meta">{{ $blog->create_at }} <a href="#">{{ $blog->blog_owner }}</a></p>
 
-                <p>{{ $blog['content'] }}</p>
+                <p>{{ $blog->content }}</p>
 
             </div>
             @endforeach

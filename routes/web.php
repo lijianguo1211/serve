@@ -13,6 +13,8 @@
 
 Route::get('/', 'IndexController@index');
 
+Route::get('details', 'IndexController@details')->where('id', '[0-9]+');
+
 Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('test','IdCordController@test');
     Route::get('tests','IndexController@test');

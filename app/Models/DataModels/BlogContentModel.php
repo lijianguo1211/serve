@@ -13,6 +13,8 @@ class BlogContentModel extends Model
 {
     protected $table = "blog_content";
 
+    protected $primaryKey = 'id';
+
     /*public function blogs()
     {
         return $this->hasOne('App\Models\DataModels\BlogModel');

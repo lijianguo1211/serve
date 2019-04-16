@@ -14,15 +14,26 @@ use Illuminate\Support\Facades\DB;
 
 class IndexController
 {
+    private $obj;
+
+    public function __construct(BlogModel $blog)
+    {
+        $this->obj = $blog;
+    }
+
     /**
      * 首页展示
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $blog = new BlogModel();
-        $result = $blog->blogContent()->where('delete_status','=',1)->get()->toArray();
-        dd($result);
-        return view('welcome')->with(['blogs'=>$result]);
+        $result = $this->obj->getBlog();
+        $getRelease = $this->obj->getRelease();
+        return view('welcome')->with(['blogs'=>$result,'release'=>$getRelease]);
+    }
+
+    public function abc()
+    {
+        dd(123456);
     }
 }
