@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
 
 Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('test','IdCordController@test');
