@@ -5,7 +5,7 @@
             <a class="blog-nav-item" href="#">图片</a>
             <a class="blog-nav-item" href="#">文章</a>
             <a class="blog-nav-item" href="#">鸡汤</a>
-            <a class="blog-nav-item" href="#">关于我</a>
+            <a class="blog-nav-item" href="{{ url('testMd') }}">编辑</a>
         </nav>
     </div>
 </div>

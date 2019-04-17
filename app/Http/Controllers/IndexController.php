@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\DataModels\BlogModel;
+use App\Models\DataModels\RightTopsModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class IndexController
@@ -29,11 +31,27 @@ class IndexController
     {
         $result = $this->obj->getBlog();
         $getRelease = $this->obj->getRelease();
-        return view('welcome')->with(['blogs'=>$result,'release'=>$getRelease]);
+        $reghtTops = (new RightTopsModel())->getRieghtTops();
+        return view('home')->with(['blogs'=>$result,'release'=>$getRelease,'reghtTops'=>$reghtTops]);
     }
 
-    public function abc()
+    /**
+     * 详情页面
+     */
+    public function details($id)
     {
-        dd(123456);
+        if (!is_int($id)) {
+            $id = (int)$id;
+        }
+        $data = $this->obj->getDetails($id);
+        $getRelease = $this->obj->getRelease();
+        $reghtTops = (new RightTopsModel())->getRieghtTops();
+        return view('details')->with(['details'=>$data,'release'=>$getRelease,'reghtTops'=>$reghtTops]);
     }
+
+    public function test()
+    {
+        return view('test');
+    }
+
 }

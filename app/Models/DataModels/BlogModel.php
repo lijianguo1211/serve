@@ -29,14 +29,31 @@ class BlogModel extends Model
     public function getBlog()
     {
         //$data = $this->where('delete_status','=',1)->join('inner join','blogs.id','=','blog_content.blog_id')->get()->toArray();
-        $data = DB::table('blogs')->select('blogs.title','blogs.create_at','blogs.blog_owner','blog_content.content')->join('blog_content','blogs.id','=','blog_content.blog_id')->where('blogs.delete_status','=',1)->get()->toArray();
+        $data = $this->select('blogs.id','blogs.title','blogs.create_at','blog_content.content','users.username')
+            ->join('blog_content','blogs.id','=','blog_content.types_id')
+            ->join('users','blogs.user_id','=','users.id')
+            ->where('blog_content.type','=',0)
+            ->where('blogs.delete_status','=',1)
+            ->get()->toArray();
         return $data;
     }
 
     public function getRelease()
     {
-        $data = $this->select('title','create_at','id')->where('delete_status','=',1)->orderBy('create_at','DESC')->get()->toArray();
+        $data = $this->select('title','create_at','id')->where('delete_status','=',1)->orderBy('create_at','DESC')->limit(6)->get()->toArray();
 
+        return $data;
+    }
+
+    public function getDetails($id)
+    {
+        $data = $this->select('blogs.title','blogs.create_at','blogs.user_id','blog_content.content','users.username')
+            ->join('users','blogs.user_id','=','users.id')
+            ->join('blog_content','blogs.id','=','blog_content.types_id')
+            ->where('blogs.id','=',$id)
+            ->where('blog_content.type','=',0)
+            ->where('blogs.delete_status','=',1)
+            ->first();
         return $data;
     }
 }

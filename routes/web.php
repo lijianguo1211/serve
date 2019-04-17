@@ -13,7 +13,10 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::get('details', 'IndexController@details')->where('id', '[0-9]+');
+Route::get('testMd', 'IndexController@test');
+
+Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
+
 
 Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('test','IdCordController@test');
@@ -84,4 +87,64 @@ Route::group(['namespace'=>'Swool','prefix'=>'swool'],function(){
     Route::get('indexSql','PsqlController@index');
     Route::get('downloadExcel','PsqlController@downloadExcel');
     Route::any('/');
+});
+
+
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+    Route::get('/','UserController@index');//后台登录
+    Route::post('doLogin','UserController@login');//登录提交
+    Route::get('testEmail','UserController@testEmail');//显示发送邮件模板
+    Route::post('passwordRetrieve','UserController@passwordRetrieve');//发送邮件
+    Route::get('index','IndexController@index');//首页
+    Route::get('list','UserController@list');//管理员列表
+    Route::get('adduser','UserController@add');//添加管理员显示
+    Route::post('add_admin','UserController@add_admin');//提交管理员
+
+    Route::resource('type','TypeController');//添加文章分类
+    Route::get('type_del/{id}','TypeController@del')->where('id','[0-9]+');//删除文章分类
+
+    /*
+     * 添加文章
+     */
+    Route::get('blog/creates','BlogController@create');
+
+    /**
+     * header
+     */
+    Route::get('header/creates','HeaderController@create');
+    Route::get('header/create','HeaderController@create');
+
+    /**
+     * right
+     */
+    Route::get('right_top/creates','RightTopsController@create');
+    Route::post('right_top/inserts','RightTopsController@insert');
+    Route::get('right_top/indexs','RightTopsController@index');
+
+    Route::get('role_index_list','RoleController@index_list');
+    Route::get('role_index_list_ajax','RoleController@index_list_ajax');
+    Route::any('role_index','RoleController@role_index');//角色列表
+    Route::post('role_index_ajax','RoleController@role_index_ajax');
+    Route::any('role_user','RoleController@role_user');
+
+    Route::get('access_index','RoleController@access_index');
+    Route::post('access_index_ajax','RoleController@access_index');
+    Route::get('accessList','RoleController@accessList');
+    Route::get('accessListAjax','RoleController@accessListAjax');
+
+    Route::get('test','TestController@testRedis');
+    Route::get('mail','TestController@mail');
+    Route::get('mail1','TestController@saveEmail');
+    Route::get('test2','TestController@test2');
+    Route::get('indexSave','TestController@index');
+    Route::get('test3','TestController@index1');
+    Route::get('test4','TestController@index2');
+    Route::get('test5','TestController@index3');
+
+    //后台登录
+    Route::get('indexLogin','AdminController@index');//视图显示
+    Route::post('registerAdmin','AdminController@registerAdmin');//登录提交
+    Route::get('logout','AdminController@logout');//退出登录
+    Route::get('logoImg','AdminController@logoImg');//用户设置自己的图像
+
 });
