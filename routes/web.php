@@ -119,7 +119,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
      */
     Route::get('right_top/creates','RightTopsController@create');
     Route::post('right_top/inserts','RightTopsController@insert');
-    Route::get('right_top/indexs','RightTopsController@index');
+    Route::get('right_top/index','RightTopsController@index');
+    Route::get('right_top/show/{id}','RightTopsController@show')->where('id','[0-9]+');
+    Route::get('right_top/edit/{id}','RightTopsController@edit')->where('id','[0-9]+');
+    Route::post('right_top/edits/{id}','RightTopsController@submitEdit')->where('id','[0-9]+');
+    Route::get('right_top/del/{id}','RightTopsController@del')->where('id','[0-9]+');
 
     Route::get('role_index_list','RoleController@index_list');
     Route::get('role_index_list_ajax','RoleController@index_list_ajax');

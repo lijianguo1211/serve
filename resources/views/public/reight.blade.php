@@ -1,7 +1,7 @@
 <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
     <div class="sidebar-module sidebar-module-inset">
         <h4>每日一句</h4>
-        <p>{{ $reghtTops['content'] }}</p>
+        <p><em>{{ $reghtTops['title'] }}&nbsp&nbsp</em>{{ $reghtTops['content'] }}</p>
     </div>
     <div class="sidebar-module">
         <h4>发布日期</h4>
