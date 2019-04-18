@@ -108,6 +108,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
      */
     Route::get('blog/creates','BlogController@create');
     Route::post('blog/insert','BlogController@insert');
+    Route::get('blog/index','BlogController@index');
     Route::post('blog/upload_image','BlogController@upload_image');
 
     /**

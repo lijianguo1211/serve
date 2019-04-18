@@ -17,7 +17,7 @@ class BlogModel extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = [];
+    protected $fillable = ['title','info','label','user_id'];
 
     /**
      * 一对一关系选择
@@ -30,11 +30,8 @@ class BlogModel extends Model
 
     public function getBlog()
     {
-        //$data = $this->where('delete_status','=',1)->join('inner join','blogs.id','=','blog_content.blog_id')->get()->toArray();
-        $data = $this->select('blogs.id','blogs.title','blogs.create_at','blog_content.content','users.username')
-            ->join('blog_content','blogs.id','=','blog_content.types_id')
+        $data = $this->select('blogs.id','blogs.title','blogs.created_at','blogs.info','users.username')
             ->join('users','blogs.user_id','=','users.id')
-            ->where('blog_content.type','=',0)
             ->where('blogs.delete_status','=',1)
             ->get()->toArray();
         return $data;
@@ -42,25 +39,44 @@ class BlogModel extends Model
 
     public function getRelease()
     {
-        $data = $this->select('title','create_at','id')->where('delete_status','=',1)->orderBy('create_at','DESC')->limit(6)->get()->toArray();
+        $data = $this->select('title','created_at','id')->where('delete_status','=',1)->orderBy('created_at','DESC')->limit(6)->get()->toArray();
 
         return $data;
     }
 
     public function getDetails($id)
     {
-        $data = $this->select('blogs.title','blogs.create_at','blogs.user_id','blog_content.content','users.username')
+        $data = $this->select('blogs.title','blogs.create_at','blogs.user_id','blogs.info','users.username')
             ->join('users','blogs.user_id','=','users.id')
-            ->join('blog_content','blogs.id','=','blog_content.types_id')
             ->where('blogs.id','=',$id)
-            ->where('blog_content.type','=',0)
             ->where('blogs.delete_status','=',1)
             ->first();
         return $data;
     }
 
-    public function insertBlog(array $data)
+    public function insertBlog(array $data, array $content)
     {
+        $data['user_id'] = 1;
+        $content['type'] = 0;
+        $blogContent = new BlogContentModel();
+        DB::beginTransaction();
+        try {
+            $gitId = $this->insertGetId($data);
 
+            if ($gitId < 1) {
+                $error = json_encode(['status'=>0,'info'=>'写入失败']);
+                throw new \Exception($error);
+            }
+
+            $content['blog_id'] = $gitId;
+            $result = $blogContent::create($content);
+            DB::commit();
+        } catch (\Exception $e) {
+            \Log::error('文章写入失败：'.$e->getMessage());
+            DB::rollback();
+            $result = false;
+        }
+
+        return $result;
     }
 }

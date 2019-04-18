@@ -7,7 +7,7 @@
         <h4>发布日期</h4>
         @foreach($release as $item)
         <ol class="list-unstyled">
-            <li><a href="{{ url('details/'.$item['id']) }}">{{ $item['title'] }} -- {{ $item['create_at'] }}</a></li>
+            <li><a href="{{ url('details/'.$item['id']) }}">{{ $item['title'] }} -- {{ $item['created_at'] }}</a></li>
         </ol>
         @endforeach
     </div>

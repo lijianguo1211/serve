@@ -36,11 +36,11 @@
                 </select>
             </div>
         </div>
-
-        <div id="test-editormd" name="post[post_content]">
-            <textarea name="post[post_content]"></textarea>
+        <div class="layui-form-item layui-form-text">
+            <div class="layui-input-block" id="test-editormd" name="post[post_content]">
+                <textarea name="post[post_content]"></textarea>
+            </div>
         </div>
-
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" type="submit">立即提交</button>
@@ -61,8 +61,8 @@
     <script type="text/javascript">
         $(function() {
             var testEditor = editormd("test-editormd", {
-                width: "90%",
-                height: 850,
+                width           : "82%",
+                height      : 500,
                 syncScrolling : "single",
                 path : "../../../../editor-md/lib/",
                 markdown : 'LiYi',

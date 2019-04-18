@@ -15,9 +15,9 @@
             @foreach($blogs as $blog)
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{{ url('details/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
-                    <p class="blog-post-meta">{{ $blog['create_at'] }} <a href="#">{{ $blog['username'] }}</a></p>
+                    <p class="blog-post-meta">{{ $blog['created_at'] }} <a href="#">{{ $blog['username'] }}</a></p>
 
-                    <p>{{ mb_substr($blog['content'],0,120).'。。。' }}</p>
+                    <p>{{ mb_substr($blog['info'],0,120).'。。。' }}</p>
 
                 </div>
             @endforeach

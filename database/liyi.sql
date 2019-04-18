@@ -49,7 +49,7 @@ drop table if exists blog_content;
 
 create table if not exists blog_content(
 `id` int  UNSIGNED primary key auto_increment comment '主键',
-`types_id` int not null comment 'blog表主键',
+`blog_id` int not null comment 'blog表主键',
 `type` tinyint(1) not null default 0 comment '类型选择，0代表文章，1代表图片内容描述，2代表心情',
 `content` text not null comment '内容'
 )ENGINE=innodb default charset=utf8 comment '文章表内容';
@@ -88,4 +88,5 @@ create table if not exists types(
 `created_at` TIMESTAMP not null comment '创建时间',
 `updated_at` timestamp not null comment '修改时间'
 )ENGINE=innodb default charset=utf8 comment '分类表';
+
 

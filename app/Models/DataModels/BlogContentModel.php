@@ -15,6 +15,10 @@ class BlogContentModel extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = ['content','type','blog_id'];
+
+    public $timestamps= false;
+
     /*public function blogs()
     {
         return $this->hasOne('App\Models\DataModels\BlogModel');

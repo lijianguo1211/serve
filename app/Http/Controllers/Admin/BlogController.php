@@ -9,11 +9,19 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\DataModels\BlogModel;
 use App\Models\DataModels\TypeModel;
 use Illuminate\Http\Request;
 
 class BlogController extends BaseController
 {
+    private $blog;
+
+    public function __construct(BlogModel $model)
+    {
+        $this->blog = $model;
+    }
+
     public function create()
     {
         $data = (new TypeModel())->getType();
@@ -23,10 +31,26 @@ class BlogController extends BaseController
     public function insert(Request $request)
     {
         $info = $request->all();
-
         $data = [
-
+            'title' => $info['title'],
+            'info'  => $info['info'],
+            'label' => $info['label'],
         ];
+        $content = [
+            'content' => $info['post']['post_content']
+        ];
+
+        $result = $this->blog->insertBlog($data,$content);
+
+        if (!$result) {
+            return back()->with(['status'=>0,'msg'=>'插入数据失败']);
+        }
+        return redirect('admin/blog/index');
+    }
+
+    public function index()
+    {
+        dd(123456);
     }
 
     public function upload_image(Request $request)
