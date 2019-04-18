@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\DataModels\BlogModel;
+use App\Models\DataModels\HeaderModel;
 use App\Models\DataModels\RightTopsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,9 @@ class IndexController
         $result = $this->obj->getBlog();
         $getRelease = $this->obj->getRelease();
         $reghtTops = (new RightTopsModel())->getRieghtTops();
-        return view('home')->with(['blogs'=>$result,'release'=>$getRelease,'reghtTops'=>$reghtTops]);
+        $header = (new HeaderModel())->getIndexHeader();
+        $right = (new HeaderModel())->getIndexHeader(1);
+        return view('home')->with(['blogs'=>$result,'release'=>$getRelease,'reghtTops'=>$reghtTops,'header'=>$header,'right'=>$right]);
     }
 
     /**
@@ -46,7 +49,9 @@ class IndexController
         $data = $this->obj->getDetails($id);
         $getRelease = $this->obj->getRelease();
         $reghtTops = (new RightTopsModel())->getRieghtTops();
-        return view('details')->with(['details'=>$data,'release'=>$getRelease,'reghtTops'=>$reghtTops]);
+        $header = (new HeaderModel())->getIndexHeader();
+        $right = (new HeaderModel())->getIndexHeader(1);
+        return view('details')->with(['details'=>$data,'release'=>$getRelease,'reghtTops'=>$reghtTops,'header'=>$header,'right'=>$right]);
     }
 
     public function test()

@@ -17,6 +17,8 @@ class BlogModel extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = [];
+
     /**
      * 一对一关系选择
      */
@@ -55,5 +57,10 @@ class BlogModel extends Model
             ->where('blogs.delete_status','=',1)
             ->first();
         return $data;
+    }
+
+    public function insertBlog(array $data)
+    {
+
     }
 }

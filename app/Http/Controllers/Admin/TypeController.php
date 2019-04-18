@@ -50,7 +50,7 @@ class TypeController extends BaseController
         if(!$type) {
             return back()->with(['status'=>0,'msg'=>'插入数据失败']);
         }
-        return redirect('right_top/indexs');
+        return redirect('admin/right_top/indexs');
 
 
     }

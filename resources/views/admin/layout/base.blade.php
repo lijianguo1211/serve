@@ -6,6 +6,7 @@
     <title>测试</title>
     <link rel="stylesheet" href="{{URL::asset('/layui/css/layui.css')}}">
     <link rel="stylesheet" href="{{URL::asset('/font-awesome/4.5.0/css/font-awesome.min.css')}}">
+    @yield('css')
 </head>
 <style>
     .am-alert {

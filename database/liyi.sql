@@ -36,6 +36,7 @@ drop table if exists blogs;
 create table if not exists blogs(
 `id` int UNSIGNED primary key auto_increment comment '主键',
 `title` varchar(20) not null comment '文章标题',
+`info` varchar(255) not null comment '简介',
 `label` int not null comment '文章分类',
 `user_id` int not null comment '文章作者',
 `reading_volume` int not null default 0 comment '阅读量',
@@ -58,8 +59,8 @@ drop table if exists headers;
 
 create table if not exists headers(
 `id` int primary key auto_increment comment '主键',
-`title` varchar(8) not null comment '标题',
-`utl` varchar(20) not null comment '标题URL',
+`title` varchar(10) not null comment '标题',
+`url` varchar(20) not null comment '标题URL',
 `priority` tinyint(2) not null default 0 comment '优先级显示，默认是0，优先级越大，优先显示',
 `type` tinyint(1) not null default 0 comment '分类标记，是头标题还是右侧标题，默认是头',
 `created_at` TIMESTAMP not null comment '创建时间',

@@ -14,10 +14,10 @@
         <div class="col-sm-8 blog-main">
             @foreach($blogs as $blog)
                 <div class="blog-post">
-                    <h2 class="blog-post-title">{{ $blog['title'] }}</h2>
+                    <h2 class="blog-post-title"><a href="{{ url('details/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
                     <p class="blog-post-meta">{{ $blog['create_at'] }} <a href="#">{{ $blog['username'] }}</a></p>
 
-                    <p><a href="{{ url('details/'.$blog['id']) }}">{{ mb_substr($blog['content'],0,120).'。。。' }}</a></p>
+                    <p>{{ mb_substr($blog['content'],0,120).'。。。' }}</p>
 
                 </div>
             @endforeach

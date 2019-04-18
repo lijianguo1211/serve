@@ -16,7 +16,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">文章管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="{{url('admin/article/create')}}">添加文章</a></dd>
+                    <dd><a href="{{url('admin/blog/creates')}}">添加文章</a></dd>
                     <dd><a href="javascript:;">文章列表</a></dd>
                 </dl>
             </li>
@@ -31,7 +31,7 @@
                 <a href="javascript:;">网站系统管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="{{url('admin/header/creates')}}">添加头部分类</a></dd>
-                    <dd><a href="{{url('admin/header/index')}}">分类显示</a></dd>
+                    <dd><a href="{{url('admin/header/index')}}">标题显示</a></dd>
                     <dd><a href="{{url('admin/right_top/creates')}}">添加右侧提示</a></dd>
                     <dd><a href="{{url('admin/right_top/index')}}">提示展示</a></dd>
                 </dl>

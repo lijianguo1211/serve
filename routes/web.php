@@ -107,12 +107,19 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
      * 添加文章
      */
     Route::get('blog/creates','BlogController@create');
+    Route::post('blog/insert','BlogController@insert');
+    Route::post('blog/upload_image','BlogController@upload_image');
 
     /**
      * header
      */
     Route::get('header/creates','HeaderController@create');
-    Route::get('header/create','HeaderController@create');
+    Route::post('header/insert','HeaderController@insert');
+    Route::get('header/index','HeaderController@index');
+    Route::get('header/show/{id}','HeaderController@show')->where('id','[0-9]+');
+    Route::get('header/edit/{id}','HeaderController@edit')->where('id','[0-9]+');
+    Route::get('header/edits/{id}','HeaderController@submitEdit')->where('id','[0-9]+');
+    Route::get('header/del/{id}','HeaderController@del')->where('id','[0-9]+');
 
     /**
      * right

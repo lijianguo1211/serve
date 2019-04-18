@@ -23,9 +23,9 @@
     <div class="sidebar-module">
         <h4>飞机票</h4>
         <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">QQ</a></li>
-            <li><a href="#">微博</a></li>
+            @foreach($right as $item)
+            <li><a href="{{ $item['url'] }}">{{ $item['title'] }}</a></li>
+            @endforeach
         </ol>
     </div>
 </div>
