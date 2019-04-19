@@ -32,10 +32,18 @@ class IndexController
     {
         $result = $this->obj->getBlog();
         $getRelease = $this->obj->getRelease();
+        $getValue = $this->obj->getValue();
         $reghtTops = (new RightTopsModel())->getRieghtTops();
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
-        return view('home')->with(['blogs'=>$result,'release'=>$getRelease,'reghtTops'=>$reghtTops,'header'=>$header,'right'=>$right]);
+        return view('home')->with([
+            'blogs'=>$result,
+            'release'=>$getRelease,
+            'reghtTops'=>$reghtTops,
+            'header'=>$header,
+            'right'=>$right,
+            'value'=>$getValue
+        ]);
     }
 
     /**
@@ -48,10 +56,18 @@ class IndexController
         }
         $data = $this->obj->getDetails($id);
         $getRelease = $this->obj->getRelease();
+        $getValue = $this->obj->getValue();
         $reghtTops = (new RightTopsModel())->getRieghtTops();
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
-        return view('details')->with(['details'=>$data,'release'=>$getRelease,'reghtTops'=>$reghtTops,'header'=>$header,'right'=>$right]);
+        return view('details')->with([
+            'details'=>$data,
+            'release'=>$getRelease,
+            'reghtTops'=>$reghtTops,
+            'header'=>$header,
+            'right'=>$right,
+            'value'=>$getValue
+        ]);
     }
 
     public function test()

@@ -17,7 +17,7 @@
                 <a href="javascript:;">文章管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="{{url('admin/blog/creates')}}">添加文章</a></dd>
-                    <dd><a href="javascript:;">文章列表</a></dd>
+                    <dd><a href="{{url('admin/blog/index')}}">文章列表</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">

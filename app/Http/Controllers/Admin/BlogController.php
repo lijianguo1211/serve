@@ -31,13 +31,15 @@ class BlogController extends BaseController
     public function insert(Request $request)
     {
         $info = $request->all();
+
+
         $data = [
             'title' => $info['title'],
             'info'  => $info['info'],
             'label' => $info['label'],
         ];
         $content = [
-            'content' => $info['post']['post_content']
+            'content' => $info['test-editormd-html-code']
         ];
 
         $result = $this->blog->insertBlog($data,$content);
@@ -50,7 +52,7 @@ class BlogController extends BaseController
 
     public function index()
     {
-        dd(123456);
+        $result = $this->blog->getBlog(true);
     }
 
     public function upload_image(Request $request)

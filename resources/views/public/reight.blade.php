@@ -14,10 +14,10 @@
     <div class="sidebar-module">
         <h4>推荐阅读</h4>
         <ol class="list-unstyled">
-            <li><a href="#">盗将行</a></li>
-            <li><a href="#">纸短情长</a></li>
-            <li><a href="#">年少有为</a></li>
-            <li><a href="#">一壶老酒</a></li>
+            @foreach($value as $item)
+                <li><a href="{{ url('details/'.$item['id']) }}">{{ $item['title'] }}</a></li>
+            @endforeach
+
         </ol>
     </div>
     <div class="sidebar-module">
