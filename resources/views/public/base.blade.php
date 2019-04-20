@@ -13,10 +13,10 @@
     <title>花儿尊上</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ url('/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ '/bootstrap/dist/css/bootstrap.css' }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{{URL::asset('/css/blog.css')}}" rel="stylesheet">
+    <link href="{{'/css/blog.css'}}" rel="stylesheet">
 
 </head>
 
@@ -32,8 +32,8 @@
 
 
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{URL::asset('/bootstrap/dist/js/jquery.js')}}"></script>
-<script src="{{URL::asset('/bootstrap/dist/js/bootstrap.js')}}"></script>
+<script src="{{'/bootstrap/dist/js/jquery.js'}}"></script>
+<script src="{{'/bootstrap/dist/js/bootstrap.js'}}"></script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277155952'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1277155952%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>
