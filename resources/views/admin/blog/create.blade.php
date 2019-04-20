@@ -1,8 +1,8 @@
 @extends('admin/layout/base')
 
 @section('css')
-    <link href="{{URL::asset('/editor-md/css/editormd.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('/editor-md/examples/css/style.css')}}" rel="stylesheet">
+    <link href="../../../../editor-md/css/editormd.css" rel="stylesheet">
+    <link href="../../../../editor-md/examples/css/style.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -54,9 +54,9 @@
 
 @endsection
 @section('js')
-    <script src="{{ URL::asset('/editor-md/examples/js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('/editor-md/editormd.js') }}"></script>
-    <script src="{{ URL::asset('/editor-md/editormd.amd.js') }}"></script>
+    <script src="../../../../editor-md/examples/js/jquery.min.js"></script>
+    <script src="../../../../editor-md/editormd.js"></script>
+    <script src="../../../../editor-md/editormd.amd.js"></script>
 
     <script type="text/javascript">
         $(function() {
