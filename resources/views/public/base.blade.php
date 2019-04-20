@@ -13,7 +13,7 @@
     <title>花儿尊上</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{URL::asset('/bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ url('/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{URL::asset('/css/blog.css')}}" rel="stylesheet">
