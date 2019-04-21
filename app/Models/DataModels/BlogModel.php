@@ -56,13 +56,18 @@ class BlogModel extends Model
 
     public function getRelease()
     {
-        $data = $this->select('title','created_at','id')->where('delete_status','=',1)->orderBy('created_at','DESC')->limit(6)->get()->toArray();
+        $data = $this->select('title','created_at','id')->where('delete_status','=',0)->orderBy('created_at','DESC')->limit(6)->get()->toArray();
 
         return $data;
     }
 
     public function getDetails($id)
     {
+        try {
+            $this::where('id','=',$id)->increment('reading_volume');
+        } catch (\Exception $e) {
+            \Log::error('阅读量更新失败');
+        }
         $data = $this->select('blogs.title','blogs.created_at','blogs.user_id','blogs.info','users.username','blog_content.content_md')
             ->join('blog_content','blogs.id','=','blog_content.blog_id')
             ->join('users','blogs.user_id','=','users.id')
