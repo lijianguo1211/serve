@@ -34,6 +34,8 @@
                     <dd><a href="{{url('admin/header/index')}}">标题显示</a></dd>
                     <dd><a href="{{url('admin/right_top/creates')}}">添加右侧提示</a></dd>
                     <dd><a href="{{url('admin/right_top/index')}}">提示展示</a></dd>
+                    <dd><a href="{{url('admin/image/creates')}}">添加热点图片</a></dd>
+                    <dd><a href="{{url('admin/image/index')}}">热点图片列表</a></dd>
                 </dl>
             </li>
         </ul>

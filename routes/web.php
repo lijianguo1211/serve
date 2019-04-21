@@ -16,6 +16,7 @@ Route::get('/', 'IndexController@index');
 Route::get('testMd', 'IndexController@test');
 
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
+Route::get('image', 'ImgController@index');
 
 
 Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
@@ -110,6 +111,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('blog/insert','BlogController@insert');
     Route::get('blog/index','BlogController@index');
     Route::post('blog/upload_image','BlogController@upload_image');
+
+    /**
+     * 添加热点图片
+     */
+    Route::get('image/creates','ImgController@create');
+    Route::get('image/creates','ImgController@create');
 
     /**
      * header
