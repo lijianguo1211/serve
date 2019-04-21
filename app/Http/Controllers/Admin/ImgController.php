@@ -8,8 +8,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Models\DataModels\TypeModel;
 use App\Models\DataModels\ImageModel;
+use Illuminate\Http\Request;
 
 class ImgController extends BaseController
 {
@@ -22,6 +23,21 @@ class ImgController extends BaseController
 
     public function create()
     {
-        return view('admin/img/create');
+        $data = (new TypeModel())->getType();
+        return view('admin/img/create')->with(['data' => $data]);
+    }
+
+    public function add(Request $request)
+    {
+        $info = $request->all();
+
+        dd($info);
+    }
+
+    public function upload(Request $request)
+    {
+        $info = $request->file();
+        $this->img->insertImg($info['file']);
+        dd($info['file']);
     }
 }

@@ -116,7 +116,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
      * 添加热点图片
      */
     Route::get('image/creates','ImgController@create');
-    Route::get('image/creates','ImgController@create');
+    Route::get('image/inserts','ImgController@add');
+    Route::post('image/upload','ImgController@upload');
 
     /**
      * header
