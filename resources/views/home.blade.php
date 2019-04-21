@@ -2,41 +2,36 @@
 
 @section('content')
 
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <h3 class="pb-3 mb-4 font-italic border-bottom">
+                    php的小窝
+                </h3>
 
-<div class="container">
+                @foreach($blogs as $blog)
+                    <div class="blog-post">
+                        <h2 class="blog-post-title"><a href="{{ url('details/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
+                        <p class="blog-post-meta">{{ $blog['created_at'] }}</p>
 
-    @include('public/index_img')
+                        <p>{{ mb_substr($blog['info'],0,120).'。。。' }}</p>
+                        <span class="badge">分类</span>
+                        <span class="badge badge-pill badge-success">{{ $blog['name'] }}</span>
+                        <span class="badge">阅读量</span>
+                        <span class="badge badge-pill badge-danger">{{ $blog['reading_volume'] }}</span>
 
+                        <a href="#">
+                            <span class="badge">作者</span>
+                            <span class="badge badge-pill badge-info">{{ $blog['username'] }}</span>
+                        </a>
+                    </div>
+                @endforeach
+            </div><!-- /.blog-main -->
 
+            @include('public/reight')
 
-    <div class="row">
+        </div><!-- /.row -->
 
-        <div class="col-sm-8 blog-main">
+    </main>
 
-            @foreach($blogs as $blog)
-                <div class="blog-post">
-                    <h2 class="blog-post-title"><a href="{{ url('details/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
-                    <p class="blog-post-meta">{{ $blog['created_at'] }}</p>
-
-                    <p>{{ mb_substr($blog['info'],0,120).'。。。' }}</p>
-                    <span class="badge">分类</span><span class="label label-info">{{ $blog['name'] }}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="badge">阅读量</span><span class="label label-info">{{ $blog['reading_volume'] }}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <a href="#"><span class="badge">作者</span><span class="label label-info">{{ $blog['username'] }}</span></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <a href="#"><span class="badge">收藏</span></a>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                    </button>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
-                </div>
-            @endforeach
-
-        </div><!-- /.blog-main -->
-
-        @include('public/reight')
-        {{--right--}}
-
-    </div><!-- /.row -->
-
-</div><!-- /.container -->
 @endsection
