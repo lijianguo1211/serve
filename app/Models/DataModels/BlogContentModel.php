@@ -15,7 +15,7 @@ class BlogContentModel extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['content','type','blog_id'];
+    protected $fillable = ['content','type','blog_id','content_md'];
 
     public $timestamps= false;
 

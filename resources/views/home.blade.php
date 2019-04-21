@@ -2,22 +2,41 @@
 
 @section('content')
 
+
 <div class="container">
 
-    <div class="blog-header">
+    {{--<div class="blog-header">
         <h1 class="blog-title">The Bootstrap Blog</h1>
         <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+    </div>--}}
+    <div class="jumbotron blog-header">
+        <div class="container">
+            <h1>Hello, world!</h1>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
     </div>
+
+
 
     <div class="row">
 
         <div class="col-sm-8 blog-main">
+
             @foreach($blogs as $blog)
                 <div class="blog-post">
                     <h2 class="blog-post-title"><a href="{{ url('details/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
-                    <p class="blog-post-meta">{{ $blog['created_at'] }} <a href="#">{{ $blog['username'] }}</a></p>
+                    <p class="blog-post-meta">{{ $blog['created_at'] }}</p>
 
                     <p>{{ mb_substr($blog['info'],0,120).'。。。' }}</p>
+                    <span class="badge">分类</span><span class="label label-info">{{ $blog['name'] }}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="badge">阅读量</span><span class="label label-info">{{ $blog['reading_volume'] }}</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="#"><span class="badge">作者</span><span class="label label-info">{{ $blog['username'] }}</span></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="#"><span class="badge">收藏</span></a>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    </button>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
                 </div>
             @endforeach

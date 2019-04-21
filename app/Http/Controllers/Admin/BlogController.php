@@ -31,15 +31,15 @@ class BlogController extends BaseController
     public function insert(Request $request)
     {
         $info = $request->all();
-
-
+//dd($info['test-editormd-html-code'],$info['post']['post_content']);
         $data = [
             'title' => $info['title'],
             'info'  => $info['info'],
             'label' => $info['label'],
         ];
         $content = [
-            'content' => $info['test-editormd-html-code']
+            'content' => $info['post']['post_content'],
+            'content_md' => $info['test-editormd-html-code']
         ];
 
         $result = $this->blog->insertBlog($data,$content);

@@ -32,15 +32,17 @@ class BlogModel extends Model
     {
 
         if ($admin) {
-            $data = $this->select('blogs.id','blogs.title','blogs.created_at','blogs.info','users.username','blogs.reading_volume','blogs.info','blogs.label')
+            $data = $this->select('types.name','blogs.id','blogs.title','blogs.created_at','blogs.info','users.username','blogs.reading_volume','blogs.info','blogs.label')
+                ->join('types','blogs.label','=','types.id')
                 ->join('users','blogs.user_id','=','users.id')
                 ->where('blogs.delete_status','=',0)
                 ->orderBy('blogs.created_at','desc')
                 ->get()
                 ->toArray();
         } else {
-            $data = $this->select('blogs.id','blogs.title','blogs.created_at','blogs.info','users.username')
+            $data = $this->select('blogs.reading_volume','types.name','blogs.id','blogs.title','blogs.created_at','blogs.info','users.username')
                 ->join('users','blogs.user_id','=','users.id')
+                ->join('types','blogs.label','=','types.id')
                 ->where('blogs.delete_status','=',0)
                 ->orderBy('blogs.created_at','desc')
                 ->limit(10)
@@ -61,7 +63,7 @@ class BlogModel extends Model
 
     public function getDetails($id)
     {
-        $data = $this->select('blogs.title','blogs.created_at','blogs.user_id','blogs.info','users.username','blog_content.content')
+        $data = $this->select('blogs.title','blogs.created_at','blogs.user_id','blogs.info','users.username','blog_content.content_md')
             ->join('blog_content','blogs.id','=','blog_content.blog_id')
             ->join('users','blogs.user_id','=','users.id')
             ->where('blogs.id','=',$id)
@@ -86,6 +88,7 @@ class BlogModel extends Model
             }
 
             $content['blog_id'] = $gitId;
+            //dd($content);
             $result = $blogContent::create($content);
             DB::commit();
         } catch (\Exception $e) {

@@ -11,7 +11,6 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>花儿尊上</title>
-
     <!-- Bootstrap core CSS -->
     <link href="{{ url('/bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet">
 

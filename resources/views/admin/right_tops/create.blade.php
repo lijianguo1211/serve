@@ -1,4 +1,7 @@
 @extends('admin/layout/base')
+@section('css')
+    @include('../../vendor/editor/head')
+@endsection
 @section('content')
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>添加每日一语</legend>
@@ -15,6 +18,9 @@
             <div class="layui-input-block">
                 <textarea name="content"  cols="50" rows="10" lay-verify="required"></textarea>
             </div>
+        </div>
+        <div class="editor">
+            <textarea id='myEditor' name="content_md"></textarea>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">

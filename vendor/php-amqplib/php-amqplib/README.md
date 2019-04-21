@@ -207,7 +207,6 @@ using exception handling mechanism.
 Exceptions which might be thrown in case of connection errors:
 
 ```
-PhpAmqpLib\Exception\AMQPConnectionClosedException
 PhpAmqpLib\Exception\AMQPIOException
 \RuntimeException
 \ErrorException
@@ -227,8 +226,7 @@ while(true){
         $connection = new AMQPStreamConnection(HOST, PORT, USER, PASS, VHOST);
         // Your application code goes here.
         do_something_with_connection($connection);
-    } catch(AMQPRuntimeException $e) {
-        echo $e->getMessage();
+    } catch(AMQPIOException $e) {
         cleanup_connection($connection);
         usleep(WAIT_BEFORE_RECONNECT_uS);
     } catch(\RuntimeException $e) {

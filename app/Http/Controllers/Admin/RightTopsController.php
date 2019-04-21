@@ -35,6 +35,7 @@ class RightTopsController extends BaseController
      */
     public function insert(Request $request)
     {
+        dd($request->all());
         $req = [
             'title' => $request->get('title'),
             'content' => $request->get('content')

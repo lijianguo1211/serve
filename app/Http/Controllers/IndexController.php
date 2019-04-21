@@ -12,8 +12,6 @@ namespace App\Http\Controllers;
 use App\Models\DataModels\BlogModel;
 use App\Models\DataModels\HeaderModel;
 use App\Models\DataModels\RightTopsModel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class IndexController
 {

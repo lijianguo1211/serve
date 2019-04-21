@@ -16,7 +16,7 @@
                         <h2 class="blog-post-title">{{ $details['title'] }}</h2>
                         <p class="blog-post-meta">{{ $details['create_at'] }} <a href="#">{{ $details['username'] }}</a></p>
 
-                        {{ ($details['content']) }}
+                        <?php echo $details['content_md'] ?>
 
                     </div>
 

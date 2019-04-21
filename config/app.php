@@ -178,8 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
-
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        YuanChao\Editor\EndaEditorServiceProvider::class
 
     ],
 
@@ -231,7 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade'
     ],
 
 ];

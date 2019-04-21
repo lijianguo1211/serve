@@ -9,8 +9,8 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
@@ -31,6 +31,10 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'Y' => 
+        array (
+            'YuanChao\\Editor\\' => 16,
         ),
         'X' => 
         array (
@@ -92,6 +96,7 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         ),
         'L' => 
         array (
+            'League\\HTMLToMarkdown\\' => 22,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
@@ -154,6 +159,10 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'YuanChao\\Editor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yuanchao/laravel-5-markdown-editor/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -302,6 +311,10 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'League\\HTMLToMarkdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/html-to-markdown/src',
         ),
         'League\\Flysystem\\' => 
         array (
@@ -455,8 +468,19 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
         'App\\Events\\UserMonitor' => __DIR__ . '/../..' . '/app/Events/UserMonitor.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\BaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BaseController.php',
+        'App\\Http\\Controllers\\Admin\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BlogController.php',
+        'App\\Http\\Controllers\\Admin\\HeaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HeaderController.php',
+        'App\\Http\\Controllers\\Admin\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/IndexController.php',
+        'App\\Http\\Controllers\\Admin\\RightTopsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RightTopsController.php',
+        'App\\Http\\Controllers\\Admin\\TestController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TestController.php',
+        'App\\Http\\Controllers\\Admin\\TypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TypeController.php',
+        'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Controllers\\Api\\CreateImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CreateImageController.php',
+        'App\\Http\\Controllers\\Api\\ElasticsearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ElasticsearchController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
+        'App\\Http\\Controllers\\Arrays\\NewArrayController' => __DIR__ . '/../..' . '/app/Http/Controllers/Arrays/NewArrayController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -477,6 +501,7 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'App\\Http\\Controllers\\Home\\TestsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/TestsController.php',
         'App\\Http\\Controllers\\Home\\ThirteenController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/ThirteenController.php',
         'App\\Http\\Controllers\\Home\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Home/UserController.php',
+        'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Controllers\\Monitor\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Monitor/UserController.php',
         'App\\Http\\Controllers\\Observer\\AfterSession' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/AfterSession.php',
         'App\\Http\\Controllers\\Observer\\BeforeSession' => __DIR__ . '/../..' . '/app/Http/Controllers/Observer/BeforeSession.php',
@@ -523,9 +548,14 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'App\\Listeners\\UserMonitorListener' => __DIR__ . '/../..' . '/app/Listeners/UserMonitorListener.php',
         'App\\Models\\DataModels\\AccessModel' => __DIR__ . '/../..' . '/app/Models/DataModels/AccessModel.php',
         'App\\Models\\DataModels\\AreaCodeModel' => __DIR__ . '/../..' . '/app/Models/DataModels/AreaCodeModel.php',
+        'App\\Models\\DataModels\\BlogContentModel' => __DIR__ . '/../..' . '/app/Models/DataModels/BlogContentModel.php',
+        'App\\Models\\DataModels\\BlogModel' => __DIR__ . '/../..' . '/app/Models/DataModels/BlogModel.php',
+        'App\\Models\\DataModels\\HeaderModel' => __DIR__ . '/../..' . '/app/Models/DataModels/HeaderModel.php',
         'App\\Models\\DataModels\\Model' => __DIR__ . '/../..' . '/app/Models/DataModels/Model.php',
+        'App\\Models\\DataModels\\RightTopsModel' => __DIR__ . '/../..' . '/app/Models/DataModels/RightTopsModel.php',
         'App\\Models\\DataModels\\RoleAccessModel' => __DIR__ . '/../..' . '/app/Models/DataModels/RoleAccessModel.php',
         'App\\Models\\DataModels\\RoleModel' => __DIR__ . '/../..' . '/app/Models/DataModels/RoleModel.php',
+        'App\\Models\\DataModels\\TypeModel' => __DIR__ . '/../..' . '/app/Models/DataModels/TypeModel.php',
         'App\\Models\\DataModels\\UserModel' => __DIR__ . '/../..' . '/app/Models/DataModels/UserModel.php',
         'App\\Models\\DataModels\\UserRoleModel' => __DIR__ . '/../..' . '/app/Models/DataModels/UserRoleModel.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -2599,6 +2629,30 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'League\\HTMLToMarkdown\\Configuration' => __DIR__ . '/..' . '/league/html-to-markdown/src/Configuration.php',
+        'League\\HTMLToMarkdown\\ConfigurationAwareInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/ConfigurationAwareInterface.php',
+        'League\\HTMLToMarkdown\\Converter\\BlockquoteConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/BlockquoteConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\CodeConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/CodeConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\CommentConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/CommentConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ConverterInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ConverterInterface.php',
+        'League\\HTMLToMarkdown\\Converter\\DefaultConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/DefaultConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\DivConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/DivConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\EmphasisConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/EmphasisConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\HardBreakConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/HardBreakConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\HeaderConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/HeaderConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\HorizontalRuleConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/HorizontalRuleConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ImageConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ImageConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\LinkConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/LinkConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ListBlockConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ListBlockConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ListItemConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ListItemConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\ParagraphConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/ParagraphConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\PreformattedConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/PreformattedConverter.php',
+        'League\\HTMLToMarkdown\\Converter\\TextConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/Converter/TextConverter.php',
+        'League\\HTMLToMarkdown\\Element' => __DIR__ . '/..' . '/league/html-to-markdown/src/Element.php',
+        'League\\HTMLToMarkdown\\ElementInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/ElementInterface.php',
+        'League\\HTMLToMarkdown\\Environment' => __DIR__ . '/..' . '/league/html-to-markdown/src/Environment.php',
+        'League\\HTMLToMarkdown\\HtmlConverter' => __DIR__ . '/..' . '/league/html-to-markdown/src/HtmlConverter.php',
+        'League\\HTMLToMarkdown\\HtmlConverterInterface' => __DIR__ . '/..' . '/league/html-to-markdown/src/HtmlConverterInterface.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',
@@ -3243,7 +3297,6 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'PhpAmqpLib\\Exception\\AMQPInvalidArgumentException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPInvalidArgumentException.php',
         'PhpAmqpLib\\Exception\\AMQPInvalidFrameException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPInvalidFrameException.php',
         'PhpAmqpLib\\Exception\\AMQPLogicException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPLogicException.php',
-        'PhpAmqpLib\\Exception\\AMQPNoDataException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPNoDataException.php',
         'PhpAmqpLib\\Exception\\AMQPNotImplementedException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPNotImplementedException.php',
         'PhpAmqpLib\\Exception\\AMQPOutOfBoundsException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPOutOfBoundsException.php',
         'PhpAmqpLib\\Exception\\AMQPOutOfRangeException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPOutOfRangeException.php',
@@ -3253,7 +3306,6 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'PhpAmqpLib\\Exception\\AMQPRuntimeException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPRuntimeException.php',
         'PhpAmqpLib\\Exception\\AMQPSocketException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPSocketException.php',
         'PhpAmqpLib\\Exception\\AMQPTimeoutException' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exception/AMQPTimeoutException.php',
-        'PhpAmqpLib\\Exchange\\AMQPExchangeType' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Exchange/AMQPExchangeType.php',
         'PhpAmqpLib\\Helper\\DebugHelper' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Helper/DebugHelper.php',
         'PhpAmqpLib\\Helper\\MiscHelper' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Helper/MiscHelper.php',
         'PhpAmqpLib\\Helper\\Protocol\\MethodMap080' => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib/Helper/Protocol/MethodMap080.php',
@@ -4814,6 +4866,10 @@ class ComposerStaticInitfce1a279922e301139cc276296e00685
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'YuanChao\\Editor\\EndaEditor' => __DIR__ . '/..' . '/yuanchao/laravel-5-markdown-editor/src/EndaEditor.php',
+        'YuanChao\\Editor\\EndaEditorServiceProvider' => __DIR__ . '/..' . '/yuanchao/laravel-5-markdown-editor/src/EndaEditorServiceProvider.php',
+        'YuanChao\\Editor\\Facade\\EndaEditorFacade' => __DIR__ . '/..' . '/yuanchao/laravel-5-markdown-editor/src/Facade/EndaEditorFacade.php',
+        'YuanChao\\Editor\\Parsedown' => __DIR__ . '/..' . '/yuanchao/laravel-5-markdown-editor/src/Parsedown.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
