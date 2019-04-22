@@ -1,7 +1,5 @@
 @extends('admin/layout/base')
-@section('css')
-    @include('../../vendor/editor/head')
-@endsection
+
 @section('content')
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>添加热点图片</legend>
@@ -78,10 +76,9 @@
             var uploadInst = upload.render({
                 elem: '#headImg'
                 , url: "{{ url('admin/image/upload') }}"
-                , size: 500
                 , method:'post'
-                ,data:{'_token':tag_token}
-                , ext: 'jpg|png|gif'
+                , data:{'_token':tag_token}
+                , ext: 'jpg|png|gif|jpeg'
                 , before: function (obj) {
                     //预读本地文件示例，不支持ie8
                     obj.preview(function (index, file, result) {
@@ -95,7 +92,7 @@
                     }
                     //上传成功
                     //打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台, 此处略..
-                    /*   console.log(res.data.src);*/
+                       console.log(res.data.src);
                     window.parent.uploadHeadImage(res.data.src);
                     var demoText = $('#demoText');
                     demoText.html('<span style="color: #8f8f8f;">上传成功!!!</span>');
@@ -110,17 +107,6 @@
                 }
             });
             element.init();
-        });
-        layui.use('upload', function() {
-            var $ = layui.jquery
-                , upload = layui.upload;
-            upload.render({
-                elem: '#test10'
-                , url: "{{ url('admin/image/upload') }}"
-                , done: function (res) {
-                    console.log(res)
-                }
-            });
         });
     </script>
 @endsection

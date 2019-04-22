@@ -1,11 +1,12 @@
 <?php
 namespace PhpAmqpLib\Connection;
 
-use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Channel\AbstractChannel;
+use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Exception\AMQPConnectionClosedException;
 use PhpAmqpLib\Exception\AMQPHeartbeatMissedException;
 use PhpAmqpLib\Exception\AMQPInvalidFrameException;
+use PhpAmqpLib\Exception\AMQPNoDataException;
 use PhpAmqpLib\Exception\AMQPProtocolConnectionException;
 use PhpAmqpLib\Exception\AMQPRuntimeException;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
@@ -13,8 +14,6 @@ use PhpAmqpLib\Wire\AMQPReader;
 use PhpAmqpLib\Wire\AMQPTable;
 use PhpAmqpLib\Wire\AMQPWriter;
 use PhpAmqpLib\Wire\IO\AbstractIO;
-use PhpAmqpLib\Wire\IO\SocketIO;
-use PhpAmqpLib\Wire\IO\StreamIO;
 
 class AbstractConnection extends AbstractChannel
 {
@@ -86,9 +85,6 @@ class AbstractConnection extends AbstractChannel
     /** @var float */
     protected $last_frame;
 
-    /** @var SocketIO */
-    protected $sock;
-
     /** @var int */
     protected $channel_max = 65535;
 
@@ -132,6 +128,12 @@ class AbstractConnection extends AbstractChannel
     private $prepare_content_cache_max_size;
 
     /**
+     * Maximum time to wait for channel operations, in seconds
+     * @var float $channel_rpc_timeout
+     */
+    private $channel_rpc_timeout;
+
+    /**
      * @param string $user
      * @param string $password
      * @param string $vhost
@@ -142,6 +144,7 @@ class AbstractConnection extends AbstractChannel
      * @param AbstractIO $io
      * @param int $heartbeat
      * @param int $connection_timeout
+     * @param float $channel_rpc_timeout
      * @throws \Exception
      */
     public function __construct(
@@ -153,8 +156,9 @@ class AbstractConnection extends AbstractChannel
         $login_response = null,
         $locale = 'en_US',
         AbstractIO $io,
-        $heartbeat = 0,
-        $connection_timeout = 0
+        $heartbeat = 60,
+        $connection_timeout = 0,
+        $channel_rpc_timeout = 0.0
     ) {
         // save the params for the use of __clone
         $this->construct_params = func_get_args();
@@ -168,6 +172,7 @@ class AbstractConnection extends AbstractChannel
         $this->io = $io;
         $this->heartbeat = $heartbeat;
         $this->connection_timeout = $connection_timeout;
+        $this->channel_rpc_timeout = $channel_rpc_timeout;
 
         if ($user && $password) {
             $this->login_response = new AMQPWriter();
@@ -233,10 +238,7 @@ class AbstractConnection extends AbstractChannel
                 $host = $this->x_open($this->vhost, '', $this->insist);
                 if (!$host) {
                     //Reconnected
-                    if ($this->io instanceof StreamIO)
-                    {
-                        $this->getIO()->reenableHeartbeat();
-                    }
+                    $this->getIO()->reenableHeartbeat();
                     return null; // we weren't redirected
                 }
 
@@ -251,6 +253,8 @@ class AbstractConnection extends AbstractChannel
             // Something went wrong, set the connection status
             $this->setIsConnected(false);
             $this->closeChannels();
+            $this->close_input();
+            $this->close_socket();
             throw $e; // Rethrow exception
         }
     }
@@ -264,7 +268,7 @@ class AbstractConnection extends AbstractChannel
         // Try to close the AMQP connection
         $this->safeClose();
         // Reconnect the socket/stream then AMQP
-        $this->getIO()->reconnect();
+        $this->getIO()->close();
         $this->setIsConnected(false); // getIO can initiate the connection setting via LazyConnection, set it here to be sure
         $this->connect();
     }
@@ -305,7 +309,15 @@ class AbstractConnection extends AbstractChannel
      */
     public function select($sec, $usec = 0)
     {
-        return $this->getIO()->select($sec, $usec);
+        try {
+            return $this->getIO()->select($sec, $usec);
+        } catch (AMQPConnectionClosedException $e) {
+            $this->do_close();
+            throw $e;
+        } catch (AMQPRuntimeException $e) {
+            $this->setIsConnected(false);
+            throw $e;
+        }
     }
 
     /**
@@ -321,7 +333,7 @@ class AbstractConnection extends AbstractChannel
 
     protected function close_input()
     {
-        $this->debug->debug_msg('closing input');
+        $this->debug && $this->debug->debug_msg('closing input');
 
         if (!is_null($this->input)) {
             $this->input->close();
@@ -331,7 +343,7 @@ class AbstractConnection extends AbstractChannel
 
     protected function close_socket()
     {
-        $this->debug->debug_msg('closing socket');
+        $this->debug && $this->debug->debug_msg('closing socket');
 
         if (!is_null($this->getIO())) {
             $this->getIO()->close();
@@ -339,7 +351,7 @@ class AbstractConnection extends AbstractChannel
     }
 
     /**
-     * @param $data
+     * @param string $data
      */
     public function write($data)
     {
@@ -347,6 +359,9 @@ class AbstractConnection extends AbstractChannel
 
         try {
             $this->getIO()->write($data);
+        } catch (AMQPConnectionClosedException $e) {
+            $this->do_close();
+            throw $e;
         } catch (AMQPRuntimeException $e) {
             $this->setIsConnected(false);
             throw $e;
@@ -507,7 +522,7 @@ class AbstractConnection extends AbstractChannel
     /**
      * Waits for a frame from the server
      *
-     * @param int $timeout
+     * @param int|float|null $timeout
      * @return array
      * @throws \Exception
      * @throws \PhpAmqpLib\Exception\AMQPTimeoutException
@@ -547,6 +562,14 @@ class AbstractConnection extends AbstractChannel
         } catch (AMQPTimeoutException $e) {
             $this->input->setTimeout($currentTimeout);
             throw $e;
+        } catch (AMQPNoDataException $e) {
+            if ($this->input) {
+                $this->input->setTimeout($currentTimeout);
+            }
+            throw $e;
+        } catch (AMQPConnectionClosedException $exception) {
+            $this->do_close();
+            throw $exception;
         }
 
         $this->input->setTimeout($currentTimeout);
@@ -565,7 +588,7 @@ class AbstractConnection extends AbstractChannel
      * Waits for a frame from the server destined for a particular channel.
      *
      * @param string $channel_id
-     * @param int $timeout
+     * @param int|float|null $timeout
      * @return array
      */
     protected function wait_channel($channel_id, $timeout = 0)
@@ -576,8 +599,7 @@ class AbstractConnection extends AbstractChannel
             $now = time();
             try {
                 list($frame_type, $frame_channel, $payload) = $this->wait_frame($_timeout);
-            }
-            catch ( AMQPTimeoutException $e ) {
+            } catch (AMQPTimeoutException $e) {
                 if ( $this->heartbeat && microtime(true) - ($this->heartbeat*2) > $this->last_frame ) {
                     $this->debug->debug_msg("missed server heartbeat (at threshold * 2)");
                     $this->setIsConnected(false);
@@ -639,7 +661,7 @@ class AbstractConnection extends AbstractChannel
         }
 
         $channel_id = $channel_id ? $channel_id : $this->get_free_channel_id();
-        $ch = new AMQPChannel($this->connection, $channel_id);
+        $ch = new AMQPChannel($this->connection, $channel_id, true, $this->channel_rpc_timeout);
         $this->channels[$channel_id] = $ch;
 
         return $ch;
@@ -655,11 +677,7 @@ class AbstractConnection extends AbstractChannel
      */
     public function close($reply_code = 0, $reply_text = '', $method_sig = array(0, 0))
     {
-        if ($this->io instanceof StreamIO)
-        {
-            $this->io->disableHeartbeat();
-        }
-
+        $this->io->disableHeartbeat();
         if (empty($this->protocolWriter) || !$this->isConnected()) {
             return null;
         }
@@ -876,7 +894,7 @@ class AbstractConnection extends AbstractChannel
     }
 
     /**
-     * @return SocketIO
+     * @return AbstractIO
      */
     public function getSocket()
     {
