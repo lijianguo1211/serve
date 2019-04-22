@@ -72,11 +72,6 @@ class ImgController extends BaseController
 
         $newImgName = 'hotspot_' . date('Y-m-d_H:i:s', time()) . '_' . uniqid() . '_' . md5(microtime(true)) . '.'.$ext;
 
-
-        // 将文件保存到本地 storage/app/public/ 目录下，先判断同名文件是否已经存在，如果存在直接返回
-        if (Storage::disk('my')->has($newImgName)) {
-            return $data =['status'=>200,'info' => '成功','path' => config('filesystems.disks.my.url').$newImgName];
-        }
         $file = public_path('/upload/hotspot/');
 
         if (!is_dir($file)) {

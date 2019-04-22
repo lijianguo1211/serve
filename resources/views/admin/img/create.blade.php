@@ -93,7 +93,6 @@
                     }
                     //上传成功
                     //打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台, 此处略..
-                    window.parent.uploadHeadImage(res.url);
                     var demoText = $('#demoText');
                     $('#img_h').attr('value',res.url);
                     demoText.html('<span style="color: #8f8f8f;">上传成功!!!</span>');
