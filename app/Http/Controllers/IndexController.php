@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataModels\BlogModel;
 use App\Models\DataModels\HeaderModel;
+use App\Models\DataModels\ImageModel;
 use App\Models\DataModels\RightTopsModel;
 
 class IndexController
@@ -34,13 +35,15 @@ class IndexController
         $reghtTops = (new RightTopsModel())->getRieghtTops();
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
+        $headerResult = (new ImageModel())->getHeaderIndex();
         return view('home')->with([
             'blogs'=>$result,
             'release'=>$getRelease,
             'reghtTops'=>$reghtTops,
             'header'=>$header,
             'right'=>$right,
-            'value'=>$getValue
+            'value'=>$getValue,
+            'result' => $headerResult
         ]);
     }
 

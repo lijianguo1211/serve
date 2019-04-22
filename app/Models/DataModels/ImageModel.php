@@ -46,4 +46,19 @@ class ImageModel extends Model
 
         return $result;
     }
+
+    public function getHeaderIndex()
+    {
+        $result = $this->select('users.username','types.name','image.title','image.content','image.label','image.image_path')
+            ->join('users','image.user_id','=','users.id')
+            ->join('types','image.label','=','types.id')
+            ->where('image.is_to_examine','=',0)
+            ->where('image.is_delete','=',0)
+            ->orderBy('image.created_at','DESC')
+            ->limit(2)
+            ->get()
+            ->toArray();
+
+        return $result;
+    }
 }
