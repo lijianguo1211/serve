@@ -117,6 +117,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
      */
     Route::get('image/creates','ImgController@create');
     Route::get('image/inserts','ImgController@add');
+    Route::get('image/index','ImgController@index');
     Route::post('image/upload','ImgController@upload');
 
     /**

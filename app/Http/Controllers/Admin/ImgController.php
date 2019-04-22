@@ -32,7 +32,29 @@ class ImgController extends BaseController
     {
         $info = $request->all();
 
-        dd($info);
+        if(!$request->has('img_path')) {
+            return back()->with(['status'=>0,'msg'=>'图片路径没有']);
+        }
+
+        $data = [
+            'user_id' => 1,
+            'image_path' => $info['img_path'],
+            'title'      => $info['title'],
+            'content'    => $info['content'],
+            'label'      => $info['label']
+        ];
+
+        $result = $this->img->addImg($data);
+
+        if(!$result) {
+            return back()->with(['status'=>0,'msg'=>'插入数据失败']);
+        }
+        return redirect('admin/image/index');
+    }
+
+    public function index()
+    {
+        dd(123456);
     }
 
     public function upload(Request $request)
