@@ -57,6 +57,7 @@
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
+        <input type="hidden" id="img_h" name="img_path" value="">
         <input type="hidden" name="_token" class="tag_token" value="<?php echo csrf_token(); ?>">
         {{--{{csrf_field()}}--}}
     </form>
@@ -87,14 +88,14 @@
                 }
                 , done: function (res) {
                     //如果上传失败
-                    if (res.code > 0) {
+                    if (res.status != 200) {
                         return layer.msg('上传失败');
                     }
                     //上传成功
                     //打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台, 此处略..
-                       console.log(res.data.src);
-                    window.parent.uploadHeadImage(res.data.src);
+                    window.parent.uploadHeadImage(res.url);
                     var demoText = $('#demoText');
+                    $('#img_h').attr('value',res.url);
                     demoText.html('<span style="color: #8f8f8f;">上传成功!!!</span>');
                 }
                 , error: function () {

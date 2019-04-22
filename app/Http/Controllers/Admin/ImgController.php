@@ -84,7 +84,7 @@ class ImgController extends BaseController
         }
         try {
             $info->move($file,$newImgName);
-            $url = $file.$newImgName;
+            $url = 'http://lglg.xyz/upload/hotspot/'.$newImgName;
             return json_encode(['status'=>200,'info'=>'成功','url'=>$url]);
         } catch (\Exception $e) {
             $e1 = $info->getError();
