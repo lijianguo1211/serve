@@ -92,12 +92,12 @@ class ImgController extends BaseController
         $ext = $info->getClientOriginalExtension();
         //$name = $info->getClientOriginalName();
 
-        $newImgName = 'hotspot_' . date('Y-m-d_H:i:s', time()) . '_' . uniqid() . '_' . md5(microtime(true)) . '.'.$ext;
+        $newImgName = 'hotspot_' . date('Y_m_d_H_i_s', time()) . '_' . uniqid() . '_' . md5(microtime(true)) . '.'.$ext;
 
         $file = public_path('/upload/hotspot/');
 
         if (!is_dir($file)) {
-            mkdir($file, 0755, true);
+            mkdir($file, 0777, true);
         }
         try {
             $info->move($file,$newImgName);

@@ -61,13 +61,15 @@ class IndexController
         $reghtTops = (new RightTopsModel())->getRieghtTops();
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
+        $headerResult = (new ImageModel())->getHeaderIndex();
         return view('details')->with([
             'details'=>$data,
             'release'=>$getRelease,
             'reghtTops'=>$reghtTops,
             'header'=>$header,
             'right'=>$right,
-            'value'=>$getValue
+            'value'=>$getValue,
+            'result' => $headerResult
         ]);
     }
 
