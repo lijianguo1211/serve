@@ -77,9 +77,14 @@ class ImgController extends BaseController
         if (Storage::disk('my')->has($newImgName)) {
             return $data =['status'=>200,'info' => '成功','path' => config('filesystems.disks.my.url').$newImgName];
         }
+        $file = public_path('/upload/hotspot/');
+
+        if (!is_dir($file)) {
+            mkdir($file, 0755, true);
+        }
         try {
-            $info->move(storage_path('app/public/upload/'),$newImgName);
-            $url = config('filesystems.disks.my.url').$newImgName;
+            $info->move($file,$newImgName);
+            $url = $file.$newImgName;
             return json_encode(['status'=>200,'info'=>'成功','url'=>$url]);
         } catch (\Exception $e) {
             $e1 = $info->getError();
