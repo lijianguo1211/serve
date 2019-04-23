@@ -14,6 +14,7 @@
 Route::get('/', 'IndexController@index');
 
 Route::get('testMd', 'IndexController@test');
+Route::get('login', 'IndexController@login');
 
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
 Route::get('image', 'ImgController@index');

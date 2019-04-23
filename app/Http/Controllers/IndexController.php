@@ -110,5 +110,11 @@ class IndexController
         return json_encode(['status'=>MYSQL_SELECT_IS_SUCCESS,'info'=>'success','data'=>$result]);
     }
 
+
+    public function login()
+    {
+        return view('login');
+    }
+
 }
 
