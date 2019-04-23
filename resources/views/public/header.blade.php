@@ -45,7 +45,7 @@
                     <p class="card-text mb-auto">{{ $item['content'] }}</p>
                     <a href="#">{{ $item['username'] }}</a>
                 </div>
-                <img class="card-img-right flex-auto d-none d-md-block" src="{{ $item['image_path'] }}" alt="{{ $item['title'] }}">
+                <img class="card-img-right flex-auto d-none d-md-block" width="80%" src="{{ $item['image_path'] }}" alt="{{ $item['title'] }}">
             </div>
         </div>
         @endforeach
