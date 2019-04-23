@@ -38,8 +38,8 @@ class BlogController extends BaseController
             'label' => $info['label'],
         ];
         $content = [
-            'content' => base64_decode($info['post']['post_content']),
-            'content_md' => base64_decode($info['test-editormd-html-code'])
+            'content' => $info['post']['post_content'],
+            'content_md' => $info['test-editormd-html-code']
         ];
 
         $result = $this->blog->insertBlog($data,$content);
