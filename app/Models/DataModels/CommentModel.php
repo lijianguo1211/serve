@@ -34,6 +34,9 @@ class CommentModel extends Model
         if (is_null($userId)) {
             return $result = ['status'=>MYSQL_RESULT_IS_EMPTY,'info'=>'传递参数查询楼主不存在'];
         }
+
+        $user = DB::table('users')->select('username')->where('id','=',$userId->user_id)->first();
+
         $data['floor_user_id'] = $userId->user_id;
         $data['blog_id'] = $id;
         $data['type'] = 0;
@@ -41,7 +44,7 @@ class CommentModel extends Model
 
         try {
             $this::create($data);
-            $result = ['status'=>MYSQL_INSERT_IS_SUCCESS,'info'=>'success'];
+            $result = ['status'=>MYSQL_INSERT_IS_SUCCESS,'info'=>'success','data'=>['user'=>$user->username,'time'=>date('Y-m-d H:i:s',$data['created_at'])]];
         } catch (\Exception $e) {
             \Log::error('插入评论失败：'.$e->getMessage());
             $result = ['status'=>MYSQL_INSERT_IS_ERROR,'info'=>'插入评论失败'];
@@ -52,7 +55,7 @@ class CommentModel extends Model
 
     public function getComments(int $id)
     {
-        $result = $this->select('users.username','comments.id','comments.floor_user_id','comments.layer_user_id','comments.blog_id','comments.content','comments.type','comments.created_at')
+        $result = $this->select('users.username','comments.id','comments.floor_user_id','comments.layer_user_id','comments.content','comments.created_at')
             ->join('users','comments.layer_user_id','=','users.id')
             ->where('comments.is_delete','=',0)
             ->where('comments.type','=',0)
@@ -61,6 +64,22 @@ class CommentModel extends Model
             ->get()
             ->toArray();
         //$result = DB::select("select `users`.`username`, `comments`.`id`, `comments`.`floor_user_id`, `comments`.`layer_user_id`, `comments`.`blog_id`, `comments`.`content`, `comments`.`type`, `comments`.`created_at` from `comments` inner join `users` on `comments`.`layer_user_id` = `users`.`id` where `comments`.`is_delete` = 0 and `comments`.`type` = 0 and `comments`.`blog_id` = ? group by `comments`.`floor_user_id`, `comments`.`layer_user_id`, `comments`.`blog_id`",[$id]);
+        return $result;
+    }
+
+    public function getCommetsMany(int $blogId, int $luser, int $cuser)
+    {
+        $result = $this->select('users.username','comments.id','comments.floor_user_id','comments.type','comments.content','comments.created_at')
+            ->join('users','comments.layer_user_id','=','users.id')
+            ->where('comments.is_delete','=',0)
+            ->where('comments.type','=',0)
+            ->where('comments.floor_user_id','=',$luser)
+            ->where('comments.layer_user_id','=',$cuser)
+            ->where('comments.blog_id','=',$blogId)
+            ->orderBy('created_at')
+            ->get()
+            ->toArray();
+
         return $result;
     }
 

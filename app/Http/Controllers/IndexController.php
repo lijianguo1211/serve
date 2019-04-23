@@ -20,9 +20,12 @@ class IndexController
 {
     private $obj;
 
-    public function __construct(BlogModel $blog)
+    private $params;
+
+    public function __construct(BlogModel $blog,Request $request)
     {
         $this->obj = $blog;
+        $this->params = $request;
     }
 
     /**
@@ -93,4 +96,19 @@ class IndexController
         return json_encode($result);
     }
 
+    public function ajaxGetComment($id)
+    {
+        $luser = $this->params['luser_id'];
+        $cuser = $this->params['cuser_id'];
+
+        $result = (new CommentModel())->getCommetsMany($id,$luser,$cuser);
+
+        if (empty($result)) {
+            return json_encode(['status'=>MYSQL_SELECT_IS_ERROR,'info'=>'查询数据错误']);
+        }
+
+        return json_encode(['status'=>MYSQL_SELECT_IS_SUCCESS,'info'=>'success','data'=>$result]);
+    }
+
 }
+

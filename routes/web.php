@@ -18,6 +18,7 @@ Route::get('testMd', 'IndexController@test');
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
 Route::get('image', 'ImgController@index');
 Route::post('ajaxComment/{id}', 'IndexController@ajaxComment')->where('id', '[0-9]+');
+Route::post('ajaxGetComment/{id}', 'IndexController@ajaxGetComment')->where('id', '[0-9]+');
 
 
 
