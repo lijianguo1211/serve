@@ -55,7 +55,7 @@ class CommentModel extends Model
 
     public function getComments(int $id)
     {
-        $result = $this->select('users.username','comments.id','comments.floor_user_id','comments.layer_user_id','comments.content','comments.created_at')
+        $result = $this->select('users.username','comments.id','comments.floor_user_id','comments.id','comments.layer_user_id','comments.content','comments.created_at')
             ->join('users','comments.layer_user_id','=','users.id')
             ->where('comments.is_delete','=',0)
             ->where('comments.type','=',0)
@@ -79,6 +79,10 @@ class CommentModel extends Model
             ->orderBy('created_at')
             ->get()
             ->toArray();
+
+        foreach($result as $k => $item) {
+            $result[$k]['created_at'] = date('Y-m-d H:i:s',$item['created_at']);
+        }
 
         return $result;
     }

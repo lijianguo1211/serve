@@ -21,9 +21,22 @@
                             <div id="liyi"></div>
                             @foreach($comments as $item)
                                 <div class="body">
-                                    <p>{{ $item['content'] }}</p>
-                                    <span class="badge badge-pill badge-danger">{{ $item['username'] }}</span>----<span>{{ date('Y-m-d H:i:s',$item['created_at']) }}</span>
-                                    <span class="badge badge-pill badge-default"><a id="getMany" class="btn btn-primary" id="">更多</a></span>
+                                    <p class="card-text">
+                                        {{ $item['content'] }}
+                                        <span class="badge badge-pill badge-danger">{{ $item['username'] }}</span>
+                                        ----
+                                        <span>{{ date('Y-m-d H:i:s',$item['created_at']) }}</span>
+                                    </p>
+
+                                    <a href="#demo{{ $item['id'] }}" class="badge badge-pill badge-success" id="getMany" data-toggle="collapse">查看更多</a>
+                                    <div id="demo{{ $item['id'] }}" class="collapse">
+                                        <p class="card-text">
+                                            <div id="lier">
+
+                                            </div>
+                                        </p>
+                                    </div>
+
                                     <input type="hidden" id="luser_id" value="{{ $item['floor_user_id'] }}">
                                     <input type="hidden" id="cuser_id" value="{{ $item['layer_user_id'] }}">
                                 </div>
@@ -98,7 +111,12 @@
                    data:{'luser_id':luser,'cuser_id':cuser,'_token':tag_token},
                    dataType:'json',
                    success:function(res){
-                        console.log(res)
+                        console.log(res.data)
+                        $.each(res.data,function(index,value){
+                            console.log(value.username);
+                            console.log(value.content);
+                            $("#lier").html(value.content+"<span class=\"badge badge-pill badge-danger\">"+value.username+"</span>----<span>"+value.created_at+"</span>");
+                        })
                    },
                    error:function(err) {
                        console.log(err)
