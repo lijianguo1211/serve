@@ -22,6 +22,17 @@
 
 
         </div><!-- /.row -->
+        @if(!empty($comments))
+            <div class="card">
+                @foreach($comments as $item)
+                    <div class="body">
+                        <span class="badge badge-pill badge-danger">{{ $item['username'] }}</span>----<span>{{ date('Y-m-d H:i:s',$item['created_at']) }}</span>
+                        <p>{{ $item['content'] }}</p>
+                    </div>
+                @endforeach
+            </div>
+            <div style="padding-bottom: 20px"></div>
+        @endif
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">评论：</h4>
@@ -29,16 +40,40 @@
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                        <textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                        <textarea class="form-control" name="content" id="content" cols="30" rows="5"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-primary" id="onSubmit">Submit</a>
                 </form>
             </div>
             <div class="card-footer bg-dark text-white">
-
+                <div id="div3"></div>
+                <input type="hidden" name="_token" class="tag_token" value="<?php echo csrf_token(); ?>">
             </div>
         </div>
         <div style="padding-bottom: 20px"></div>
     </main>
 
+@endsection
+
+@section('js')
+    <script>
+        $("#onSubmit").click(function(){
+            var content = $("#content").val();
+            var l_users_id = 2;
+            var tag_token = $(".tag_token").val();
+            $.ajax({
+                type:'post',
+                url:"{{ url('/ajaxComment/'.$details['id']) }}",
+                data:{content: content,l_user_id:l_users_id,'_token':tag_token},
+                dataType: 'json',
+                success:function(result){
+                    console.log(result.info);
+                    alert(result.info);
+                },
+                error:function(e) {
+                    console.log(e);
+                }
+            });
+        });
+    </script>
 @endsection

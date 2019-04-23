@@ -10,9 +10,11 @@ namespace App\Http\Controllers;
 
 
 use App\Models\DataModels\BlogModel;
+use App\Models\DataModels\CommentModel;
 use App\Models\DataModels\HeaderModel;
 use App\Models\DataModels\ImageModel;
 use App\Models\DataModels\RightTopsModel;
+use Illuminate\Http\Request;
 
 class IndexController
 {
@@ -62,6 +64,7 @@ class IndexController
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
         $headerResult = (new ImageModel())->getHeaderIndex();
+        $comments = (new CommentModel())->getComments($id);
         return view('details')->with([
             'details'=>$data,
             'release'=>$getRelease,
@@ -69,13 +72,25 @@ class IndexController
             'header'=>$header,
             'right'=>$right,
             'value'=>$getValue,
-            'result' => $headerResult
+            'result' => $headerResult,
+            'comments' => $comments
         ]);
     }
 
-    public function test()
+    public function ajaxComment(Request $request, $id)
     {
-        return view('test');
+        $info = $request->all();
+        $data = [
+            'content'   => $info['content'],
+            'layer_user_id' => $info['l_user_id']
+        ];
+        $result = (new CommentModel())->addCommments($data, $id);
+
+        if ($result['status'] != MYSQL_INSERT_IS_SUCCESS) {
+            return json_encode($result);
+        }
+
+        return json_encode($result);
     }
 
 }

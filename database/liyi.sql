@@ -90,3 +90,19 @@ create table if not exists types(
 )ENGINE=innodb default charset=utf8 comment '分类表';
 
 
+drop table if exists comments;
+
+create table if not exists comments(
+`id` int UNSIGNED primary key auto_increment comment '主键',
+`floor_user_id` int UNSIGNED not null comment '楼主user_id',
+`layer_user_id` int unsigned not null comment '层主user_id',
+`blog_id` int unsigned not null comment '文章博客ID',
+`content` varchar(255) not null comment '评论内容',
+`type` tinyint(1) not null default 0 comment '是评论还是回复，评论是0，回复是1',
+`is_delete` tinyint(1) default 0 not null comment '是否删除，默认是0，不删除，1删除',
+`delete_at` int not null default 0 comment '删除时间',
+`created_at` int not null comment '创建时间',
+`updated_at` int not null default 0 comment '修改时间'
+)engine=innodb default charset=utf8mb4 comment '评论表';
+
+

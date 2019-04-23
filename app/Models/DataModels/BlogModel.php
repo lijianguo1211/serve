@@ -68,7 +68,7 @@ class BlogModel extends Model
         } catch (\Exception $e) {
             \Log::error('阅读量更新失败');
         }
-        $data = $this->select('blogs.title','blogs.created_at','blogs.user_id','blogs.info','users.username','blog_content.content_md')
+        $data = $this->select('blogs.title','blogs.id','blogs.created_at','blogs.user_id','blogs.info','users.username','blog_content.content_md')
             ->join('blog_content','blogs.id','=','blog_content.blog_id')
             ->join('users','blogs.user_id','=','users.id')
             ->where('blogs.id','=',$id)
@@ -117,6 +117,18 @@ class BlogModel extends Model
             ->limit(6)
             ->get()
             ->toArray();
+
+        return $result;
+    }
+
+    /**
+     * 由博客ID得到发布者的用户ID
+     * @param int $id
+     * @return mixed
+     */
+    public function getUserId(int $id)
+    {
+        $result = $this->select('user_id')->where('id','=',$id)->first();
 
         return $result;
     }
