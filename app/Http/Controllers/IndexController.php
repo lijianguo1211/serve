@@ -113,7 +113,8 @@ class IndexController
 
     public function loginIndex(Request $request)
     {
-        return view('login');
+        $header = (new HeaderModel())->getIndexHeader();
+        return view('login_home')->with(['header'=>$header]);
     }
 
 }

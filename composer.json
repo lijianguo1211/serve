@@ -20,7 +20,8 @@
         "pusher/pusher-php-server": "~3.0",
         "simplesoftwareio/simple-qrcode": "~2",
         "watson/rememberable": "^2.0",
-        "yuanchao/laravel-5-markdown-editor": "dev-master"
+        "yuanchao/laravel-5-markdown-editor": "dev-master",
+        "tymon/jwt-auth": "1.0.0-rc.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
