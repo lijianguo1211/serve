@@ -43,7 +43,7 @@
 						<div class="music-shoulder"></div>
 					</div>
 					<!--消息框-->
-					<div class="music-news">来了,老弟！</div>
+					<div class="music-news">LiYi！</div>
 				</div>
 
 				<!--右手-->
@@ -58,17 +58,27 @@
 
 			<!--1-->
 			<div class="music-lgin-text">
-				<input class="inputname inputs" type="text" placeholder="用户名" value="admin"/>
+				<input class="inputname inputs" type="text" placeholder="用户名" value="{{ old('email') }}"/>
+				@if ($errors->has('email'))
+					<span class="help-block">
+							<strong>{{ $errors->first('email') }}</strong>
+                    </span>
+				@endif
 			</div>
 			<!--2-->
 			<div class="music-lgin-text">
 				<input type="password" class="mima inputs" placeholder="密码" />
+				@if ($errors->has('password'))
+					<span class="help-block">
+                      	<strong>{{ $errors->first('password') }}</strong>
+                	</span>
+				@endif
 			</div>
 			<!--3-->
 			<div class="music-lgin-text">
 				<input class="music-qd inputs" type="button" value="确定" />
 			</div>
-
+			<input type="hidden" name="_token" value="{{ csrf_field() }}">
 		</div>
 
 		<script src="{{ url('login-home/js/jquery-1.9.1.min.js') }}"></script>
@@ -97,21 +107,28 @@
 
 
 			//注册正则 简单判断
-			 
+
             $('.music-qd').click(function(){
                 if(($('.inputname').val()=='')){
-                    $(".music-news").html("请输入名称")      
+                    $(".music-news").html("请输入名称")
                 }else if(($('.mima').val()=='')){
                 	 $(".music-news").html("请输入密码")
                     $(".music-news").addClass("block")
                 }else{
-                	alert('提交ajax')
-                }      
+                	$.ajax({
+						url:"{{ url('') }}",
+						type:'post',
+						dataType:'json',
+						data:{},
+						success:function(res){
+						    console.log(res)
+						},
+						error:function(e){
+						    console.log(e)
+						}
+					});
+                }
             })
-     
-
-			
-			
 		</script>
 
 	</body>

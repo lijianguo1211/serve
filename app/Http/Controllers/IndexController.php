@@ -111,7 +111,7 @@ class IndexController
     }
 
 
-    public function login()
+    public function loginIndex(Request $request)
     {
         return view('login');
     }
