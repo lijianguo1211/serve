@@ -14,7 +14,9 @@
                 </div>
             </div>
             <div class="col-sm-8 col-md-5 col-lg-7">
-                <div class="card">
+                <form method="post" action="{{ url('doLogin') }}">
+                    {{ csrf_field() }}
+                    <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">登录</h4>
                     </div>
@@ -34,7 +36,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">{{--{{ $errors->has('password') ? ' has-error' : '' }}--}}
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-6 control-label">密码：</label>
 
                             <div class="col-md-7">
@@ -48,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">{{--{{ $errors->has('captcha') ? ' has-error' : '' }}--}}
+                        <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
                             <div class="col-md-8 col-md-offset-4">
                                 <div class="box" id="div_geetest_lib">
                                     <div id="captcha"></div>
@@ -65,7 +67,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" > 记住我{{--{{ old('remember') ? 'checked' : '' }}--}}
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 记住我
                                     </label>
                                 </div>
                             </div>
@@ -77,7 +79,7 @@
                                     登录
                                 </button>
 
-                                <a class="btn btn-link" href="">{{--{{ route('password.request') }}--}}
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
                                     忘记密码
                                 </a>
                             </div>
@@ -94,6 +96,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>

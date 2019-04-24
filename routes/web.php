@@ -14,7 +14,14 @@
 Route::get('/', 'IndexController@index');
 
 Route::get('testMd', 'IndexController@test');
-Route::get('/goLogin', 'IndexController@loginIndex');
+Route::get('testHash', 'IndexController@testHash');
+
+Auth::routes();
+
+Route::get('goLogin', 'Auth\LoginController@showLoginForm')->name('goLogin');
+Route::post('doLogin', 'Auth\LoginController@login');
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
@@ -46,7 +53,7 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
 
 //Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){
 Route::group(['namespace'=>'Api','prefix'=>'api'],function(){
-   Route::post('login','UserController@login');//登录
+   //Route::post('login','UserController@login');//登录
    Route::post('logout','UserController@logout');//退出
    Route::post('refresh','UserController@refresh');//刷新
    Route::post('me','UserController@me');
@@ -98,7 +105,7 @@ Route::group(['namespace'=>'Swool','prefix'=>'swool'],function(){
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/','UserController@index');//后台登录
-    Route::post('doLogin','UserController@login');//登录提交
+    //Route::post('doLogin','UserController@login');//登录提交
     Route::get('testEmail','UserController@testEmail');//显示发送邮件模板
     Route::post('passwordRetrieve','UserController@passwordRetrieve');//发送邮件
     Route::get('index','IndexController@index');//首页
@@ -168,7 +175,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('test5','TestController@index3');
 
     //后台登录
-    Route::get('indexLogin','AdminController@index');//视图显示
+    //Route::get('indexLogin','AdminController@index');//视图显示
     Route::post('registerAdmin','AdminController@registerAdmin');//登录提交
     Route::get('logout','AdminController@logout');//退出登录
     Route::get('logoImg','AdminController@logoImg');//用户设置自己的图像

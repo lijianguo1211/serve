@@ -30,7 +30,7 @@ trait ThrottlesLogins
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    protected function incrementLoginAttempts(Request $request)
+    protected function incrementLoginAttempts($request)
     {
         $this->limiter()->hit(
             $this->throttleKey($request), $this->decayMinutes()
@@ -44,7 +44,7 @@ trait ThrottlesLogins
      * @return void
      * @throws \Illuminate\Validation\ValidationException
      */
-    protected function sendLockoutResponse(Request $request)
+    protected function sendLockoutResponse($request)
     {
         $seconds = $this->limiter()->availableIn(
             $this->throttleKey($request)

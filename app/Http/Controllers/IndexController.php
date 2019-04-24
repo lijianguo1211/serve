@@ -16,7 +16,7 @@ use App\Models\DataModels\ImageModel;
 use App\Models\DataModels\RightTopsModel;
 use Illuminate\Http\Request;
 
-class IndexController
+class IndexController extends Controller
 {
     private $obj;
 
@@ -24,6 +24,7 @@ class IndexController
 
     public function __construct(BlogModel $blog,Request $request)
     {
+        $this->middleware('auth');
         $this->obj = $blog;
         $this->params = $request;
     }
@@ -111,10 +112,9 @@ class IndexController
     }
 
 
-    public function loginIndex(Request $request)
+    public function testHash()
     {
-        $header = (new HeaderModel())->getIndexHeader();
-        return view('login_home')->with(['header'=>$header]);
+        dd(Hash::make(123456));
     }
 
 }
