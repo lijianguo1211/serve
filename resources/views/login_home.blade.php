@@ -26,7 +26,7 @@
                             <label for="email" class="col-md-6 control-label">邮箱：</label>
 
                             <div class="col-md-7">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="text" class="form-control" name="loginType" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -81,6 +81,9 @@
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     忘记密码
+                                </a>
+                                <a class="btn btn-link"  href="{{ route('register') }}">
+                                    没有账户？点击注册
                                 </a>
                             </div>
                         </div>

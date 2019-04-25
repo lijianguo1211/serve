@@ -24,7 +24,6 @@ class IndexController extends Controller
 
     public function __construct(BlogModel $blog,Request $request)
     {
-        $this->middleware('auth');
         $this->obj = $blog;
         $this->params = $request;
     }

@@ -53,7 +53,7 @@
 
 
         </div><!-- /.row -->
-
+        <div id="liyi_alert"></div>
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">评论：</h4>
@@ -81,7 +81,10 @@
         $(document).ready(function(){
             $("#onSubmit").click(function(){
                 var content = $("#content").val();
-                var l_users_id = 2;
+                @guest()
+                    $("#liyi_alert").html("<div class=\"alert alert-success\"><a href=\"#\" rel=\"external nofollow\" rel=\"external nofollow\" rel=\"external nofollow\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">X</a><strong>评论失败！</strong>请你先登录哦！</div>");
+                @else
+                var l_users_id = "{{ Auth::user()->id }}";
                 var tag_token = $(".tag_token").val();
                 $.ajax({
                     type:'post',
@@ -99,6 +102,7 @@
                         console.log(e);
                     }
                 });
+                @endguest
             });
 
             $("#getMany").click(function(){

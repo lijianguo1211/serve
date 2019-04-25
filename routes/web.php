@@ -13,15 +13,15 @@
 
 Route::get('/', 'IndexController@index');
 
+
 Route::get('testMd', 'IndexController@test');
 Route::get('testHash', 'IndexController@testHash');
 
-Auth::routes();
-
 Route::get('goLogin', 'Auth\LoginController@showLoginForm')->name('goLogin');
-Route::post('doLogin', 'Auth\LoginController@login');
+Route::post('doLogin', 'Auth\LoginController@login')->name('doLogin');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
