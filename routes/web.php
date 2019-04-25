@@ -51,6 +51,9 @@ Route::group(['namespace'=>'Home','prefix'=>'home'],function(){
     Route::get('trait11','IndexController@sayAttributes');
     Route::get('downloadExcel','IndexController@downloadExcel');
     Route::get('index1','UserController@index');
+
+    Route::get('redis','RedisNumController@index');
+    Route::get('testredis','RedisNumController@test');
 });
 
 //Route::group(['namespace'=>'Api','prefix'=>'api','middleware'=>'apiLog'],function(){

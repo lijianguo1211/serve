@@ -53,12 +53,10 @@ class RedisCon
         return self::$instace;
     }
 }
-
-$res = RedisCon::getInstace();
-
+/*
 for($i=0;$i<5;$i++){
     $res->hSet('liyi','redis'.$i,mt_rand(100,999)*$i);
 }
 
-var_dump($res->hGetAll('liyi'));
+var_dump($res->hGetAll('liyi'));*/
 
