@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Mail\MailConfirm;
 use Illuminate\Mail\Mailer;
 
-class EmailToUserEventListener
+class EmailToUserEventListener implements ShouldQueue
 {
     private $email;
 

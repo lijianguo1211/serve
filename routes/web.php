@@ -17,8 +17,7 @@ Route::get('/', 'IndexController@index');
 Route::get('testMd', 'IndexController@test');
 Route::get('testHash', 'IndexController@testHash');
 
-Route::get('goLogin', 'Auth\LoginController@showLoginForm')->name('goLogin');
-Route::post('doLogin', 'Auth\LoginController@login')->name('doLogin');
+
 
 Route::get('confirm', 'Auth\ConfirmController@confirm')->name('confirm');
 Route::get('send-confirm-mail', 'Auth\ConfirmController@sendMail')->name('send-confirm-mail');
