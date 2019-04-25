@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\SubscribeMsg::class,
         Commands\PullMsg::class,
         Commands\Login::class,
+        Commands\EmailToMsg::class,
     ];
 
     /**

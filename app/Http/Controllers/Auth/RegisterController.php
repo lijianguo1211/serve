@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\EmailToUserEvent;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,10 +50,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|unique:users|confirmed',
+            'email' => 'required|string|email|max:25|unique:users',
+            'password' => 'required|string|min:6|confirmed',
             'username' => 'required|string|max:25|unique:users',
+            'phone' => 'required|string|max:20|unique:users',
         ]);
     }
 
@@ -64,11 +65,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'phone' => $data['phone'],
             'email' => $data['email'],
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
+            'validate_token' => str_random(24),
         ]);
+        event(new EmailToUserEvent(User::find($user->id)));
+        return $user;
     }
 }

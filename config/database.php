@@ -123,6 +123,8 @@ return [
             'port' => env('REDIS_PORT', 6379),
             'database' => 0,
             'read_timeout' => 60,
+            'retry_after' => 90,
+            'block_for' => 5,
         ],
 
     ],

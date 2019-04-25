@@ -29,5 +29,6 @@ class UserMonitorListener implements ShouldQueue
     {
         Log::info($event->data);
         Log::info('新注册一位用户');
+
     }
 }
