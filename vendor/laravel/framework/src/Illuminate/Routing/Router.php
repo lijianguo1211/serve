@@ -1119,8 +1119,8 @@ class Router implements RegistrarContract, BindingRegistrar
      */
     public function auth()
     {
-        $this->get('github', 'GithubController@redirectToProvider')->name('github');
-        $this->get('github/callback', 'GithubController@handleProviderCallback');
+        $this->get('github', 'Auth\GithubController@redirectToProvider')->name('github');
+        $this->get('github/callback', 'Auth\GithubController@handleProviderCallback');
         // Authentication Routes...
         $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
         $this->post('login', 'Auth\LoginController@login');
