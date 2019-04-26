@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Overtrue\Socialite\SocialiteManager;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class GithubController extends Controller
 {

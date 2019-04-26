@@ -11,7 +11,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ConfirmController extends Controller {
+class ConfirmController extends Controller
+{
     /**
      * Create a new controller instance.
      *
