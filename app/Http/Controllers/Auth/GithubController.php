@@ -28,5 +28,9 @@ class GithubController extends Controller
     public function handleProviderCallback()
     {
         $user = $this->socialite->driver('github')->user();
+        \Log::info(json_encode($user));
+        $data = [
+
+        ];
     }
 }
