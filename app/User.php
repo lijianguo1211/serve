@@ -65,15 +65,18 @@ class User extends Authenticatable
                 throw new \Exception($error);
             }
 
-            $detailArr['user_id'] = $gitId;
+            $result = $detailArr['user_id'] = $gitId;
 
             UserDetailsModel::create($detailArr);
 
             DB::commit();
         } catch(\Exception $e) {
             \Log::error('用户详细信息写入失败:'.$e->getMessage());
+            $result = false;
             DB::rollback();
         }
+
+        return $result;
     }
 
     public function getUserEmail(String $email)

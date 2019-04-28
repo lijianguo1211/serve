@@ -53,9 +53,17 @@ class GithubController extends Controller
                 'nick_name'      => is_null($github->getNickname()) ? $github->getUsername() : $github->getNickname(),
             ];
 
-            $this->user->createUser($data,$githubArr);
+            $result = $this->user->createUser($data,$githubArr);
+
+            if ($result == false) {
+                return redirect('login');
+            }
+            $userId = $result;
+        } else {
+            $userId = $userResult['id'];
         }
-        Auth::loginUsingId($userResult->id);
+
+        Auth::loginUsingId($userId);
         return redirect('/');
     }
 
