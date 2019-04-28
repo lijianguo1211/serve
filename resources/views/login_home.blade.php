@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-sm-8 col-md-5 col-lg-7">
-                <form method="post" action="{{ url('doLogin') }}">
+                <form method="post" action="{{ route('login') }}">
                     {{ csrf_field() }}
                     <div class="card">
                     <div class="card-header">
