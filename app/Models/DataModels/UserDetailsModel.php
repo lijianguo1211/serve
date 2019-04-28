@@ -17,4 +17,6 @@ class UserDetailsModel extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['user_id','nick_name','type','avatar','provider'];
+
+    public $timestamps = false;
 }
