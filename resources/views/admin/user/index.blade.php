@@ -1,48 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{URL::asset('/layui/css/layui.css')}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url('bootstrap-4.0.0/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url('login-home/css/signin.css') }}" rel="stylesheet">
 </head>
+
 <body>
-<h1>登录</h1>
-<form action="/admin/doLogin" method="post">
-    <table>
-        <tr>
-            <td>用户名:</td>
-            <td><input type="text" name="user"></td>
-        </tr>
-        <tr>
-            <td>密码:</td>
-            <td><input type="password" name="pwd"></td>
-        </tr>
-        <tr>
-            <td>{{csrf_field()}}</td>
-            <td><input type="submit" value="登录"></td>
-        </tr>
-    </table>
-</form>
-<script src="{{URL::asset('/js/jquery-3.1.1.js')}}"></script>
-<script src="{{URL::asset('/layui/layui.all.js')}}"></script>
-<script src="{{URL::asset('/layui/layui.js')}}"></script>
-<script src="{{URL::asset('/layui/lay/modules/layer.js')}}"></script>
-<script type="text/javascript">
-    var layer = layui.layer;
-    @if(session('msg'))
-    var $msg = "{{session('msg')}}";
-    var $status = "{{session('status')}}";
-    if($status == 0) {
-        layer.msg($msg,{icon:2});
-    } else if($status == 1) {
-        layer.msg($msg,{icon:1})
-    } else {
-        layer.msg($msg);
-    }
-    @endif
-</script>
+<div class="container">
+    <div class="row">
+        <form class="form-signin">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">登录</h4>
+                </div>
+                <div class="card-body">
+                    <label for="inputEmail" class="sr-only">用户名</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                </div>
+
+                <div class="card-body">
+                    <label for="inputPassword" class="sr-only">密码</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </div>
+
+                <div class="card-footer">
+                    <img src="{{ url('img/open-iconic/svg/sun.svg') }}" alt="icon name">
+                    <span><a href="{{ url('admin/github') }}">github</a></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body>
+
+<script>
+
+</script>
 </html>

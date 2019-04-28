@@ -110,7 +110,12 @@ Route::group(['namespace'=>'Swool','prefix'=>'swool'],function(){
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/','UserController@index');//后台登录
-    //Route::post('doLogin','UserController@login');//登录提交
+    Route::post('login','UserController@login');//登录提交
+
+    Route::get('github','GitHubController@loginToGithub');
+    Route::get('liyi/github/callback','GitHubController@handleGithub');
+
+
     Route::get('testEmail','UserController@testEmail');//显示发送邮件模板
     Route::post('passwordRetrieve','UserController@passwordRetrieve');//发送邮件
     Route::get('index','IndexController@index');//首页

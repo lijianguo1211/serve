@@ -174,7 +174,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,//广播系统
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         //Tymon\JWTAuth\Providers\LaravelServiceProvider::class,

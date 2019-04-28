@@ -35,4 +35,9 @@ class EmailToUserEvent
     {
         //return new PrivateChannel('channel-name');
     }
+
+    public function broadcastAs()
+    {
+        return 'server.created';
+    }
 }
