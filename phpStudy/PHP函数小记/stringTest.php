@@ -17,7 +17,7 @@ if (stripos($haystack,$needle) === false) {
 }
 
 if (strpos($haystack1,$needle) === false) {
-    echo 'download no'."\n";
+    echo 'not appear'."\n";
 } else {
     echo 'download 出现了'."\n";
 }
@@ -28,11 +28,3 @@ if (strpos($haystack2,$needle) === false) {
 } else {
     echo 'operate/downloadApk 出现了'."\n";
 }
-
-/**
- * collect_target_id: "380cdfe063a6fbdd"
-message_id: "8633760b00a0d3c4db94e150daf41c82"
-mm_version: "3.2.3"
-path: "/storage/emulated/0/tencent/MobileQQ/diskcache/Cache_7ff15fca200692c9"
-type: "media"
- */
