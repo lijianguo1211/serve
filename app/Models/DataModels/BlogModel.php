@@ -88,7 +88,7 @@ class BlogModel extends Model
             $gitId = $this->insertGetId($data);
 
             if ($gitId < 1) {
-                $error = json_encode(['status'=>0,'info'=>'写入失败']);
+                $error = '写入得到文章ID失败';
                 throw new \Exception($error);
             }
 

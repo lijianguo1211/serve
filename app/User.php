@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Models\DataModels\UserDetailsModel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -52,9 +54,35 @@ class User extends Authenticatable
         return route('send-confirm-mail');
     }
 
-    public function getUser()
+    public function createUser(array $userArr, array $detailArr)
     {
-        return ['username'=>$this->username,'email'=>$this->emial];
+        DB::beginTransaction();
+        try {
+            $gitId = $this->insertGetId($userArr);
+
+            if ($gitId < 1) {
+                $error = '写入得到用户表ID失败';
+                throw new \Exception($error);
+            }
+
+            $detailArr['user_id'] = $gitId;
+
+            $result = UserDetailsModel::create($detailArr);
+
+            DB::commit();
+        } catch(\Exception $e) {
+            \Log::error('用户详细信息写入失败');
+            DB::rollback();
+        }
+
+        return $result;
+    }
+
+    public function getUserEmail(String $email)
+    {
+        $result = $this::where('email','=',$email)->first();
+
+        return $result;
     }
 
 }

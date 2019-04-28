@@ -8,16 +8,22 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use Overtrue\Socialite\SocialiteManager;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class GithubController extends Controller
 {
     private $socialite;
 
-    public function __construct(SocialiteManager $socialite)
+    private $user;
+
+    public function __construct(SocialiteManager $socialite, User $user)
     {
         $this->socialite = $socialite;
+        $this->user      = $user;
     }
 
     public function redirectToProvider()
@@ -29,15 +35,28 @@ class GithubController extends Controller
     {
         $github = $this->socialite->driver('github')->user();
 
-        $data = [
-            'username' => $github->getUsername(),
-            'email'    => $github->getEmail(),
-            'phone'    => $this->getPhone(),
-            'validate_token' => str_random(24),
-            'is_validate' => 1,
-            'provider' => 'github',
-            'avatar' => $github->getAvatar(),
-        ];
+        $userResult = $this->user->getUserEmail($github->getEmail());
+
+        if (!$userResult) {
+            $data = [
+                'username'       => $github->getUsername(),
+                'email'          => $github->getEmail(),
+                'phone'          => $this->getPhone(),
+                'validate_token' => str_random(24),
+                'is_validate'    => 1,
+                'password'       => Hash::make(str_random(6)),
+            ];
+            $githubArr = [
+                'provider'       => $github->getProviderName(),
+                'avatar'         => $github->getAvatar(),
+                'type'           => 4,
+                'nick_name'      => is_null($github->getNickname()) ? $github->getUsername() : $github->getNickname(),
+            ];
+
+            $this->user->createUser($data,$githubArr);
+        }
+        Auth::loginUsingId($userResult->id);
+        return redirect('/');
     }
 
     public function getPhone()
