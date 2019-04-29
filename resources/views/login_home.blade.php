@@ -92,8 +92,7 @@
                         <div class="form-group">
                             <div class="col-md-3 col-md-offset-9">
                                 <a class="btn btn-link" href="{{ route('github') }}">
-                                    <span class="iconfont icon-github"></span>
-                                    github 登录
+                                    <img src="{{ url('img/ico/github_copyrighted_32px.ico') }}" alt="github登录">
                                 </a>
                             </div>
                         </div>

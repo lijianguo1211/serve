@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="{{ url('img/ico/black_32px_1165127_easyicon.net.ico') }}">
 
     <title>花儿尊上</title>
     <!-- Bootstrap core CSS -->
