@@ -39,7 +39,7 @@
 
                 <div class="card-footer">
                     <img src="{{ url('img/open-iconic/svg/sun.svg') }}" alt="icon name">
-                    <span><a href="{{ url('admin/github') }}">github</a></span>
+                    <span><a href="{{ $github }}">github</a></span>
                 </div>
             </div>
         </form>

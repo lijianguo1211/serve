@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -11,19 +10,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EmailToUserEvent
+class LogToEmailEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $params;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(array $params)
     {
-        $this->user = $user;
+        $this->params = $params;
     }
 
     /**
@@ -35,9 +35,4 @@ class EmailToUserEvent
     {
         //return new PrivateChannel('channel-name');
     }
-
-    /*public function broadcastAs()
-    {
-        return 'server.created';
-    }*/
 }

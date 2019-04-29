@@ -2,6 +2,7 @@
 
 namespace Illuminate\Log;
 
+use App\Events\LogToEmailEvent;
 use Closure;
 use RuntimeException;
 use InvalidArgumentException;
@@ -198,6 +199,8 @@ class Writer implements LogContract, PsrLoggerInterface
      */
     protected function writeLog($level, $message, $context)
     {
+        $this->eventToEmail($level, $message, $context);
+
         $this->fireLogEvent($level, $message = $this->formatMessage($message), $context);
 
         $this->monolog->{$level}($message, $context);
@@ -373,5 +376,29 @@ class Writer implements LogContract, PsrLoggerInterface
     public function setEventDispatcher(Dispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
+    }
+
+    public function eventToEmail($level, $message, $context)
+    {
+        $params = [
+            'level'   => $level,
+            'message' => $message,
+            'context' => $context
+        ];
+
+        $stringArr = ['debug','error','critical','alert','emergency'];
+
+        if (is_string($level)) {
+            if (in_array($level,$stringArr)) {
+                event(new LogToEmailEvent($params));
+            }
+        }
+
+        $intArr = [100,300,400,500,550,600];
+        if (is_int($level)) {
+            if (in_array($level,$intArr)) {
+                event(new LogToEmailEvent($params));
+            }
+        }
     }
 }

@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserMonitor' => [
             'App\Listeners\UserMonitorListener',
         ],
+        'App\Events\LogToEmailEvent' => [
+            'App\Listeners\LogToEmailListener',
+        ],
     ];
 
     /**

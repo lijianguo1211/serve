@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends BaseController
 {
+    const CLIENT_ID = '8926fa7400f0b75dbe59';
+
+    const CLIENT_SECRET = '0380682246c41063615918092b75923266122c9f';
+
+    const REDIRECT_URL = 'http://localhost:8009/admin/liyi/github/callback';
+
     private $mailer;
 
     /**
@@ -35,7 +41,8 @@ class UserController extends BaseController
      */
     public function index()
     {
-        return view('admin/user/index');
+        $github = 'https://github.com/login/oauth/authorize?client_id='.static::CLIENT_ID.'&scope=user:email&redirect_uri='.static::REDIRECT_URL;
+        return view('admin/user/index')->with(['github'=>$github]);
     }
 
     /**

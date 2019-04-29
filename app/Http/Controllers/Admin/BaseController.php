@@ -74,13 +74,13 @@ class BaseController extends Controller
         if ($url == '') {
             return false;
         }
-        $timeout = $timeout === null ? 5 : intval($timeout);
+        //$timeout = $timeout === null ? 5 : intval($timeout);
         //初始化url
         $ch = curl_init();
         //设置请求连接
         curl_setopt($ch,CURLOPT_URL,$url);
         //设置超时时长
-        curl_setopt($ch,CURLOPT_TIMEOUT,(int)$timeout);
+        curl_setopt($ch,CURLOPT_TIMEOUT,30);
         //设置连接时长
         curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,10);
         //CURLOPT_RETURNTRANSFER 设置为1表示稍后执行的curl_exec函数的返回是URL的返回字符串，而不是把返回字符串定向到标准输出并返回TRUE；curlopt_return_transfer
@@ -88,10 +88,11 @@ class BaseController extends Controller
         //CURLLOPT_HEADER设置为0表示不返回HTTP头部信息。
         curl_setopt($ch,CURLOPT_HEADER,0);
         //是否设置http头部消息
+        $headers=array( "Accept: application/json", "Content-Type: application/json;charset=utf-8" );
         if (!empty($header)) {
-            //$header=array( "Accept: application/json", "Content-Type: application/json;charset=utf-8" );
-            curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
+            $headers = array_merge($headers,$headers);
         }
+        curl_setopt($ch,CURLOPT_HTTPHEADER,$headers);
         //判断data是否有数据--有是post方式
         if (!empty($data)) {
             curl_setopt($ch,CURLOPT_POST,'TRUE');
