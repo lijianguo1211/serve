@@ -94,6 +94,9 @@
                                 <a class="btn btn-link" href="{{ route('github') }}">
                                     <img src="{{ url('img/ico/github_copyrighted_32px.ico') }}" alt="github登录">
                                 </a>
+                                <a class="btn btn-link" id="baidu_login">
+                                    <img src="{{ url('img/ico/baidu_32px.ico') }}">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -103,4 +106,20 @@
         </div>
     </div>
 
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function(){
+            $("#baidu_login").click(function(){
+                var iTop = (window.screen.availHeight-30-320)/2;
+                //获得窗口的水平位置
+                var iLeft = (window.screen.availWidth-10-500)/2;
+                window.open('<?php echo $baiduUri; ?>', 'newwindow',
+                    'height=320, width=500, top=' + iTop + ', left=' + iLeft +
+                    ', toolbar=no, menubar=no, ' +
+                    'scrollbars=no, resizable=no, location=no, status=no');
+            })
+        });
+    </script>
 @endsection

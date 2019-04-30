@@ -23,13 +23,18 @@ class UserController extends BaseController
 
     private $mailer;
 
+    private $param;
+
+    protected $redirectTo = '/';
+
     /**
      * UserController constructor.
      * @param \Illuminate\Mail\Mailer $mailer
      */
-    public function __construct(Mailer $mailer)
+    public function __construct(Mailer $mailer,Request $request)
     {
         $this->mailer = $mailer;
+        $this->param  = $request->all();
     }
 
     /**
@@ -53,20 +58,25 @@ class UserController extends BaseController
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function login(Request $request)
+    public function login()
     {
-        $user = $request->get('user');
-        $pwd  = $request->get('pwd');
-        if(empty(trim($user)) || empty(trim($pwd))) {
-            return back()->with(['status'=>0,'msg'=>'信息填写不全']);
+        $result = Validator::make($this->param,
+            [
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ], [
+            'username.required' => '必须填写',
+            'username.string'   => '必须是字符串',
+            'password.required' => '必须填写',
+            'password.string'   => '必须是字符串',
+        ]);
+
+        if ($result->fails()) {
+            $data = $result->errors()->all();
+
+            dd($data);
         }
-        $user_info = User::where('user_name',$user)->first();
-        if(empty($user_info) || $user_info['user_pwd'] != md5($pwd)) {
-            return back()->with(['status'=>0,'msg'=>'用户名不存在或密码错误']);
-        }
-        $users = ['user_id'=>$user_info['user_id'],'user_name'=>$user_info['user_name']];
-        //var_dump($user_info);exit;
-        session('users',$users);
+
         return redirect('admin/index');
     }
 
@@ -80,7 +90,7 @@ class UserController extends BaseController
     public function list()
     {
         $user_list = User::select(['user_id','user_name','user_account','user_nickname','user_email','user_mobile'])->get();
-        //var_dump($user_list);exit;
+
         if(collect($user_list)->isEmpty()) return back()->with(['status'=>0,'msg'=>'读取数据失败']);
         return view('admin/user/list',compact('user_list'));
     }
@@ -189,36 +199,4 @@ class UserController extends BaseController
         }
     }
 
-    /**
-     * Notes:发送邮件视图
-     * User: "LiJinGuo"
-     * Date: 2018/7/31
-     * Time: 20:17
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function testEmail()
-    {
-        return view('admin/user/email');
-    }
-
-    public function tianjia()
-    {
-        $data = [
-            'username'   => 'TSET_'.mt_rand(1000,9999),
-            'sex'        => mt_rand(0,1),
-            'age'        => mt_rand(10,99),
-            'class'      => '三年级'.mt_rand(1,10).'班',
-            'hobby'      => '打球，写字，散步'.mt_rand(0,10000),
-            'email'      => '15398533'.mt_rand(10,99).'@qq.com',
-            'mobile'     => '15971896'.mt_rand(100,999),
-            'updatetime' => time(),
-            'createtime' => time(),
-        ];
-        if ((new Test())->create($data)) {
-            echo 1;
-        } else {
-            echo 2;
-        };
-
-    }
 }

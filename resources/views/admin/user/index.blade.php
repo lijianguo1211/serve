@@ -19,22 +19,25 @@
 <body>
 <div class="container">
     <div class="row">
-        <form class="form-signin">
+        <form class="form-signin" method="post" action="{{ url('admin/login') }}">
+            {{ csrf_field() }}
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">登录</h4>
                 </div>
                 <div class="card-body">
                     <label for="inputEmail" class="sr-only">用户名</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="text" name="username" id="inputEmail" class="form-control" placeholder="username" required autofocus>
                 </div>
 
                 <div class="card-body">
                     <label for="inputPassword" class="sr-only">密码</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button type="submit" class="btn btn-primary">
+                        登录
+                    </button>
                 </div>
 
                 <div class="card-footer">

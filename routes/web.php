@@ -16,6 +16,7 @@ Route::get('/', 'IndexController@index');
 
 Route::get('testMd', 'IndexController@test');
 Route::get('testHash', 'IndexController@testHash');
+Route::get('getBaiduCode', 'IndexController@getBaiduCode');
 
 
 
@@ -183,11 +184,4 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('test3','TestController@index1');
     Route::get('test4','TestController@index2');
     Route::get('test5','TestController@index3');
-
-    //后台登录
-    //Route::get('indexLogin','AdminController@index');//视图显示
-    Route::post('registerAdmin','AdminController@registerAdmin');//登录提交
-    Route::get('logout','AdminController@logout');//退出登录
-    Route::get('logoImg','AdminController@logoImg');//用户设置自己的图像
-
 });

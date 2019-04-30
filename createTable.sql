@@ -12,17 +12,18 @@ create table if not exists `failed_jobs`(
 
 -- ---------------------------------------------------------
 use `laravel`;
-drop table if exists `users`;
-create table if not exists `users`(
+drop table if exists `admin_users`;
+create table if not exists `admin_users`(
 `id` int primary key auto_increment comment '主键',
 `username` varchar(50) not null comment '用户名',
-`account` varchar(50) not null unique comment '账户',
-`password` char(64) not null comment '密码',
-`token` varchar(64) not null commemnt 'token',
+`nick_name` varchar(50) unique not null comment '账户',
+`password` char(60) not null comment '密码',
+`token` varchar(60) not null comment 'token',
 `email` varchar(30) not null comment '邮箱',
 `mobile` varchar(15) not null default '86+' comment '手机号',
 `QQ` varchar(20) not null default 'qq' comment 'QQ账户',
 `github` varchar(20) not null default 'github' comment 'github账户',
-`create_time` timestamp comment '创建时间',
-`update_time` timestamp comment '修改时间'
-)engine=innodb charset=utf8 comment '用户表';
+`type` tinyint(1) not null default 1 comment '1-web注册用户，2-github,3-qq,4-微信，5-微博',
+`created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+`updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间'
+)engine=innodb charset=utf8mb4 comment '用户表';

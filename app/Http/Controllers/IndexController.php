@@ -76,7 +76,7 @@ class IndexController extends Controller
             'right'=>$right,
             'value'=>$getValue,
             'result' => $headerResult,
-            'comments' => $comments
+            'comments' => $comments,
         ]);
     }
 
