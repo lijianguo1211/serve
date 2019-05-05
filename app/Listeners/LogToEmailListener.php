@@ -39,7 +39,6 @@ class LogToEmailListener
 
     public function sendMail(array $param)
     {
-        dd($param);
         return $this->email->to(env('MAIL_TO_ADDRESS'))->send(new LogEmail($param));
     }
 }

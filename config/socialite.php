@@ -34,7 +34,7 @@ return [
         'id'=>'16150582',
         'apiKey'=>'CndXzv8eoGtwWGQcj3Q6TuVm',
         'secretKey'=>'QKyou0OMHtp4SHnQpWyoRO5Y2DxyNfen',
-        'redirect_uri' => 'http://localhost:8009/getBaiduCode',
+        'redirect_uri' => 'http://www.lglg.xyz/getBaiduCode',
     ]
 ];
 

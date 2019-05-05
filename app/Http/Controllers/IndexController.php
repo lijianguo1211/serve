@@ -15,6 +15,7 @@ use App\Models\DataModels\HeaderModel;
 use App\Models\DataModels\ImageModel;
 use App\Models\DataModels\RightTopsModel;
 use Illuminate\Http\Request;
+use App\Baidu\Baidu;
 
 class IndexController extends Controller
 {
@@ -114,6 +115,11 @@ class IndexController extends Controller
     public function testHash()
     {
         dd(Hash::make(123456));
+    }
+
+    public function getBaiduCode(Request $request)
+    {
+        dd($request->all());
     }
 
 }
