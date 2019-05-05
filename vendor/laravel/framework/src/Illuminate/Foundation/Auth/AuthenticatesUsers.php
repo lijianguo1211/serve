@@ -22,6 +22,7 @@ trait AuthenticatesUsers
 
         $baidu = new Baidu(config('socialite.baidu.apiKey'),config('socialite.baidu.secretKey'),config('socialite.baidu.redirect_uri'));
         $baiduCodeUri = $baidu->getLoginUrl('','popup');
+        dd($baiduCodeUri);
         $header = (new HeaderModel())->getIndexHeader();
         return view('login_home')->with(['header'=>$header,'baiduUri' => $baiduCodeUri]);
     }
