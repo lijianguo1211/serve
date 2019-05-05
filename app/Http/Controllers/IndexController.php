@@ -119,7 +119,10 @@ class IndexController extends Controller
 
     public function getBaiduCode(Request $request)
     {
-        dd($request->all());
+        $code = $request->get('code');
+        $state = $request->get('state');
+        $baidu = new Baidu(config('socialite.baidu.apiKey'),config('socialite.baidu.secretKey'),config('socialite.baidu.redirect_uri'));
+
     }
 
 }
