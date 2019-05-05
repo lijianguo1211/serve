@@ -115,10 +115,10 @@
                 var iTop = (window.screen.availHeight-30-320)/2;
                 //获得窗口的水平位置
                 var iLeft = (window.screen.availWidth-10-500)/2;
-                window.open('<?php echo $baiduUri; ?>', 'newwindow',
+                /*window.open('', 'newwindow',
                     'height=320, width=500, top=' + iTop + ', left=' + iLeft +
                     ', toolbar=no, menubar=no, ' +
-                    'scrollbars=no, resizable=no, location=no, status=no');
+                    'scrollbars=no, resizable=no, location=no, status=no');*/
             })
         });
     </script>
