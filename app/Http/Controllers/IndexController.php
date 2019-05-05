@@ -17,7 +17,7 @@ use App\Models\DataModels\RightTopsModel;
 use Illuminate\Http\Request;
 use App\Baidu\Baidu;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     private $obj;
 

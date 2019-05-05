@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataModels\HeaderModel;
 
-class ImgController
+class ImgController extends BaseController
 {
     private $img;
 

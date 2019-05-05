@@ -17,6 +17,7 @@ Route::get('/', 'IndexController@index');
 Route::get('testMd', 'IndexController@test');
 Route::get('testHash', 'IndexController@testHash');
 Route::get('getBaiduCode', 'IndexController@getBaiduCode');
+Route::get('questions', 'AskController@index');
 
 
 

@@ -23,12 +23,15 @@ return [
         display=popup
      *
      *
+     * http://www.lglg.xyz/getBaiduCode?code=845c28e660fdd3396f58fcc8de18e9c9&state=9d3b40c0ebac6e5bf48049ca9576d130
+     *
      * https://openapi.baidu.com/oauth/2.0/token?
         grant_type=authorization_code&
         code=CODE&
         client_id=YOUR_CLIENT_ID&
         client_secret=YOUR_CLIENT_SECRET&
         redirect_uri=YOUR_REGISTERED_REDIRECT_URI
+     *
      */
     'baidu' => [
         'id'=>'16150582',
