@@ -25,6 +25,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="{{url('admin/type/create')}}">添加文章分类</a></dd>
                     <dd><a href="{{url('admin/type')}}">分类显示</a></dd>
+                    <dd><a href="{{url('admin/ask/index')}}">提问板块添加</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">

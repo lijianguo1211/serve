@@ -106,3 +106,14 @@ create table if not exists comments(
 )engine=innodb default charset=utf8mb4 comment '评论表';
 
 
+drop table if exists ask_content;
+
+create table if not exists ask_content(
+`id` int UNSIGNED primary key auto_increment comment '主键',
+`title` varchar(50) not null comment '问答区的标题',
+`content` varchar(255) not null comment '问答区的内容',
+`url_name` varchar(20) not null default '花儿尊上' comment '引入网站的热议名字',
+`url_path` varchar(255) not null default 'http://www.lglg.xyz' comment '引入网站的热议链接',
+`created_at` TIMESTAMP not null comment '创建时间',
+`updated_at` timestamp not null comment '修改时间'
+)engine=innodb default charset=utf8mb4 comment '问答板块';

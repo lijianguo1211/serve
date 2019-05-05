@@ -8,23 +8,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataModels\AskContentModel;
 use App\Models\DataModels\HeaderModel;
 use App\Models\DataModels\ImageModel;
 
 
 class AskController extends BaseController
 {
-    private $ack;
+    private $ask;
 
-    public function __construct()
+    public function __construct(AskContentModel $ask)
     {
-
+        $this->ask = $ask;
     }
 
     public function index()
     {
         $header = (new HeaderModel())->getIndexHeader();
         $headerResult = (new ImageModel())->getHeaderIndex();
-        return view('ask/index')->with(['header'=>$header,'result' => $headerResult]);
+        $ask = $this->ask->getFirstData();
+        return view('ask/index')->with(['header'=>$header,'result' => $headerResult,'ask'=>$ask]);
     }
 }

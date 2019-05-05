@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\DataModels\AskContentModel;
 use App\Models\DataModels\BlogModel;
 use App\Models\DataModels\CommentModel;
 use App\Models\DataModels\HeaderModel;
@@ -42,6 +43,7 @@ class IndexController extends BaseController
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
         $headerResult = (new ImageModel())->getHeaderIndex();
+        $ask = (new AskContentModel())->getFirstData();
         return view('home')->with([
             'blogs'=>$result,
             'release'=>$getRelease,
@@ -49,7 +51,8 @@ class IndexController extends BaseController
             'header'=>$header,
             'right'=>$right,
             'value'=>$getValue,
-            'result' => $headerResult
+            'result' => $headerResult,
+            'ask'    => $ask,
         ]);
     }
 

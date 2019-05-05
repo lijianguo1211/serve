@@ -117,6 +117,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('github','GitHubController@loginToGithub');
     Route::get('liyi/github/callback','GitHubController@handleGithub');
 
+    /**
+     * 提问板块
+     */
+    Route::get('ask/index','AskContentController@index');//显示
+    Route::post('ask/insert','AskContentController@insert');//数据提交
+
 
     Route::get('testEmail','UserController@testEmail');//显示发送邮件模板
     Route::post('passwordRetrieve','UserController@passwordRetrieve');//发送邮件
