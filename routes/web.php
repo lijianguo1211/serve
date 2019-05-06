@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'IndexController@index');
+Route::post('liyi', 'IndexController@liyi');
 
 
 Route::get('testMd', 'IndexController@test');

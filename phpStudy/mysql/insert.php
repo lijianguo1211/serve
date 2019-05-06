@@ -12,7 +12,7 @@ class Mysql extends PDO
     private static $port = 3306;
     private static $userName = 'root';
     private static $password = '123456';
-    private static $dataBase = 'laravel';
+    private static $dataBase = 'liyi';
 
     private static $instance = null;
 
@@ -47,6 +47,7 @@ class Mysql extends PDO
 }
 
 $pdo = Mysql::getInstance();
+
 //var_export(get_loaded_extensions());
 
 function getPassword()
@@ -91,6 +92,26 @@ function getEmail()
     return $email;
 }
 
+function getPhone()
+{
+    $str = '0123456789';
+    $one = '1';
+
+    $twoStr = '3456789';
+    $twoStr = str_shuffle($twoStr);
+    $ind = mt_rand(0,strlen($twoStr)-1);
+    $twoStr = $twoStr[$ind];
+
+    $code = '';
+    for ($i=0; $i<9;$i++) {
+        $str = str_shuffle($str);
+        $index = mt_rand(0,strlen($str)-1);
+        $code .= $str[$index];
+    }
+
+    return $one.$twoStr.$code;
+}
+
 /*
 for ($i=0; $i<5000; $i++) {
     $name = getPassword();
@@ -113,20 +134,37 @@ for ($i=0; $i<5000; $i++) {
 
 }*/
 
-for ($i=0; $i<5000; $i++) {
+for ($i=0; $i<2000; $i++) {
     $name = getPassword();
     $password = md5(getPassword());
     $email = getEmail();
+    $phone = getPhone();
     $create_at = time();
-    $update_at = time();
-    $sql = "insert into users (`name`,password,email,create_at,update_at,age) values (?,?,?,?,?,?)";
+    $sql = "insert into u1 (username,password,email,phone,created_at) values (?,?,?,?,?)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(1,$name);
     $stmt->bindValue(2,$password);
     $stmt->bindValue(3,$email);
-    $stmt->bindValue(4,$create_at);
-    $stmt->bindValue(5,$update_at);
-    $stmt->bindValue(6,mt_rand(1,120));
+    $stmt->bindValue(4,$phone);
+    $stmt->bindValue(5,$create_at);
+    $stmt->execute();
+    $insert_id = $pdo->lastInsertId();
+    echo $insert_id."\n";
+}
+
+for ($i=0; $i<2000; $i++) {
+    $name = getPassword();
+    $password = md5(getPassword());
+    $email = getEmail();
+    $phone = getPhone();
+    $create_at = time();
+    $sql = "insert into u2 (`username`,password,email,phone,created_at) values (?,?,?,?,?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(1,$name);
+    $stmt->bindValue(2,$password);
+    $stmt->bindValue(3,$email);
+    $stmt->bindValue(4,$phone);
+    $stmt->bindValue(5,$create_at);
     $stmt->execute();
     $insert_id = $pdo->lastInsertId();
     echo $insert_id."\n";

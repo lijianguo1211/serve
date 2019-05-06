@@ -79,4 +79,18 @@ select name from users where id = 10;
 当然这里使用`union`还有一点需要注意，那就是在得到两条数据一样的时候，它会自己合并，也就是最后返回的结果只有一条，当然，你如果不想它合并的话，那就使用
 `union all`
     
+第五：对索引的创建，我们知道`mysql`有最长用的两种存储引擎`innodb`和`myisam`,针对这两种的不同存储引擎，建立的索引也是不同的。
 
+* innodb
+
+`tableName.frm` 这个是表定义文件
+`tableName.ibd` 这个是表数据文件
+
+* myisam 
+
+`tableName.frm` 这个是表定义文件
+`tableName.myd` 这个是表数据文件
+`tableName.myi` 这个是表索引文件
+
+在创建表的时候，一般都会有一个主键，最好的做法就是这个主键是保持自增的，而且不用我们自己维护的，也就是建表的时候加上`primary key auto_increment`
+其实就是主键索引。

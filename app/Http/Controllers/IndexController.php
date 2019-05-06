@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\DataModels\AskContentModel;
 use App\Models\DataModels\BlogModel;
 use App\Models\DataModels\CommentModel;
@@ -126,6 +125,16 @@ class IndexController extends BaseController
         $state = $request->get('state');
         $baidu = new Baidu(config('socialite.baidu.apiKey'),config('socialite.baidu.secretKey'),config('socialite.baidu.redirect_uri'));
 
+    }
+
+    public function test()
+    {
+        return view('test');
+    }
+
+    public function liyi()
+    {
+        return json_encode(['info'=>123456]);
     }
 
 }
