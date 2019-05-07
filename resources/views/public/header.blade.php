@@ -17,29 +17,23 @@
                     @guest
                         <li><a class="btn btn-sm btn-outline-secondary" href="{{ route('login') }}">Sign up</a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                {{ Auth::user()->username }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="">
-                                        个人信息
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                        <li class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+                                    {{ Auth::user()->username }}
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">个人信息</a>
+                                <a class="dropdown-item" href="{{ url('img/index') }}">上传图集</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                                    Logout
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
                         </li>
                     @endguest
                 </ul>
@@ -70,15 +64,15 @@
         <div class="col-md-6">
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start">
-                    {{--<strong class="d-inline-block mb-2 text-primary">{{ $item['name'] }}</strong>--}}
+                    {{--<strong class="d-inline-block mb-2 text-success">Design</strong>--}}
                     <h3 class="mb-0">
-                        <a class="text-dark" href="#">{{ $item['title'] }}</a>
+                        <a class="text-dark card-title" href="#">{{ $item['title'] }}</a>
                     </h3>
-                    {{--<div class="mb-1 text-muted">Nov 12</div>--}}
+                    <div class="mb-1 text-muted"></div>
                     <p class="card-text mb-auto">{{ $item['content'] }}</p>
                     <a href="#">{{ $item['username'] }}</a>
                 </div>
-                <img class=" img-responsive card-img-right flex-auto d-none d-md-block" width="70%" src="{{ $item['image_path'] }}" alt="{{ $item['title'] }}">
+                <img class="img-thumbnail img-responsive card-img-right flex-auto d-none d-md-block" width="70%" src="{{ $item['image_path'] }}" alt="{{ $item['title'] }}">
             </div>
         </div>
         @endforeach

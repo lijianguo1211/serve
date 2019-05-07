@@ -30,7 +30,12 @@ Auth::routes();
 
 
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
+
 Route::get('image', 'ImgController@index');
+Route::get('img/index', 'ImgController@userIndex');
+Route::get('img/upload', 'ImgController@upload');
+Route::get('img/delete', 'ImgController@delete');
+
 Route::post('ajaxComment/{id}', 'IndexController@ajaxComment')->where('id', '[0-9]+');
 Route::post('ajaxGetComment/{id}', 'IndexController@ajaxGetComment')->where('id', '[0-9]+');
 

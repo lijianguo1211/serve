@@ -33,7 +33,7 @@ class HeaderController extends BaseController
      */
     public function create()
     {
-        return view('admin/header/create')->with(['result'=>config('config')]);
+        return view('admin/header/create')->with(['result'=>array_reverse(config('config.header'))]);
     }
 
     /**
