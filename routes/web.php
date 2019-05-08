@@ -20,6 +20,8 @@ Route::get('testHash', 'IndexController@testHash');
 Route::get('getBaiduCode', 'IndexController@getBaiduCode');
 Route::get('questions', 'AskController@index');
 
+Route::get('ask/create/index', 'AskController@createIndex');
+
 
 
 Route::get('confirm', 'Auth\ConfirmController@confirm')->name('confirm');
