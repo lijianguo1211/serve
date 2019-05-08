@@ -170,7 +170,3 @@ create table if not exists u2(
 
 
 
-
-
-
-
