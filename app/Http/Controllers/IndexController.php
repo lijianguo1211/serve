@@ -16,13 +16,25 @@ use App\Models\DataModels\ImageModel;
 use App\Models\DataModels\RightTopsModel;
 use Illuminate\Http\Request;
 use App\Baidu\Baidu;
+use EndaEditor;
 
 class IndexController extends BaseController
 {
+    /**
+     * @var BlogModel
+     */
     private $obj;
 
+    /**
+     * @var Request
+     */
     private $params;
 
+    /**
+     * IndexController constructor.
+     * @param BlogModel $blog
+     * @param Request $request
+     */
     public function __construct(BlogModel $blog,Request $request)
     {
         $this->obj = $blog;
@@ -83,7 +95,12 @@ class IndexController extends BaseController
         ]);
     }
 
-    public function ajaxComment(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param $id
+     * @return false|string
+     */
+    public function ajaxComment(Request $request,int $id)
     {
         $info = $request->all();
         $data = [
@@ -99,7 +116,11 @@ class IndexController extends BaseController
         return json_encode($result);
     }
 
-    public function ajaxGetComment($id)
+    /**
+     * @param int $id
+     * @return false|string
+     */
+    public function ajaxGetComment(int $id)
     {
         $luser = $this->params['luser_id'];
         $cuser = $this->params['cuser_id'];
@@ -134,7 +155,9 @@ class IndexController extends BaseController
 
     public function liyi()
     {
-        return json_encode(['info'=>123456]);
+        $content = file_get_contents(storage_path('1.md'));
+        $content = EndaEditor::MarkDecode($content);
+        echo $content;
     }
 
 }

@@ -41,3 +41,42 @@
         </div>
     </main>
 @endsection
+
+@section('js')
+    <script src="{{ url('js/lib/sockjs.js') }}"></script>
+    <script src="{{ url('js/lib/stomp.js') }}"></script>
+
+    <script>
+        var ws = new SockJS('http://lglg.xyz:15671/stomp');
+        var client = Stomp.over(ws);
+        var id="71815464bba9cf3e";
+        var msgId = ''
+        client.connect('guest', 'guest', function () {
+
+            client.subscribe("/topic/push_send_ad526e34e658132b", function (data) {
+                var quote = JSON.parse(data.body);
+
+                msgId = quote.messageid;
+            });
+
+        });
+
+        function sendConnect(){
+            var _param = {
+                type:'connected',
+                content:id
+            }
+            client.send("/topic/send_" + id, {}, JSON.stringify(_param));
+        }
+
+        function send(){
+            var _param = {
+                type:'command',
+                messageid:msgId,
+                content:'随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 随着浏览器性能提升，更多Web Page演变为Web App，特别是在中大型的项目中，就需要一个 '
+            }
+            client.send("/topic/send_" + id, {},JSON.stringify(_param));
+        }
+
+    </script>
+@endsection

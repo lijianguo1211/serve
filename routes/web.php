@@ -12,14 +12,14 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::post('liyi', 'IndexController@liyi');
+Route::get('liyi', 'IndexController@liyi');
 
 
 Route::get('testMd', 'IndexController@test');
 Route::get('testHash', 'IndexController@testHash');
 Route::get('getBaiduCode', 'IndexController@getBaiduCode');
-Route::get('questions', 'AskController@index');
 
+Route::get('questions', 'AskController@index');
 Route::get('ask/create/index', 'AskController@createIndex');
 Route::post('ask/add', 'AskController@insert');
 Route::get('ask/details/{id}', 'AskController@details')->where('id', '[0-9]+');
@@ -28,9 +28,7 @@ Route::get('ask/details/{id}', 'AskController@details')->where('id', '[0-9]+');
 
 Route::get('confirm', 'Auth\ConfirmController@confirm')->name('confirm');
 Route::get('send-confirm-mail', 'Auth\ConfirmController@sendMail')->name('send-confirm-mail');
-
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
