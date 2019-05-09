@@ -16,7 +16,7 @@
                  </div>
              </div>
              <div class="card-footer">
-                 <span class="badge badge-pill badge-danger">点击量：{{ empty($details['reading_value']) ? 0 : $details['reading_value']}}</span>
+                 <span class="badge badge-pill badge-danger">点击量：{{ $details['reading_value']}}</span>
                  @foreach($details['label'] as $value)
                      <span class="badge badge-pill badge-dark">{{ $value }}</span>
                  @endforeach

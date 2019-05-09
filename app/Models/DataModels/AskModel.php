@@ -75,7 +75,7 @@ class AskModel extends Model
             \Log::error('阅读量增加失败：'.$e->getMessage());
         }
 
-        $result = $this->select('ask.title','ask.id','ask.content','users.username','ask.label','ask.created_at','users.id')
+        $result = $this->select('ask.title','ask.id','ask.content','users.username','ask.label','ask.created_at','ask.reading_value','users.id')
             ->join('users','ask.user_id','=','users.id')
             ->where('ask.id','=',$id)
             ->first();
