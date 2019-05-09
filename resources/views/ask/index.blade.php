@@ -5,9 +5,12 @@
         @foreach($askResult as $item)
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{{ url('ask/details/'.$item['id']) }}">{{ $item['title'] }}</a></h5>
+                    <h5 class="card-title">
+                        <a href="{{ url('ask/details/'.$item['id']) }}">{{ $item['title'] }}</a>
+                        ----
+                        <a href="#" class="badge badge-pill badge-dark">{{ $item['username'] }}</a>
+                    </h5>
                     <div class="">
-                        <span class="badge badge-pill badge-dark">用户：{{ $item['username'] }}</span>
                         <span class="badge badge-pill badge-danger">点击量：{{ $item['reading_value'] }}</span>
                         @foreach($item['label'] as $value)
                             <span class="badge badge-pill badge-dark">{{ $value }}</span>
@@ -30,4 +33,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('content')
+    <main role="main" class="container">
+        <div class="row">
+            <div style="padding-bottom: 100px"></div>
+        </div>
+    </main>
 @endsection
