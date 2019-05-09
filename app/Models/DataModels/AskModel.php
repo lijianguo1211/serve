@@ -70,7 +70,7 @@ class AskModel extends Model
     public function getindex(int $id)
     {
         try {
-            $this->increment('reading_value');
+            $this::where('id','=',$id)->increment('reading_value');
         } catch (\Exception $e) {
             \Log::error('阅读量增加失败：'.$e->getMessage());
         }
