@@ -21,6 +21,8 @@ Route::get('getBaiduCode', 'IndexController@getBaiduCode');
 Route::get('questions', 'AskController@index');
 
 Route::get('ask/create/index', 'AskController@createIndex');
+Route::post('ask/add', 'AskController@insert');
+Route::post('ask/details/{id}', 'AskController@insert')->where('id', '[0-9]+');
 
 
 

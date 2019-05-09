@@ -117,3 +117,16 @@ create table if not exists ask_content(
 `created_at` TIMESTAMP not null comment '创建时间',
 `updated_at` timestamp not null comment '修改时间'
 )engine=innodb default charset=utf8mb4 comment '问答板块';
+
+
+drop table if exists ask;
+
+create table if not exists ask(
+`id` int UNSIGNED primary key auto_increment comment '主键',
+`user_id` int UNSIGNED not null comment '用户主键',
+`title` varchar(50) not null comment '问答区的标题',
+`label` varchar(50) not null comment '问答分类标签',
+`content` text not null comment '问答区的内容',
+`created_at` TIMESTAMP not null comment '创建时间',
+`updated_at` timestamp not null comment '修改时间'
+)engine=innodb default charset=utf8mb4 comment '问答板块';

@@ -1,4 +1,4 @@
-@extends('public/base')
+@extends('public/ask_base')
 @section('css')
     <link rel="stylesheet" href="http://cdn.bootcss.com/codemirror/4.10.0/codemirror.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.4/styles/default.min.css">
@@ -10,45 +10,53 @@
         }
     </style>
 @endsection
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-4 col-md-4 offset-sm-4 col-sm-4 offset-4 col-4">
-                <div class="card">
-                    <div class="card-body bg-dark text-white">
-                        <h5 class="card-title">发布问题</h5>
-                    </div>
+@section('ask_content')
+    <div class="offset-md-1 col-md-11">
+        <div class="alert alert-dark" role="alert">
+           等待发布
+        </div>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ url('ask/add') }}" method="post">
+            <div class="form-group">
+                <label for="title">主题：</label>
+                <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"  placeholder="主题">
+                <small id="titleHelp" class="form-text text-muted">对于主题的精简归纳</small>
+            </div>
+            <div class="form-group">
+                <label for="label">标签：</label>
+                <input type="text" name="label" class="form-control" id="label" aria-describedby="labelHelp" placeholder="标签，分类，多个之间用逗号隔开">
+                <small id="labelHelp" class="form-text text-muted">对主题的分类归纳，多个之间用逗号隔开</small>
+            </div>
+
+            <div class="form-group">
+                <label for="myEditor">内容：</label>
+                <div class="editor">
+                    <textarea id='myEditor' class="form-control" name="content"></textarea>
                 </div>
             </div>
-        </div>
+            {{csrf_field()}}
+            <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
+        </form>
     </div>
+@endsection
 
-    <div class="container">
+@section('content')
+    <main role="main" class="container">
         <div class="row">
-            <div class="offset-md-2 col-md-8 offset-sm-2 col-sm-8 offset-2 col-8">
-                <form>
-                    <div class="form-group">
-                        <label for="title">主题：</label>
-                        <input type="text" class="form-control" id="title" aria-describedby="titleHelp"  placeholder="主题">
-                        <small id="titleHelp" class="form-text text-muted">对于主题的精简归纳</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="label">标签：</label>
-                        <input type="text" class="form-control" id="label" aria-describedby="labelHelp" placeholder="标签">
-                        <small id="labelHelp" class="form-text text-muted">对主题的分类归纳</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="myEditor">内容：</label>
-                        <div class="editor">
-                            <textarea id='myEditor' name="content"></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+           <div style="padding-bottom: 100px"></div>
         </div>
-    </div>
+    </main>
 @endsection
 
 @section('js')
