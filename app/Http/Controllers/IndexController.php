@@ -14,9 +14,11 @@ use App\Models\DataModels\CommentModel;
 use App\Models\DataModels\HeaderModel;
 use App\Models\DataModels\ImageModel;
 use App\Models\DataModels\RightTopsModel;
+use App\User;
 use Illuminate\Http\Request;
 use App\Baidu\Baidu;
 use EndaEditor;
+use Illuminate\Support\Facades\URL;
 
 class IndexController extends BaseController
 {
@@ -140,7 +142,37 @@ class IndexController extends BaseController
 
     public function testHash()
     {
-        dd(Hash::make(123456));
+        url()->current();
+
+        echo URL::current();
+        echo "<br />";
+        echo URL::class;
+        echo "<br />";
+        echo url()->full();
+        echo "<br />";
+        echo url()->previous();
+        echo "<br />";
+        echo url()->route('login');
+        echo "<br />";
+        echo url()->action('IndexController@liyi');
+        echo "<br />";
+        echo url()->asset('upload/hotspot/1.jpg');
+        echo "<br />";
+        echo url()->asset('upload/hotspot/2.jpg');echo "<br />";
+        echo url()->to('upload/hotspot/2.jpg');
+        echo "<br />";
+        echo route('test.index',['id'=>12]);
+        echo "<br />";
+        $user = (new User())->get();
+        foreach($user as $item) {
+            echo route('test.index',['id'=>$item]);
+            echo "<br />";
+        }
+    }
+
+    public function testHash1()
+    {
+
     }
 
     public function getBaiduCode(Request $request)
