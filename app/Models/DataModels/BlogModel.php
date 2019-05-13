@@ -23,10 +23,10 @@ class BlogModel extends Model
      * 一对一关系选择
      */
 
-    public function blogContent()
+    /*public function blogContent()
     {
         return $this->belongsTo('App\Models\DataModels\BlogContentModel','blog_id');
-    }
+    }*/
 
     public function getBlog($admin = false)
     {

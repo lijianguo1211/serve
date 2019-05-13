@@ -30,15 +30,18 @@ class IndexController extends BaseController
      */
     private $params;
 
+    private $askIndex;
+
     /**
      * IndexController constructor.
      * @param BlogModel $blog
      * @param Request $request
      */
-    public function __construct(BlogModel $blog,Request $request)
+    public function __construct(BlogModel $blog,Request $request,AskContentModel $askIndex)
     {
         $this->obj = $blog;
         $this->params = $request;
+        $this->askIndex = $askIndex->getFirstData();
     }
 
     /**
@@ -54,7 +57,6 @@ class IndexController extends BaseController
         $header = (new HeaderModel())->getIndexHeader();
         $right = (new HeaderModel())->getIndexHeader(1);
         $headerResult = (new ImageModel())->getHeaderIndex();
-        $ask = (new AskContentModel())->getFirstData();
         return view('home')->with([
             'blogs'=>$result,
             'release'=>$getRelease,
@@ -63,7 +65,7 @@ class IndexController extends BaseController
             'right'=>$right,
             'value'=>$getValue,
             'result' => $headerResult,
-            'ask'    => $ask,
+            'ask'    => $this->askIndex,
         ]);
     }
 
@@ -83,7 +85,7 @@ class IndexController extends BaseController
         $right = (new HeaderModel())->getIndexHeader(1);
         $headerResult = (new ImageModel())->getHeaderIndex();
         $comments = (new CommentModel())->getComments($id);
-        return view('details')->with([
+        return view('detail')->with([
             'details'=>$data,
             'release'=>$getRelease,
             'reghtTops'=>$reghtTops,
@@ -92,6 +94,7 @@ class IndexController extends BaseController
             'value'=>$getValue,
             'result' => $headerResult,
             'comments' => $comments,
+            'ask' => $this->askIndex
         ]);
     }
 

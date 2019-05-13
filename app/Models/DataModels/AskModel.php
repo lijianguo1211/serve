@@ -54,7 +54,9 @@ class AskModel extends Model
     {
         $result = $this->select('ask.title','ask.id','users.username','ask.label','ask.created_at','ask.reading_value')
             ->join('users','ask.user_id','=','users.id')
-            ->limit(10)->get()->toArray();
+            ->limit(10)
+            ->orderBy('created_at','desc')
+            ->get()->toArray();
         foreach ($result as $k => $item) {
             $result[$k]['label'] = explode(',',$item['label']);
         }

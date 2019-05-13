@@ -8,7 +8,7 @@
         <h4 class="font-italic">发布日期</h4>
         @foreach($release as $item)
             <ol class="list-unstyled mb-0">
-                <li><a href="{{ url('details/'.$item['id']) }}">{{ $item['title'] }} -- {{ $item['created_at'] }}</a></li>
+                <li><a href="{{ url('blog/detail/'.$item['id']) }}">{{ $item['title'] }} -- {{ $item['created_at'] }}</a></li>
             </ol>
         @endforeach
     </div>
@@ -17,7 +17,7 @@
         <h4 class="font-italic">推荐阅读</h4>
         <ol class="list-unstyled">
             @foreach($value as $item)
-                <li><a href="{{ url('details/'.$item['id']) }}">{{ $item['title'] }}</a></li>
+                <li><a href="{{ url('blog/detail/'.$item['id']) }}">{{ $item['title'] }}</a></li>
             @endforeach
         </ol>
     </div>

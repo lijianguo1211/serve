@@ -6,6 +6,7 @@
 </head>
 <body>
 <div>
+    <?php echo $details['content_md'] ?>
     <h1 id="onClick">点点</h1>
 </div>
 </body>

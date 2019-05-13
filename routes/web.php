@@ -31,7 +31,7 @@ Route::get('send-confirm-mail', 'Auth\ConfirmController@sendMail')->name('send-c
 Auth::routes();
 
 
-Route::get('details/{id}', 'IndexController@details')->where('id', '[0-9]+');
+Route::get('blog/detail/{id}', 'IndexController@details')->where('id', '[0-9]+');
 
 Route::get('image', 'ImgController@index');
 Route::get('img/index', 'ImgController@userIndex');

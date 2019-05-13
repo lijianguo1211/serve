@@ -11,7 +11,7 @@
 
                 @foreach($blogs as $blog)
                     <div class="blog-post">
-                        <h2 class="blog-post-title"><a href="{{ url('details/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
+                        <h2 class="blog-post-title"><a href="{{ url('blog/detail/'.$blog['id']) }}">{{ $blog['title'] }}</a></h2>
                         <p class="blog-post-meta">{{ $blog['created_at'] }}</p>
 
                         <p>{{ mb_substr($blog['info'],0,120).'。。。' }}</p>
