@@ -11,6 +11,17 @@
 |
 */
 
+Route::view('gg','test');
+
+Route::redirect('/one','/',301);
+
+/*Route::any('one', function(){
+    return "<h1>hello laravel !!!</h1>";
+});*/
+Route::get('two', function(){
+    return "<h1>hello laravel !!!</h1>";
+});
+
 Route::get('/', 'IndexController@index');
 Route::get('liyi', 'IndexController@liyi');
 
